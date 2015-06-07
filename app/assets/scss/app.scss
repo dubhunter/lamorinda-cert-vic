@@ -1,0 +1,16 @@
+body {
+	@media (min-width: 980px) {
+		padding-top: 60px;
+	}
+}
+
+.hero-unit {
+	position: relative;
+
+	i.icon {
+		position: absolute;
+		top: 70px;
+		right: 140px;
+		font-size: 120px;
+	}
+}

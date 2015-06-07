@@ -1,0 +1,17 @@
+{
+  "name": "dubhunter/lamorinda-cert-vic",
+  "description": "A web application to manage volunteers for Lamorinda CERT.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Will Mason",
+      "email": "will.mason@cal-esar.org"
+    }
+  ],
+  "require": {
+    "dubhunter/talon": "dev-master",
+    "giggsey/libphonenumber-for-php": "6.2",
+    "patchwork/utf8": "v1.1.24"
+  }
+}
