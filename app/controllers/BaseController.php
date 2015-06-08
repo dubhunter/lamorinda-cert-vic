@@ -37,11 +37,15 @@ class BaseController extends Phalcon\Mvc\Controller {
 	}
 
 	/**
+	 * @param bool $includeHost
 	 * @param bool $includePath
 	 * @return string
 	 */
-	protected function getUrl($includePath = false) {
-		$url = $this->request->getScheme() . '://' . $this->request->getHttpHost();
+	protected function getUrl($includeHost = false ,$includePath = false) {
+		$url = '';
+		if ($includeHost) {
+			$url .= $this->request->getScheme() . '://' . $this->request->getHttpHost();
+		}
 		if ($includePath) {
 			/** @var RestRequest $request */
 			$request = $this->request;
@@ -64,6 +68,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 */
 	protected function getAppGlobal() {
 		$twilio = array(
+			'url' => $this->getUrl(false, true),
 			'values' => $this->request->get(null, 'string'),
 		);
 		return $twilio;

@@ -8,6 +8,8 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/' => 'home',
 		'/logout' => 'logout',
 		'/dashboard' => 'dashboard',
+		'/volunteers' => 'volunteerList',
+		'/requests' => 'requestList',
 	);
 
 	public function initialize() {

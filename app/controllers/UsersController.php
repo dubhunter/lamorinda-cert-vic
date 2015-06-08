@@ -6,7 +6,7 @@ use Talon\RestRequest;
 
 class UsersController extends SiteController {
 
-	/** @var Owl $user */
+	/** @var User $user */
 	protected $user;
 
 	/**
@@ -30,22 +30,16 @@ class UsersController extends SiteController {
 		parent::initialize();
 
 		$auth = $this->session->get('auth');
-//		$this->user = Owl::findFirst($auth['guid']);
+		$this->user = User::findFirst($auth['id']);
 	}
 
 	protected function getAppGlobal() {
-		$twilio = parent::getAppGlobal();
-//		$twilio['user'] = array(
-//			'guid' => $this->user->getGuid(),
-//			'username' => $this->user->getUsername(),
-//			'firstName' => $this->user->getFirstName(),
-//			'lastName' => $this->user->getLastName(),
-//			'displayName' => $this->user->getDisplayName(),
-//			'email' => $this->user->getEmail(),
-//			'apiKey' => $this->user->getApiKey(),
-//			'avatar' => $this->getAvatarUrl($this->user->getGuid()),
-//		);
-		return $twilio;
+		$app = parent::getAppGlobal();
+		$app['user'] = array(
+			'id' => $this->user->getId(),
+			'username' => $this->user->getUsername(),
+		);
+		return $app;
 	}
 
 }

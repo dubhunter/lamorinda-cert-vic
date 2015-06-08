@@ -33,29 +33,19 @@ class HomeController extends SiteController {
 			$username = $this->request->getPost('username', 'string');
 			$password = $this->request->getPost('password', 'string');
 
-//			$owl = Owl::findFirstByUsername($username);
-//
-//			if (!$owl) {
-//				throw new AuthorizationException('Invalid username/password');
-//			}
-//
-//			$throttle = Throttle::findForOwl($owl, Throttle::TYPE_LOGIN);
-//			$this->throttle($throttle);
-//
-//			/** @var ActiveDirectory $ad */
-//			$ad = $this->di->get('ldap');
-//
-//			if (!$ad->authenticate($username, $password)) {
-//				$throttle->relock();
-//				$this->throttle($throttle);
-//				throw new AuthorizationException('Invalid username/password');
-//			}
-//
-//			$throttle->unlock();
-//
-//			$this->session->set('auth', array(
-//				'guid' => $owl->getGuid(),
-//			));
+			$user = User::findFirstByUsername($username);
+
+			if (!$user) {
+				throw new AuthorizationException('Invalid username/password');
+			}
+
+			if (!$this->security->checkHash($password, $user->getPassword())) {
+				throw new AuthorizationException('Invalid username/password');
+			}
+
+			$this->session->set('auth', array(
+				'id' => $user->getId(),
+			));
 
 			if ($this->session->has('target')) {
 				$redirect = $this->session->get('target');
