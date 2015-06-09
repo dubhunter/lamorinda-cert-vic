@@ -55,11 +55,11 @@ try {
 					$volt = new Volt($view, $di);
 					$volt->setOptions(array(
 						'compiledPath' => function ($templatePath) use ($view) {
-							$dir = sys_get_temp_dir() . '/volt-cache';
+							$dir = rtrim(sys_get_temp_dir(), '/') . '/volt-cache';
 							if (!is_dir($dir)) {
 								mkdir($dir);
 							}
-							return $dir . '/'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
+							return $dir . '/lamorinda-cert-vic%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
 						},
 						'compileAlways' => $env->realm != 'prod',
 					));
