@@ -50,8 +50,8 @@ class HomeController extends SiteController {
 			$external = false;
 
 			if ($this->session->has('target')) {
-				$redirect = $this->session->get('target');
 				$external = true;
+				$redirect = $this->session->get('target');
 				$this->session->remove('target');
 			} else {
 				$redirect = array('for' => 'dashboard');
