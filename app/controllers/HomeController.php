@@ -47,14 +47,17 @@ class HomeController extends SiteController {
 				'id' => $user->getId(),
 			));
 
+			$external = false;
+
 			if ($this->session->has('target')) {
 				$redirect = $this->session->get('target');
+				$external = true;
 				$this->session->remove('target');
 			} else {
 				$redirect = array('for' => 'dashboard');
 			}
 
-			return Response::temporaryRedirect($redirect);
+			return Response::temporaryRedirect($redirect, $external);
 		} catch (Exception $e) {
 			$this->flash->error($e->getMessage());
 			return Response::temporaryRedirect(array('for' => 'home'));
