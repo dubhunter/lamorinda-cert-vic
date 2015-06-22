@@ -4,6 +4,6 @@
 
 {% block content %}
 	<section>
-		<h3>Volunteers</h3>
+		<h2>Volunteers</h2>
 	</section>
 {%  endblock %}

@@ -4,10 +4,14 @@
 	},
 	'Requests': {
 		'for': 'request-list'
+	},
+	'Users': {
+		'for': 'user-list',
+		'role': 'admin'
 	}
 } %}
 
-<div id="main-navigation" class="navbar navbar-inverse navbar-top navbar-fixed-top">
+<div id="main-navigation" class="navbar navbar-top navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="brand" href="{{ url(['for': 'dashboard']) }}">Lamorinda CERT VIC</a>
@@ -21,10 +25,12 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						{% for name, item in menuItems %}
-							{% set url = url({'for': item['for']}) %}
-							<li{% if url == app['url'] %} class="active"{% endif %}>
-								<a href="{{ url }}" title="{{ name }}">{{ name }}</a>
-							</li>
+							{% if not item['role'] or app['user'][item['role']] %}
+								{% set url = url({'for': item['for']}) %}
+								<li{% if url == app['url'] %} class="active"{% endif %}>
+									<a href="{{ url }}" title="{{ name }}">{{ name }}</a>
+								</li>
+							{% endif %}
 						{% endfor %}
 					</ul>
 					<ul class="nav pull-right">

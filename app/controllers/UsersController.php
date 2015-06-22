@@ -38,6 +38,7 @@ class UsersController extends SiteController {
 		$app['user'] = array(
 			'id' => $this->user->getId(),
 			'username' => $this->user->getUsername(),
+			'admin' => $this->user->isAdmin(),
 		);
 		return $app;
 	}

@@ -17,7 +17,7 @@ class SiteController extends BaseController {
 			->setTargetPath('css/core.css')
 			->setTargetUri('css/core.css')
 			->addCss('bootstrap.css')
-			->addCss('bootstrap-spacelab.css')
+//			->addCss('bootstrap-spacelab.css')
 			->addCss('bootstrap-responsive.css')
 			->addCss('font-awesome.css')
 			->addCss('app.css')

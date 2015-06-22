@@ -14,3 +14,19 @@
     top: 70px;
     right: 140px;
     font-size: 120px; }
+
+.text-left {
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
+
+.table th.text-left, .table td.text-left {
+  text-align: left; }
+.table th.text-center, .table td.text-center {
+  text-align: center; }
+.table th.text-right, .table td.text-right {
+  text-align: right; }

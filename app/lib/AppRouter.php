@@ -10,6 +10,9 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/dashboard' => 'dashboard',
 		'/volunteers' => 'volunteerList',
 		'/requests' => 'requestList',
+		'/users' => 'userList',
+		'/users/create' => 'userCreate',
+		'/users/{id:[0-9]+}' => 'userInstance',
 	);
 
 	public function initialize() {

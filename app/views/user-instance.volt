@@ -1,0 +1,51 @@
+{% extends 'layouts/core.volt' %}
+
+{% block title %}User {% if user['id'] %}Edit{% else %}Add{% endif %}{% endblock %}
+
+{% block content %}
+	{% set token = security.getToken() %}
+	{% set tokenKey = security.getTokenKey() %}
+
+	<section>
+		<h2>User {% if user['id'] %}Edit{% else %}Add{% endif %}</h2>
+
+		<form class="form-horizontal" method="post" action="{{ user['id'] ? url({'for': 'user-instance', 'id': user['id']}) : url({'for': 'user-list'}) }}" autocomplete="off">
+
+			<input type="hidden" name="{{ tokenKey }}" value="{{ token }}">
+
+			<div class="control-group">
+				<label class="control-label" for="username">Username</label>
+				<div class="controls">
+					<input type="text" id="username" name="username" placeholder="Username" value="{{ user['username'] }}" autocomplete="off">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="password">Password</label>
+				<div class="controls">
+					<input type="password" id="password" name="password" placeholder="Password" autocomplete="off">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="role">Role</label>
+				<div class="controls">
+					<select id="role" name="role">
+						<option value="">-- Role --</option>
+						{% for role, roleName in roles %}
+							<option value="{{ role }}"{% if role == user['role'] %} selected{% endif %}>{{ roleName }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<button type="reset" class="btn">Cancel</button>
+					<button type="submit" class="btn btn-primary" data-loading-text="{{ '<i class="icon icon-spinner icon-spin"></i>'|e }} Saving &hellip;">Save</button>
+				</div>
+			</div>
+
+		</form>
+	</section>
+{%  endblock %}

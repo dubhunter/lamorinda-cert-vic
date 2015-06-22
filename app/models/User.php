@@ -4,9 +4,18 @@ use Talon\Date;
 
 class User extends \Phalcon\Mvc\Model {
 
+	const ROLE_ADMIN = 1;
+	const ROLE_USER = 2;
+
+	protected static $roles = array(
+		self::ROLE_ADMIN => 'Admin',
+		self::ROLE_USER => 'User',
+	);
+
 	protected $id;
 	protected $username;
 	protected $password;
+	protected $role;
 	protected $date_created;
 	protected $date_updated;
 
@@ -33,6 +42,21 @@ class User extends \Phalcon\Mvc\Model {
 			$parameters['order'] = 'username';
 		}
 		return parent::find($parameters);
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getRoles() {
+		return self::$roles;
+	}
+
+	/**
+	 * @param $role
+	 * @return string
+	 */
+	public static function getRoleName($role) {
+		return isset(self::$roles[$role]) ? self::$roles[$role] : null;
 	}
 
 	/**
@@ -97,6 +121,31 @@ class User extends \Phalcon\Mvc\Model {
 	 */
 	public function setPassword($password) {
 		$this->password = $this->getDI()->get('security')->hash($password);
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getRole() {
+		return $this->role;
+	}
+
+	/**
+	 * @param mixed $role
+	 * @throws Exception
+	 */
+	public function setRole($role) {
+		if (!isset(self::$roles[$role])) {
+			throw new Exception('Invalid role (' . $role . ')');
+		}
+		$this->role = $role;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isAdmin() {
+		return $this->role == self::ROLE_ADMIN;
 	}
 
 	/**

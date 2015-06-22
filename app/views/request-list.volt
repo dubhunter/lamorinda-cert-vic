@@ -4,6 +4,6 @@
 
 {% block content %}
 	<section>
-		<h3>Requests</h3>
+		<h2>Requests</h2>
 	</section>
 {%  endblock %}
