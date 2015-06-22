@@ -9,21 +9,21 @@
 	<section>
 		<h2>User {% if user['id'] %}Edit{% else %}Add{% endif %}</h2>
 
-		<form class="form-horizontal" method="post" action="{{ user['id'] ? url({'for': 'user-instance', 'id': user['id']}) : url({'for': 'user-list'}) }}" autocomplete="off">
+		<form class="form-horizontal" method="post" action="{{ user['id'] ? url({'for': 'user-instance', 'id': user['id']}) : url({'for': 'user-list'}) }}">
 
 			<input type="hidden" name="{{ tokenKey }}" value="{{ token }}">
 
 			<div class="control-group">
 				<label class="control-label" for="username">Username</label>
 				<div class="controls">
-					<input type="text" id="username" name="username" placeholder="Username" value="{{ user['username'] }}" autocomplete="off">
+					<input type="text" id="username" name="username" placeholder="Username" value="{{ user['username'] }}">
 				</div>
 			</div>
 
 			<div class="control-group">
 				<label class="control-label" for="password">Password</label>
 				<div class="controls">
-					<input type="password" id="password" name="password" placeholder="Password" autocomplete="off">
+					<input type="password" id="password" name="password" placeholder="Password">
 				</div>
 			</div>
 
@@ -42,10 +42,17 @@
 			<div class="control-group">
 				<div class="controls">
 					<button type="reset" class="btn">Cancel</button>
-					<button type="submit" class="btn btn-primary" data-loading-text="{{ '<i class="icon icon-spinner icon-spin"></i>'|e }} Saving &hellip;">Save</button>
+					{% if user['id'] %}
+						<button  data-toggle="modal" data-target="#delete-user" class="btn btn-danger"><i class="icon icon-trash-o"></i> Delete</button>
+					{% endif %}
+					<button type="submit" class="btn btn-primary" data-loading-text="{{ '<i class="icon icon-spinner icon-spin"></i>'|e }} Saving &hellip;"><i class="icon icon-save"></i> Save</button>
 				</div>
 			</div>
 
 		</form>
 	</section>
+
+	{% if user['id'] %}
+		{% include 'modals/delete-confirm.volt' %}
+	{% endif %}
 {%  endblock %}

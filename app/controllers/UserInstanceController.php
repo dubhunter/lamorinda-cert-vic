@@ -1,11 +1,12 @@
 <?php
 
 use Talon\Response;
+use Talon\JsonResponse;
 
 class UserInstanceController extends UsersController {
 
 	public function get($id) {
-		if (!$this->user->isAdmin()) {
+		if (!$this->user->isAdmin() || $id == $this->user->getId()) {
 			return Response::forbidden();
 		}
 
@@ -32,7 +33,7 @@ class UserInstanceController extends UsersController {
 	}
 
 	public function post($id) {
-		if (!$this->user->isAdmin()) {
+		if (!$this->user->isAdmin() || $id == $this->user->getId()) {
 			return Response::forbidden();
 		}
 
@@ -63,6 +64,31 @@ class UserInstanceController extends UsersController {
 		} catch (Exception $e) {
 			$this->flash->error($e->getMessage());
 			return Response::temporaryRedirect(array('for' => 'user-instance', 'id' => $id));
+		}
+	}
+
+	public function delete($id) {
+		if (!$this->user->isAdmin() || $id == $this->user->getId()) {
+			return Response::forbidden();
+		}
+
+		try {
+			/** @var User $user */
+			$user = User::findFirst($id);
+			if (!$user) {
+				return Response::notFound();
+			}
+
+			$user->delete();
+
+			$this->flash->success('User successfully deleted!');
+			return JsonResponse::ok(array(
+				'location' => $this->url->get(array('for' => 'user-list')),
+			));
+		} catch (Exception $e) {
+			return JsonResponse::ok(array(
+				'error' => $e->getMessage(),
+			));
 		}
 	}
 }

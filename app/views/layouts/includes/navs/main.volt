@@ -35,6 +35,9 @@
 					</ul>
 					<ul class="nav pull-right">
 						<li>
+							<a href="{{ url({'for': 'change-password'}) }}" title="Change Password">{{ app['user']['username'] }}</a>
+						</li>
+						<li>
 							<a href="{{ url({'for': 'logout'}) }}" title="Logout">Logout</a>
 						</li>
 					</ul>

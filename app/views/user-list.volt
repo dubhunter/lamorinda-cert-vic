@@ -26,7 +26,7 @@
 					<td>{{ date('Y-m-d H:i:s', user['dateCreated']) }}</td>
 					<td>{{ date('Y-m-d H:i:s', user['dateUpdated']) }}</td>
 					<td class="text-right">
-						<a href="{{ url({'for': 'user-instance', 'id': user['id']}) }}" class="btn"><i class="icon icon-pencil"></i></a>
+						<a href="{{ url({'for': 'user-instance', 'id': user['id']}) }}" class="btn{% if user['id'] == app['user']['id'] %} disabled{% endif %}"><i class="icon icon-pencil"></i></a>
 					</td>
 				</tr>
 			{% endfor %}
