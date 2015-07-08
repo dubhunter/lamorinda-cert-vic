@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: lamorinda_cert_vic
 -- ------------------------------------------------------
--- Server version	5.6.21
+-- Server version  5.6.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `agencies` (
   `phone` char(16) NOT NULL COMMENT 'Agency Primary Phone Number',
   `contact` varchar(60) NOT NULL COMMENT 'Agency Contact',
   `position` varchar(30) NOT NULL COMMENT 'Contact position',
-  `phonedir` char(16) NOT NULL COMMENT 'Contact Phone Direct',
+  `phone_direct` char(16) NOT NULL DEFAULT '' COMMENT 'Contact Phone Direct',
   `fax` char(10) DEFAULT NULL COMMENT 'Contact Fax Number',
   `phone_cell` char(10) NOT NULL COMMENT 'Contact Phone Cell',
   `email` varchar(60) NOT NULL COMMENT 'Contact Email',
@@ -69,7 +69,7 @@ CREATE TABLE `dsw` (
   KEY `fk_class` (`dsw_class_id`),
   CONSTRAINT `dsw_ibfk_1` FOREIGN KEY (`volunteer_id`) REFERENCES `volunteers` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `dsw_ibfk_2` FOREIGN KEY (`jurisdiction_id`) REFERENCES `jurisdictions` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `dsw_ibfk_3` FOREIGN KEY (`dsw_class_id`) REFERENCES `dsw_class` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `dsw_ibfk_3` FOREIGN KEY (`dsw_class_id`) REFERENCES `dsw_classes` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Disaster Service Worker registrations';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,13 +83,13 @@ LOCK TABLES `dsw` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `dsw_class`
+-- Table structure for table `dsw_classes`
 --
 
-DROP TABLE IF EXISTS `dsw_class`;
+DROP TABLE IF EXISTS `dsw_classes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `dsw_class` (
+CREATE TABLE `dsw_classes` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'DSW Classification ID',
   `class` varchar(50) NOT NULL COMMENT 'DSW Classification',
   PRIMARY KEY (`id`),
@@ -98,13 +98,13 @@ CREATE TABLE `dsw_class` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `dsw_class`
+-- Dumping data for table `dsw_classes`
 --
 
-LOCK TABLES `dsw_class` WRITE;
-/*!40000 ALTER TABLE `dsw_class` DISABLE KEYS */;
-INSERT INTO `dsw_class` VALUES (1,'Animal Rescue, Care & Shelter'),(2,'Communications'),(3,'Community Emergency Response Team Member'),(4,'Emergency Operations Center/Incident Command'),(6,'Fire'),(5,'Human Services'),(7,'Laborer'),(8,'Law Enforcement'),(9,'Logistics'),(10,'Medical & Environmental Health'),(11,'Safety Assessment Program Evaluator'),(12,'Search & Rescue'),(13,'Utilities');
-/*!40000 ALTER TABLE `dsw_class` ENABLE KEYS */;
+LOCK TABLES `dsw_classes` WRITE;
+/*!40000 ALTER TABLE `dsw_classes` DISABLE KEYS */;
+INSERT INTO `dsw_classes` VALUES (1,'Animal Rescue, Care & Shelter'),(2,'Communications'),(3,'Community Emergency Response Team Member'),(4,'Emergency Operations Center/Incident Command'),(6,'Fire'),(5,'Human Services'),(7,'Laborer'),(8,'Law Enforcement'),(9,'Logistics'),(10,'Medical & Environmental Health'),(11,'Safety Assessment Program Evaluator'),(12,'Search & Rescue'),(13,'Utilities');
+/*!40000 ALTER TABLE `dsw_classes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -171,11 +171,11 @@ DROP TABLE IF EXISTS `requests`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Request ID',
-  `angency_id` char(8) NOT NULL COMMENT 'Req Agency',
+  `agency_id` char(8) NOT NULL DEFAULT '' COMMENT 'Req Agency',
   `street` varchar(60) NOT NULL COMMENT 'Req Street',
   `jurisdiction_id` int(11) NOT NULL COMMENT 'Req City',
   `contact` varchar(60) NOT NULL COMMENT 'Req Contact',
-  `phone_w` char(16) NOT NULL COMMENT 'Req Phone Work',
+  `phone_work` char(16) NOT NULL DEFAULT '' COMMENT 'Req Phone Work',
   `fax` char(10) DEFAULT NULL COMMENT 'Req Fax Number',
   `phone_cell` char(10) NOT NULL COMMENT 'Req Phone Cell',
   `email` varchar(60) NOT NULL COMMENT 'Req Email',
@@ -183,10 +183,10 @@ CREATE TABLE `requests` (
   `comment` varchar(240) DEFAULT NULL COMMENT 'Request Comments',
   `open` tinyint(1) NOT NULL COMMENT 'Req Open',
   PRIMARY KEY (`id`),
-  KEY `fk_ra` (`angency_id`),
+  KEY `fk_ra` (`agency_id`),
   KEY `fk_rjur` (`jurisdiction_id`),
   KEY `open` (`open`),
-  CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`angency_id`) REFERENCES `agencies` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`agency_id`) REFERENCES `agencies` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`jurisdiction_id`) REFERENCES `jurisdictions` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Requests for volunteers';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -288,6 +288,35 @@ CREATE TABLE `timesheets` (
 LOCK TABLES `timesheets` WRITE;
 /*!40000 ALTER TABLE `timesheets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `timesheets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `role` tinyint(4) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','$2a$08$O3NW0mI9u8OHqt7blrMG7eFRVaTiSHP8mxsnCCJnluWaTOhuKYL4y',1,'2015-06-07 18:43:50','2015-06-22 13:50:48');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -420,4 +449,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-06-07 18:16:34
+-- Dump completed on 2015-07-08  3:46:23
