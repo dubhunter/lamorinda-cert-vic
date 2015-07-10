@@ -67,7 +67,7 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	 * Set on-create properties
 	 */
 	public function beforeValidationOnCreate() {
-		$this->setDbTime(time());
+		$this->setEntryTime(time());
 	}
 
 	/**
