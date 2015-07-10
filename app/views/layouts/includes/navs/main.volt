@@ -27,7 +27,7 @@
 						{% for name, item in menuItems %}
 							{% if not item['role'] or app['user'][item['role']] %}
 								{% set url = url({'for': item['for']}) %}
-								<li{% if url == app['url'] %} class="active"{% endif %}>
+								<li{% if url in app['url'] %} class="active"{% endif %}>
 									<a href="{{ url }}" title="{{ name }}">{{ name }}</a>
 								</li>
 							{% endif %}
