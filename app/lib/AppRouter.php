@@ -10,6 +10,8 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/change-password' => 'changePassword',
 		'/dashboard' => 'dashboard',
 		'/volunteers' => 'volunteerList',
+		'/volunteers/create' => 'volunteerCreate',
+		'/volunteers/{id:[0-9]+}' => 'volunteerInstance',
 		'/requests' => 'requestList',
 		'/users' => 'userList',
 		'/users/create' => 'userCreate',

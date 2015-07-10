@@ -4,8 +4,8 @@
 
 {% block content %}
 	<section>
-		<h2>Users</h2>
 		<a href="{{ url({'for': 'user-create'}) }}" class="btn pull-right"><i class="icon icon-user-plus"></i> Add User</a>
+		<h2>Users</h2>
 		<table class="table table-hover">
 			<thead>
 			<tr>

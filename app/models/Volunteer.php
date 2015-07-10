@@ -11,7 +11,7 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	protected $id;
 	protected $name_last;
 	protected $name_first;
-	protected $name_mi;
+	protected $name_middle;
 	protected $address;
 	protected $city;
 	protected $state;
@@ -22,16 +22,16 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	protected $email;
 	protected $dob;
 	protected $id_type;
-	protected $id_no;
-	protected $id_st;
+	protected $id_number;
+	protected $id_state;
 	protected $agencies;
-	protected $train;
+	protected $training;
 	protected $ec_name;
 	protected $ec_phone;
 	protected $image;
 	protected $intake_by;
 	protected $intake_time;
-	protected $bc_by;
+	protected $bg_by;
 	protected $bg_time;
 	protected $bg_pass;
 	protected $screen_by;
@@ -115,15 +115,15 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getNameMi() {
-		return $this->name_mi;
+	public function getNameMiddle() {
+		return $this->name_middle;
 	}
 
 	/**
-	 * @param mixed $name_mi
+	 * @param mixed $name_middle
 	 */
-	public function setNameMi($name_mi) {
-		$this->name_mi = $name_mi;
+	public function setNameMiddle($name_middle) {
+		$this->name_middle = $name_middle;
 	}
 
 	/**
@@ -193,7 +193,7 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	 * @param mixed $phone_day
 	 */
 	public function setPhoneDay($phone_day) {
-		$this->phone_day = $phone_day;
+		$this->phone_day = !empty($phone_day) ? LibPhoneNumber::formatE164($phone_day) : null;
 	}
 
 	/**
@@ -207,7 +207,7 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	 * @param mixed $phone_eve
 	 */
 	public function setPhoneEve($phone_eve) {
-		$this->phone_eve = $phone_eve;
+		$this->phone_eve = !empty($phone_eve) ? LibPhoneNumber::formatE164($phone_eve) : null;
 	}
 
 	/**
@@ -221,7 +221,7 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	 * @param mixed $phone_cell
 	 */
 	public function setPhoneCell($phone_cell) {
-		$this->phone_cell = $phone_cell;
+		$this->phone_cell = !empty($phone_cell) ? LibPhoneNumber::formatE164($phone_cell) : null;
 	}
 
 	/**
@@ -241,14 +241,14 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getDob() {
+	public function getDOB() {
 		return strtotime($this->dob);
 	}
 
 	/**
 	 * @param mixed $dob
 	 */
-	public function setDob($dob) {
+	public function setDOB($dob) {
 		if (is_numeric($dob)) {
 			$dob = Date::sqlDatetime($dob);
 		}
@@ -272,29 +272,29 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getIdNo() {
-		return $this->id_no;
+	public function getIdNumber() {
+		return $this->id_number;
 	}
 
 	/**
-	 * @param mixed $id_no
+	 * @param mixed $id_number
 	 */
-	public function setIdNo($id_no) {
-		$this->id_no = $id_no;
+	public function setIdNumber($id_number) {
+		$this->id_number = $id_number;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function getIdSt() {
-		return $this->id_st;
+	public function getIdState() {
+		return $this->id_state;
 	}
 
 	/**
-	 * @param mixed $id_st
+	 * @param mixed $id_state
 	 */
-	public function setIdSt($id_st) {
-		$this->id_st = $id_st;
+	public function setIdState($id_state) {
+		$this->id_state = $id_state;
 	}
 
 	/**
@@ -314,43 +314,43 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getTrain() {
-		return $this->train;
+	public function getTraining() {
+		return $this->training;
 	}
 
 	/**
-	 * @param mixed $train
+	 * @param mixed $training
 	 */
-	public function setTrain($train) {
-		$this->train = $train;
+	public function setTraining($training) {
+		$this->training = $training;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function getEcName() {
+	public function getEmergencyContactName() {
 		return $this->ec_name;
 	}
 
 	/**
 	 * @param mixed $ec_name
 	 */
-	public function setEcName($ec_name) {
+	public function setEmergencyContactName($ec_name) {
 		$this->ec_name = $ec_name;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function getEcPhone() {
+	public function getEmergencyContactPhone() {
 		return $this->ec_phone;
 	}
 
 	/**
 	 * @param mixed $ec_phone
 	 */
-	public function setEcPhone($ec_phone) {
-		$this->ec_phone = $ec_phone;
+	public function setEmergencyContactPhone($ec_phone) {
+		$this->ec_phone = !empty($ec_phone) ? LibPhoneNumber::formatE164($ec_phone) : null;
 	}
 
 	/**
@@ -401,28 +401,28 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getBcBy() {
-		return $this->bc_by;
+	public function getBackgroundBy() {
+		return $this->bg_by;
 	}
 
 	/**
-	 * @param mixed $bc_by
+	 * @param mixed $bg_by
 	 */
-	public function setBcBy($bc_by) {
-		$this->bc_by = $bc_by;
+	public function setBackgroundBy($bg_by) {
+		$this->bg_by = $bg_by;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function getBgTime() {
+	public function getBackgroundTime() {
 		return strtotime($this->bg_time);
 	}
 
 	/**
 	 * @param mixed $bg_time
 	 */
-	public function setBgTime($bg_time) {
+	public function setBackgroundTime($bg_time) {
 		if (is_numeric($bg_time)) {
 			$bg_time = Date::sqlDatetime($bg_time);
 		}
@@ -432,15 +432,15 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getBgPass() {
-		return $this->bg_pass;
+	public function getBackgroundPass() {
+		return $this->bg_pass == 1;
 	}
 
 	/**
 	 * @param mixed $bg_pass
 	 */
-	public function setBgPass($bg_pass) {
-		$this->bg_pass = $bg_pass;
+	public function setBackgroundPass($bg_pass) {
+		$this->bg_pass = $bg_pass ? 1 : 0;
 	}
 
 	/**
@@ -477,28 +477,28 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getRevBy() {
+	public function getReviewBy() {
 		return $this->rev_by;
 	}
 
 	/**
 	 * @param mixed $rev_by
 	 */
-	public function setRevBy($rev_by) {
+	public function setReviewBy($rev_by) {
 		$this->rev_by = $rev_by;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function getRevTime() {
+	public function getReviewTime() {
 		return strtotime($this->rev_time);
 	}
 
 	/**
 	 * @param mixed $rev_time
 	 */
-	public function setRevTime($rev_time) {
+	public function setReviewTime($rev_time) {
 		if (is_numeric($rev_time)) {
 			$rev_time = Date::sqlDatetime($rev_time);
 		}
@@ -508,28 +508,28 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	/**
 	 * @return mixed
 	 */
-	public function getDbBy() {
+	public function getEntryBy() {
 		return $this->db_by;
 	}
 
 	/**
 	 * @param mixed $db_by
 	 */
-	public function setDbBy($db_by) {
+	public function setEntryBy($db_by) {
 		$this->db_by = $db_by;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function getDbTime() {
+	public function getEntryTime() {
 		return strtotime($this->db_time);
 	}
 
 	/**
 	 * @param mixed $db_time
 	 */
-	public function setDbTime($db_time) {
+	public function setEntryTime($db_time) {
 		if (is_numeric($db_time)) {
 			$db_time = Date::sqlDatetime($db_time);
 		}
@@ -554,13 +554,13 @@ class Volunteer extends \Phalcon\Mvc\Model {
 	 * @return mixed
 	 */
 	public function getAvailable() {
-		return $this->available;
+		return $this->available == 1;
 	}
 
 	/**
 	 * @param mixed $available
 	 */
 	public function setAvailable($available) {
-		$this->available = $available;
+		$this->available = $available ? 1 : 0;
 	}
 }

@@ -2,74 +2,67 @@
 
 use Talon\Response;
 
-class VolunteerListController extends UsersController {
+class VolunteerInstanceController extends UsersController {
 
-	public function get() {
-		$template = $this->getTemplate('volunteer-list');
-
-		$options = array();
-
-		$search = $this->request->getQuery('q', array('string', 'trim'));
-
-		if (!empty($search)) {
-			$search = strtolower($search);
-
-			$options['conditions'] = 'LOWER(name_first) = :search: OR LOWER(name_last) = :search:';
-			$options['conditions'] .= ' OR email = :search:';
-			$options['conditions'] .= ' OR phone_day = :search: OR phone_eve = :search: OR phone_cell = :search:';
-			$options['bind'] = array(
-				'search' => $search,
-			);
+	public function get($id) {
+		/** @var Volunteer $volunteer */
+		$volunteer = Volunteer::findFirst($id);
+		if (!$volunteer) {
+			return Response::notFound();
 		}
 
-		foreach (Volunteer::find($options) as $volunteer) {
-			$template->add('volunteers', array(
-				'id' => $volunteer->getId(),
-				'nameFirst' => $volunteer->getNameFirst(),
-				'nameLast' => $volunteer->getNameLast(),
-				'nameMiddle' => $volunteer->getNameMiddle(),
-				'address' => $volunteer->getAddress(),
-				'city' => $volunteer->getCity(),
-				'state' => $volunteer->getState(),
-				'zip' => $volunteer->getZip(),
-				'phoneDay' => $volunteer->getPhoneDay(),
-				'phoneEve' => $volunteer->getPhoneEve(),
-				'phoneCell' => $volunteer->getPhoneCell(),
-				'email' => $volunteer->getEmail(),
-				'dob' => $volunteer->getDOB(),
-				'idType' => $volunteer->getIdType(),
-				'idNumber' => $volunteer->getIdNumber(),
-				'idState' => $volunteer->getIdState(),
-				'agencies' => $volunteer->getAgencies(),
-				'training' => $volunteer->getTraining(),
-				'emergencyContactName' => $volunteer->getEmergencyContactName(),
-				'emergencyContactPhone' => $volunteer->getEmergencyContactPhone(),
-				'intakeBy' => $volunteer->getIntakeBy(),
-				'intakeTime' => $volunteer->getIntakeTime(),
-				'backgroundBy' => $volunteer->getBackgroundBy(),
-				'backgroundTime' => $volunteer->getBackgroundTime(),
-				'backgroundPass' => $volunteer->getBackgroundPass(),
-				'screenBy' => $volunteer->getScreenBy(),
-				'screenTime' => $volunteer->getScreenTime(),
-				'reviewBy' => $volunteer->getReviewBy(),
-				'reviewTime' => $volunteer->getReviewTime(),
-				'entryBy' => $volunteer->getEntryBy(),
-				'entryTime' => $volunteer->getEntryTime(),
-				'comment' => $volunteer->getComment(),
-				'available' => $volunteer->getAvailable(),
-			));
-		}
+		$template = $this->getTemplate('volunteer-instance');
+
+		$template->set('volunteer', array(
+			'id' => $volunteer->getId(),
+			'nameFirst' => $volunteer->getNameFirst(),
+			'nameLast' => $volunteer->getNameLast(),
+			'nameMiddle' => $volunteer->getNameMiddle(),
+			'address' => $volunteer->getAddress(),
+			'city' => $volunteer->getCity(),
+			'state' => $volunteer->getState(),
+			'zip' => $volunteer->getZip(),
+			'phoneDay' => $volunteer->getPhoneDay(),
+			'phoneEve' => $volunteer->getPhoneEve(),
+			'phoneCell' => $volunteer->getPhoneCell(),
+			'email' => $volunteer->getEmail(),
+			'dob' => $volunteer->getDOB(),
+			'idType' => $volunteer->getIdType(),
+			'idNumber' => $volunteer->getIdNumber(),
+			'idState' => $volunteer->getIdState(),
+			'agencies' => $volunteer->getAgencies(),
+			'training' => $volunteer->getTraining(),
+			'emergencyContactName' => $volunteer->getEmergencyContactName(),
+			'emergencyContactPhone' => $volunteer->getEmergencyContactPhone(),
+			'intakeBy' => $volunteer->getIntakeBy(),
+			'intakeTime' => $volunteer->getIntakeTime(),
+			'backgroundBy' => $volunteer->getBackgroundBy(),
+			'backgroundTime' => $volunteer->getBackgroundTime(),
+			'backgroundPass' => $volunteer->getBackgroundPass(),
+			'screenBy' => $volunteer->getScreenBy(),
+			'screenTime' => $volunteer->getScreenTime(),
+			'reviewBy' => $volunteer->getReviewBy(),
+			'reviewTime' => $volunteer->getReviewTime(),
+			'entryBy' => $volunteer->getEntryBy(),
+			'entryTime' => $volunteer->getEntryTime(),
+			'comment' => $volunteer->getComment(),
+			'available' => $volunteer->getAvailable(),
+		));
 
 		return Response::ok($template);
 	}
 
-	public function post() {
+	public function post($id) {
 		try {
 			if (!$this->security->checkToken()) {
 				throw new Exception('Something went wrong. Please try again.');
 			}
 
-			$volunteer = new Volunteer();
+			/** @var Volunteer $volunteer */
+			$volunteer = Volunteer::findFirst($id);
+			if (!$volunteer) {
+				return Response::notFound();
+			}
 
 			if ($this->request->hasPost('nameFirst')) {
 				$volunteer->setNameFirst($this->request->getPost('nameFirst', 'string'));
@@ -164,16 +157,14 @@ class VolunteerListController extends UsersController {
 			if ($this->request->hasPost('comment')) {
 				$volunteer->setComment($this->request->getPost('comment', 'string'));
 			}
-			if ($this->request->hasPost('available')) {
-				$volunteer->setAvailable($this->request->getPost('available', 'int'));
-			}
+			$volunteer->setAvailable($this->request->getPost('available', 'int'));
 			$volunteer->save();
 
 			$this->flash->success('Volunteer successfully saved!');
 			return Response::temporaryRedirect(array('for' => 'volunteer-list'));
 		} catch (Exception $e) {
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'volunteer-create'));
+			return Response::temporaryRedirect(array('for' => 'volunteer-instance', 'id' => $id));
 		}
 	}
 }
