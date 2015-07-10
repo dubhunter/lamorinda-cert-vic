@@ -35,7 +35,7 @@
 						<td>{{ volunteer['phoneCell']|phone }}</td>
 						<td>{{ volunteer['email'] }}</td>
 						<td>{{ volunteer['city'] }}, {{ volunteer['state'] }}</td>
-						<td>{{ date('Y-m-d', volunteer['dob']) }}</td>
+						<td>{{ date('M d, Y', volunteer['dob']) }}</td>
 						<td>{{ date('Y-m-d H:i:s', volunteer['entryTime']) }}</td>
 						<td>{% if volunteer['available'] %}<i class="icon icon-check"></i>{% else %}<i class="icon icon-times"></i>{% endif %}</td>
 						<td class="text-right">
