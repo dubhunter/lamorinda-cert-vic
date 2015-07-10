@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: lamorinda_cert_vic
 -- ------------------------------------------------------
--- Server version  5.6.21
+-- Server version	5.6.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -394,27 +394,27 @@ CREATE TABLE `volunteers` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Volunteer ID',
   `name_last` varchar(30) NOT NULL COMMENT 'Name Last',
   `name_first` varchar(30) NOT NULL COMMENT 'Name First',
-  `name_mi` varchar(30) DEFAULT NULL COMMENT 'Name Middle',
+  `name_middle` varchar(30) DEFAULT NULL COMMENT 'Name Middle',
   `address` varchar(50) NOT NULL COMMENT 'Address',
   `city` varchar(30) NOT NULL COMMENT 'City',
   `state` char(3) NOT NULL DEFAULT 'CA' COMMENT 'State',
   `zip` char(10) NOT NULL COMMENT 'ZIP',
-  `phone_day` char(10) DEFAULT NULL COMMENT 'Phone Day',
-  `phone_eve` char(10) DEFAULT NULL COMMENT 'Phone Eve',
-  `phone_cell` char(10) NOT NULL COMMENT 'Phone Cell',
+  `phone_day` char(16) DEFAULT NULL COMMENT 'Phone Day',
+  `phone_eve` char(16) DEFAULT NULL COMMENT 'Phone Eve',
+  `phone_cell` char(16) NOT NULL DEFAULT '' COMMENT 'Phone Cell',
   `email` varchar(60) NOT NULL COMMENT 'Email',
   `dob` date NOT NULL COMMENT 'Date of Birth',
   `id_type` char(3) DEFAULT NULL COMMENT 'ID Type',
-  `id_no` char(10) DEFAULT NULL COMMENT 'ID Number',
-  `id_st` char(4) DEFAULT NULL COMMENT 'ID State, Country or Branch',
+  `id_number` char(10) DEFAULT NULL COMMENT 'ID Number',
+  `id_state` char(4) DEFAULT NULL COMMENT 'ID State, Country or Branch',
   `agencies` varchar(60) DEFAULT NULL COMMENT 'Agency, School, etc.',
-  `train` varchar(60) DEFAULT NULL COMMENT 'Disaster training',
+  `training` varchar(60) DEFAULT NULL COMMENT 'Disaster training',
   `ec_name` varchar(40) DEFAULT NULL COMMENT 'Emergency Contact Name',
   `ec_phone` char(10) DEFAULT NULL COMMENT 'Emergency Contact Phone',
   `image` mediumblob COMMENT 'Volunteer Photo',
   `intake_by` char(3) DEFAULT NULL COMMENT 'Intake Form by',
   `intake_time` datetime DEFAULT NULL COMMENT 'Intake Form time',
-  `bc_by` char(3) DEFAULT NULL COMMENT 'Background by',
+  `bg_by` char(3) DEFAULT NULL COMMENT 'Background by',
   `bg_time` datetime DEFAULT NULL COMMENT 'Background time',
   `bg_pass` tinyint(1) DEFAULT NULL COMMENT 'BG Check Passed',
   `screen_by` char(3) DEFAULT NULL COMMENT 'Screened by',
@@ -449,4 +449,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-08  3:46:23
+-- Dump completed on 2015-07-10  2:55:37
