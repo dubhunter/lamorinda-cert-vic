@@ -172,6 +172,7 @@ class VolunteerListController extends UsersController {
 			$this->flash->success('Volunteer successfully saved!');
 			return Response::temporaryRedirect(array('for' => 'volunteer-list'));
 		} catch (Exception $e) {
+			$this->saveValues();
 			$this->flash->error($e->getMessage());
 			return Response::temporaryRedirect(array('for' => 'volunteer-create'));
 		}

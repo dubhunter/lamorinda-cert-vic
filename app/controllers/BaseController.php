@@ -62,13 +62,23 @@ class BaseController extends Phalcon\Mvc\Controller {
 		return http_build_url($url, array('query' => http_build_query($params)));
 	}
 
+	protected function saveValues() {
+		$this->session->set('values', $this->request->get(null, 'string'));
+	}
+
 	/**
 	 * @return array
 	 */
 	protected function getAppGlobal() {
+		if ($this->session->has('values')) {
+			$values = $this->session->get('values');
+			$this->session->remove('values');
+		} else {
+			$values = $this->request->get(null, 'string');
+		}
 		$twilio = array(
 			'url' => $this->getUrl(false, true),
-			'values' => $this->request->get(null, 'string'),
+			'values' => $values,
 		);
 		return $twilio;
 	}

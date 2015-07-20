@@ -62,6 +62,7 @@ class UserInstanceController extends UsersController {
 			$this->flash->success('User successfully saved!');
 			return Response::temporaryRedirect(array('for' => 'user-list'));
 		} catch (Exception $e) {
+			$this->saveValues();
 			$this->flash->error($e->getMessage());
 			return Response::temporaryRedirect(array('for' => 'user-instance', 'id' => $id));
 		}
