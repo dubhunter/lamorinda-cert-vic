@@ -16,7 +16,7 @@
 			<div class="control-group">
 				<label class="control-label" for="username">Username</label>
 				<div class="controls">
-					<input type="text" id="username" name="username" placeholder="Username" value="{{ user['username'] }}">
+					<input type="text" id="username" name="username" placeholder="Username" value="{{ app['values']['username']|default(user['username']) }}">
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@
 					<select id="role" name="role">
 						<option value="">-- Role --</option>
 						{% for role, roleName in roles %}
-							<option value="{{ role }}"{% if role == user['role'] %} selected{% endif %}>{{ roleName }}</option>
+							<option value="{{ role }}"{% if role == app['values']['role']|default(user['role']) %} selected{% endif %}>{{ roleName }}</option>
 						{% endfor %}
 					</select>
 				</div>

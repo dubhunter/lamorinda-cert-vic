@@ -10,6 +10,9 @@ class VoltFilters extends FilterCollection {
 	 * @return bool|string
 	 */
 	public static function date($timestamp, $format) {
+		if (!$timestamp) {
+			return null;
+		}
 		if (is_string($timestamp)) {
 			$timestamp = strtotime($timestamp);
 		}
