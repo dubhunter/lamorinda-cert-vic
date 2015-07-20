@@ -86,7 +86,7 @@
 			<div class="control-group">
 				<label class="control-label" for="dob">DOB</label>
 				<div class="controls">
-					<input type="text" id="dob" name="dob" placeholder="DOB" value="{% if volunteer['dob'] %}{{ date('Y-m-d', volunteer['dob']) }}{% endif %}">
+					<input type="text" id="dob" name="dob" placeholder="DOB" value="{% if volunteer['dob'] %}{{ volunteer['dob']|date('Y-m-d') }}{% endif %}">
 				</div>
 			</div>
 

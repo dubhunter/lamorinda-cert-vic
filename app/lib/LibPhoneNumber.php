@@ -64,7 +64,7 @@ class LibPhoneNumber {
 	public static function formatLocalized($number, $region = self::DEFAULT_REGION) {
 		$util = PhoneNumberUtil::getInstance();
 		$proto = self::getNumberProto($number, $region);
-		return $util->getRegionCodeForNumber($proto, $region) == $region ? self::formatNational($proto) : self::formatInternational($proto);
+		return $util->getRegionCodeForNumber($proto) == $region ? self::formatNational($proto) : self::formatInternational($proto);
 	}
 
 }

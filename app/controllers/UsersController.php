@@ -1,8 +1,8 @@
 <?php
 
-use Talon\Response;
-use Talon\RestDispatcher;
-use Talon\RestRequest;
+use Talon\Http\Response;
+use Talon\Http\RestRequest;
+use Talon\Mvc\RestDispatcher;
 
 class UsersController extends SiteController {
 

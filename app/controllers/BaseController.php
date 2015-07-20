@@ -1,10 +1,9 @@
 <?php
 
-use Talon\Response;
-use Talon\JsonResponse;
-use Talon\RestRequest;
-use Talon\Template;
-use Talon\ThrottledException;
+use Talon\Http\Response;
+use Talon\Http\Response\Json as JsonResponse;
+use Talon\Http\RestRequest;
+use Talon\Mvc\View\Template;
 
 class BaseController extends Phalcon\Mvc\Controller {
 

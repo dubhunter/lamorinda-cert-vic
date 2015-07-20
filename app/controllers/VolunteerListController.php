@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Response;
+use Talon\Http\Response;
 
 class VolunteerListController extends UsersController {
 

@@ -23,8 +23,8 @@
 					<td>{{ user['id'] }}</td>
 					<td>{{ user['username'] }}</td>
 					<td>{{ user['roleName'] }}</td>
-					<td>{{ date('Y-m-d H:i:s', user['dateCreated']) }}</td>
-					<td>{{ date('Y-m-d H:i:s', user['dateUpdated']) }}</td>
+					<td>{{ user['dateCreated']|date('Y-m-d H:i:s') }}</td>
+					<td>{{ user['dateUpdated']|date('Y-m-d H:i:s') }}</td>
 					<td class="text-right">
 						<a href="{{ url({'for': 'user-instance', 'id': user['id']}) }}" class="btn btn-mini{% if user['id'] == app['user']['id'] %} disabled{% endif %}"><i class="icon icon-pencil"></i></a>
 					</td>

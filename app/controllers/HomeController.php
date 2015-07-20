@@ -1,8 +1,8 @@
 <?php
 
-use Talon\Response;
-use Talon\RestDispatcher;
-use Talon\AuthorizationException;
+use Talon\Http\Response;
+use Talon\Mvc\RestDispatcher;
+use Talon\Exception\Authorization as AuthorizationException;
 
 class HomeController extends SiteController {
 

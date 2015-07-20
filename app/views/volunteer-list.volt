@@ -7,7 +7,7 @@
 		<a href="{{ url({'for': 'volunteer-create'}) }}" class="btn pull-right margin-left-xlarge"><i class="icon icon-user-plus"></i> Add Volunteer</a>
 		<form class="pull-right" method="get" action="{{ url({'for': 'volunteer-list'}) }}">
 			<div class="input-append">
-				<input type="text" class="input-large" name="q">
+				<input type="text" class="input-large" name="q" value="{{ app['values']['q'] }}">
 				<button type="submit" class="btn"><i class="icon icon-search"></i></button>
 			</div>
 		</form>
@@ -35,8 +35,8 @@
 						<td>{{ volunteer['phoneCell']|phone }}</td>
 						<td>{{ volunteer['email'] }}</td>
 						<td>{{ volunteer['city'] }}, {{ volunteer['state'] }}</td>
-						<td>{{ date('M d, Y', volunteer['dob']) }}</td>
-						<td>{{ date('Y-m-d H:i:s', volunteer['entryTime']) }}</td>
+						<td>{{ volunteer['dob']|date('M d, Y') }}</td>
+						<td>{{ volunteer['entryTime']|date('Y-m-d H:i:s') }}</td>
 						<td>{% if volunteer['available'] %}<i class="icon icon-check"></i>{% else %}<i class="icon icon-times"></i>{% endif %}</td>
 						<td class="text-right">
 							<a href="{{ url({'for': 'volunteer-instance', 'id': volunteer['id']}) }}" class="btn btn-mini"><i class="icon icon-pencil"></i></a>

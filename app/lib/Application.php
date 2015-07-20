@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Response;
-use Talon\Template;
+use Talon\Http\Response;
+use Talon\Mvc\View\Template;
 
 class Application extends Phalcon\Mvc\Application {
 

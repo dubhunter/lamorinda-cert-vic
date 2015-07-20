@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Response;
-use Talon\JsonResponse;
+use Talon\Http\Response;
+use Talon\Http\Response\Json as JsonResponse;
 
 class Error404Controller extends SiteController {
 

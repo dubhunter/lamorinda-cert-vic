@@ -1,8 +1,8 @@
 <?php
 
 use Patchwork\Utf8\Bootup as Utf8;
-use Talon\RestRequest;
-use Talon\RestDispatcher;
+use Talon\Http\RestRequest;
+use Talon\Mvc\RestDispatcher;
 use Phalcon\Loader;
 use Phalcon\Security;
 use Phalcon\DI\FactoryDefault as DI;
@@ -49,29 +49,27 @@ try {
 
 		$view->registerEngines(array(
 			'.volt' => function ($view, $di) {
-					$env = $di->get('config')->get('environment');
+				$env = $di->get('config')->get('environment');
 
-					/** @var ViewInterface|View $view */
-					$volt = new Volt($view, $di);
-					$volt->setOptions(array(
-						'compiledPath' => function ($templatePath) use ($view) {
-							$dir = rtrim(sys_get_temp_dir(), '/') . '/volt-cache';
-							if (!is_dir($dir)) {
-								mkdir($dir);
-							}
-							return $dir . '/lamorinda-cert-vic%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
-						},
-						'compileAlways' => $env->realm != 'prod',
-					));
+				/** @var ViewInterface|View $view */
+				$volt = new Volt($view, $di);
+				$volt->setOptions(array(
+					'compiledPath' => function ($templatePath) use ($view) {
+						$dir = rtrim(sys_get_temp_dir(), '/') . '/volt-cache';
+						if (!is_dir($dir)) {
+							mkdir($dir);
+						}
+						return $dir . '/lamorinda-cert-vic%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
+					},
+					'compileAlways' => $env->realm != 'prod',
+				));
 
-					$compiler = $volt->getCompiler();
+				$compiler = $volt->getCompiler();
 
-					$compiler->addFilter('phone', function($resolvedArgs, $exprArgs) {
-						return $resolvedArgs . ' ? LibPhoneNumber::formatLocalized(' . $resolvedArgs . ') : null';
-					});
+				VoltFilters::install($compiler);
 
-					return $volt;
-				},
+				return $volt;
+			},
 		));
 
 		return $view;
