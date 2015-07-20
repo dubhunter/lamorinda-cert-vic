@@ -1,6 +1,6 @@
 <?php
 
-class DSWClass extends \Phalcon\Mvc\Model {
+class DSWClass extends Model {
 
 	protected $id;
 	protected $class;

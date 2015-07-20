@@ -1,6 +1,6 @@
 <?php
 
-class Agency extends \Phalcon\Mvc\Model {
+class Agency extends Model {
 
 	protected $id;
 	protected $name;

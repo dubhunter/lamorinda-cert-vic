@@ -5,7 +5,7 @@ use Talon\Date;
 /**
  * @method Volunteer getVolunteer (array $parameters = array()) {}
  */
-class VolunteerAvailability extends \Phalcon\Mvc\Model {
+class VolunteerAvailability extends Model {
 
 	protected $id;
 	protected $volunteer_id;

@@ -3,7 +3,7 @@
 /**
  * @method VolunteerSkill getVolunteerSkill (array $parameters = array()) {}
  */
-class Skill extends \Phalcon\Mvc\Model {
+class Skill extends Model {
 
 	protected $code;
 	protected $skill;

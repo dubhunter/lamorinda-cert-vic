@@ -6,7 +6,7 @@ use Talon\Date;
  * @method Volunteer getVolunteer (array $parameters = array()) {}
  * @method RequestDetail getRequestDetail (array $parameters = array()) {}
  */
-class Placement extends \Phalcon\Mvc\Model {
+class Placement extends Model {
 
 	protected $id;
 	protected $volunteer_id;

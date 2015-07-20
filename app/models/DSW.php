@@ -7,7 +7,7 @@ use Talon\Date;
  * @method DSWClass getDSWSkill (array $parameters = array()) {}
  * @method Jurisdiction getJurisdiction (array $parameters = array()) {}
  */
-class DSW extends \Phalcon\Mvc\Model {
+class DSW extends Model {
 
 	protected $id;
 	protected $volunteer_id;

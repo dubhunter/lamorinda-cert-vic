@@ -4,7 +4,7 @@
  * @method Agency getAgency (array $parameters = array()) {}
  * @method Jurisdiction getJurisdiction (array $parameters = array()) {}
  */
-class Request extends \Phalcon\Mvc\Model {
+class Request extends Model {
 
 	protected $id;
 	protected $agency_id;

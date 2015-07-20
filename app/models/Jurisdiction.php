@@ -1,6 +1,6 @@
 <?php
 
-class Jurisdiction extends \Phalcon\Mvc\Model {
+class Jurisdiction extends Model {
 
 	protected $id;
 	protected $jurisdiction;

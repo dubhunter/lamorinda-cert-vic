@@ -6,7 +6,7 @@ use Talon\Date;
  * @method Request getRequest (array $parameters = array()) {}
  * @method Skill getSkill (array $parameters = array()) {}
  */
-class RequestDetail extends \Phalcon\Mvc\Model {
+class RequestDetail extends Model {
 
 	protected $id;
 	protected $request_id;
