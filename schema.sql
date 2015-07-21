@@ -407,7 +407,7 @@ CREATE TABLE `volunteers` (
   `id_type` char(3) DEFAULT NULL COMMENT 'ID Type',
   `id_number` char(10) DEFAULT NULL COMMENT 'ID Number',
   `id_state` char(4) DEFAULT NULL COMMENT 'ID State, Country or Branch',
-  `agencies` varchar(60) DEFAULT NULL COMMENT 'Agency, School, etc.',
+  `agency` varchar(60) DEFAULT NULL COMMENT 'Agency, School, etc.',
   `training` varchar(60) DEFAULT NULL COMMENT 'Disaster training',
   `ec_name` varchar(40) DEFAULT NULL COMMENT 'Emergency Contact Name',
   `ec_phone` char(10) DEFAULT NULL COMMENT 'Emergency Contact Phone',
