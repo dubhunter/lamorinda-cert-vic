@@ -13,6 +13,8 @@ class VolunteerInstanceController extends UsersController {
 
 		$template = $this->getTemplate('volunteer-instance');
 
+		$template->set('idTypes', Volunteer::getIdTypes());
+
 		$template->set('volunteer', array(
 			'id' => $volunteer->getId(),
 			'nameFirst' => $volunteer->getNameFirst(),
@@ -30,7 +32,7 @@ class VolunteerInstanceController extends UsersController {
 			'idType' => $volunteer->getIdType(),
 			'idNumber' => $volunteer->getIdNumber(),
 			'idState' => $volunteer->getIdState(),
-			'agencies' => $volunteer->getAgencies(),
+			'agency' => $volunteer->getAgency(),
 			'training' => $volunteer->getTraining(),
 			'emergencyContactName' => $volunteer->getEmergencyContactName(),
 			'emergencyContactPhone' => $volunteer->getEmergencyContactPhone(),
@@ -109,8 +111,8 @@ class VolunteerInstanceController extends UsersController {
 			if ($this->request->hasPost('idState')) {
 				$volunteer->setIdState($this->request->getPost('idState', 'string'));
 			}
-			if ($this->request->hasPost('agencies')) {
-				$volunteer->setAgencies($this->request->getPost('agencies', 'string'));
+			if ($this->request->hasPost('agency')) {
+				$volunteer->setAgency($this->request->getPost('agency', 'string'));
 			}
 			if ($this->request->hasPost('training')) {
 				$volunteer->setTraining($this->request->getPost('training', 'string'));

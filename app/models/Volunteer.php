@@ -8,6 +8,18 @@ use Talon\Date;
  */
 class Volunteer extends Model {
 
+	const ID_TYPE_DRIVERS_LICENSE = 'DL';
+	const ID_TYPE_PASSPORT = 'PP';
+	const ID_TYPE_MILITARY = 'MID';
+	const ID_TYPE_STATE = 'SID';
+
+	protected static $idTypes = array(
+		self::ID_TYPE_DRIVERS_LICENSE => 'Drivers License',
+		self::ID_TYPE_PASSPORT => 'Passport',
+		self::ID_TYPE_MILITARY => 'Military ID',
+		self::ID_TYPE_STATE => 'State ID',
+	);
+
 	protected $id;
 	protected $name_last;
 	protected $name_first;
@@ -24,7 +36,7 @@ class Volunteer extends Model {
 	protected $id_type;
 	protected $id_number;
 	protected $id_state;
-	protected $agencies;
+	protected $agency;
 	protected $training;
 	protected $ec_name;
 	protected $ec_phone;
@@ -52,6 +64,13 @@ class Volunteer extends Model {
 			$parameters['order'] = 'name_first, name_last';
 		}
 		return parent::find($parameters);
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getIdTypes() {
+		return self::$idTypes;
 	}
 
 	/**
@@ -300,15 +319,15 @@ class Volunteer extends Model {
 	/**
 	 * @return mixed
 	 */
-	public function getAgencies() {
-		return $this->agencies;
+	public function getAgency() {
+		return $this->agency;
 	}
 
 	/**
-	 * @param mixed $agencies
+	 * @param mixed $agency
 	 */
-	public function setAgencies($agencies) {
-		$this->agencies = $agencies;
+	public function setAgency($agency) {
+		$this->agency = $agency;
 	}
 
 	/**
