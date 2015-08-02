@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.21, for osx10.10 (x86_64)
 --
--- Host: localhost    Database: lamorinda_cert_vic
+-- Host: localhost    Database: lamorinda_cert_vrc
 -- ------------------------------------------------------
 -- Server version	5.6.21
 

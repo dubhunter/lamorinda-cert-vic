@@ -8,7 +8,7 @@
 				<input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
 
 				<fieldset>
-					<legend>Lamorinda CERT VIC Login</legend>
+					<legend>Lamorinda CERT VRC Login</legend>
 
 					<div class="control-group">
 						<label class="control-label" for="username">Username:</label>

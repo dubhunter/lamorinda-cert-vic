@@ -14,7 +14,7 @@
 <div id="main-navigation" class="navbar navbar-top navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="{{ url(['for': 'dashboard']) }}">Lamorinda CERT VIC</a>
+			<a class="brand" href="{{ url(['for': 'dashboard']) }}">Lamorinda CERT VRC</a>
 
 			{% if app['user'] and menuItems|length %}
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">

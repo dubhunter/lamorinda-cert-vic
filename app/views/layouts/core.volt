@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Lamorinda CERT VIC | {% block title %}Volunteer Management{% endblock %}</title>
+		<title>Lamorinda CERT VRC | {% block title %}Volunteer Management{% endblock %}</title>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">

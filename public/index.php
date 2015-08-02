@@ -59,7 +59,7 @@ try {
 						if (!is_dir($dir)) {
 							mkdir($dir);
 						}
-						return $dir . '/lamorinda-cert-vic%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
+						return $dir . '/lamorinda-cert-vrc%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
 					},
 					'compileAlways' => $env->realm != 'prod',
 				));
