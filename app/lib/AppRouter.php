@@ -12,6 +12,7 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/volunteers' => 'volunteerList',
 		'/volunteers/create' => 'volunteerCreate',
 		'/volunteers/{id:[0-9]+}' => 'volunteerInstance',
+		'/volunteers/{id:[0-9]+}/image' => 'volunteerInstanceImage',
 		'/requests' => 'requestList',
 		'/users' => 'userList',
 		'/users/create' => 'userCreate',

@@ -2,6 +2,7 @@ $(function() {
 	$('@alert').alert();
 	$('@button').button();
 	$('@tooltip').tooltip();
+	$(':file').bootstrapFileInput();
 	$('@modal[data-show="modal"]').modal('show'); // on page load, show modals with data-show="modal"
 
 	$.fn.modal.defaults.errorCallback = function (jqXHR) {

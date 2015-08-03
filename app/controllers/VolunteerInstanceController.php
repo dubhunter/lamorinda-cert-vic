@@ -51,6 +51,7 @@ class VolunteerInstanceController extends UsersController {
 			'entryTime' => $volunteer->getEntryTime(),
 			'comment' => $volunteer->getComment(),
 			'available' => $volunteer->getAvailable(),
+			'hasImage' => $volunteer->hasImage(),
 		));
 
 		return Response::ok($template);
@@ -101,7 +102,9 @@ class VolunteerInstanceController extends UsersController {
 			if ($this->request->hasPost('email')) {
 				$volunteer->setEmail($this->request->getPost('email', 'email'));
 			}
-			$volunteer->setMinor($this->request->getPost('minor', 'int'));
+			if ($this->request->hasPost('minor')) {
+				$volunteer->setMinor($this->request->getPost('minor', 'int'));
+			}
 			if ($this->request->hasPost('dob')) {
 				$volunteer->setDOB($this->request->getPost('dob', 'int'));
 			}
@@ -165,7 +168,16 @@ class VolunteerInstanceController extends UsersController {
 			if ($this->request->hasPost('comment')) {
 				$volunteer->setComment($this->request->getPost('comment', 'string'));
 			}
-			$volunteer->setAvailable($this->request->getPost('available', 'int'));
+			if ($this->request->hasPost('available')) {
+				$volunteer->setAvailable($this->request->getPost('available', 'int'));
+			}
+			/** @var \Phalcon\Http\Request\File $file */
+			foreach ($this->request->getUploadedFiles() as $file) {
+				if ($file->getKey() != 'image') {
+					continue;
+				}
+				$volunteer->uploadImage($file);
+			}
 			$volunteer->save();
 
 			$this->flash->success('Volunteer successfully saved!');

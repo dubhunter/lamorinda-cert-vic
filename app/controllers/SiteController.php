@@ -38,6 +38,7 @@ class SiteController extends BaseController {
 			->addJs('bootstrap-dropdown.js')
 			->addJs('bootstrap-modal.js')
 			->addJs('bootstrap-tooltip.js')
+			->addJs('bootstrap-file-input.js')
 			->addJs('bootstrap-init.js')
 			->addJs('alert.js')
 			->addJs('behaviors.js')

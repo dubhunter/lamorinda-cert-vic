@@ -106,7 +106,9 @@ class VolunteerListController extends UsersController {
 			if ($this->request->hasPost('email')) {
 				$volunteer->setEmail($this->request->getPost('email', 'email'));
 			}
-			$volunteer->setMinor($this->request->getPost('minor', 'int'));
+			if ($this->request->hasPost('minor')) {
+				$volunteer->setMinor($this->request->getPost('minor', 'int'));
+			}
 			if ($this->request->hasPost('dob')) {
 				$volunteer->setDOB($this->request->getPost('dob', 'int'));
 			}
@@ -172,6 +174,13 @@ class VolunteerListController extends UsersController {
 			}
 			if ($this->request->hasPost('available')) {
 				$volunteer->setAvailable($this->request->getPost('available', 'int'));
+			}
+			/** @var \Phalcon\Http\Request\File $file */
+			foreach ($this->request->getUploadedFiles() as $file) {
+				if ($file->getKey() != 'image') {
+					continue;
+				}
+				$volunteer->uploadImage($file);
 			}
 			$volunteer->save();
 

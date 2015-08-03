@@ -8,6 +8,8 @@ use Talon\Date;
  */
 class Volunteer extends Model {
 
+	const IMAGE_SIZE = 270;
+
 	const ID_TYPE_DRIVERS_LICENSE = 'DL';
 	const ID_TYPE_PASSPORT = 'PP';
 	const ID_TYPE_MILITARY = 'MID';
@@ -403,6 +405,13 @@ class Volunteer extends Model {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function hasImage() {
+		return $this->image ? true : false;
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getImage() {
@@ -410,10 +419,21 @@ class Volunteer extends Model {
 	}
 
 	/**
-	 * @param mixed $image
+	 * @param \Phalcon\Http\Request\File $file
+	 * @throws Exception
 	 */
-	public function setImage($image) {
-		$this->image = $image;
+	public function uploadImage($file) {
+		$image = new Image($file->getTempName());
+		if ($image->getWidth() < Volunteer::IMAGE_SIZE || $image->getHeight() < Volunteer::IMAGE_SIZE) {
+			throw new Exception('Image must be at least ' . Volunteer::IMAGE_SIZE . ' x ' . Volunteer::IMAGE_SIZE . '.');
+		}
+		if ($image->getWidth() > $image->getHeight()) {
+			$image->resize($image->getWidth(), Volunteer::IMAGE_SIZE);
+		} else {
+			$image->resize(Volunteer::IMAGE_SIZE, $image->getHeight());
+		}
+		$image->crop(Volunteer::IMAGE_SIZE, Volunteer::IMAGE_SIZE, ($image->getWidth() - Volunteer::IMAGE_SIZE) / 2, ($image->getHeight() - Volunteer::IMAGE_SIZE) / 2);
+		$this->image = $image->render();
 	}
 
 	/**
