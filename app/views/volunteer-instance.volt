@@ -7,7 +7,7 @@
 	{% set tokenKey = security.getTokenKey() %}
 
 	<section>
-		<h2>Volunteer {% if volunteer['id'] %}Edit{% else %}Add{% endif %}</h2>
+		<h2>Volunteer {% if volunteer['id'] %}Edit - {{ volunteer['id']|pad_left(6, '0') }}{% else %}Add{% endif %}</h2>
 
 		<form method="post" enctype="multipart/form-data" action="{{ volunteer['id'] ? url({'for': 'volunteer-instance', 'id': volunteer['id']}) : url({'for': 'volunteer-list'}) }}">
 
@@ -77,7 +77,7 @@
 					</div>
 					<div class="span3">
 						<label for="emergencyContactPhone">Emergency Number</label>
-						<input class="span12" type="text" id="emergencyContactPhone" name="emergencyContactPhone" placeholder="Emergency Number" value="{{ app['values']['emergencyContactPhone']|default(volunteer['emergencyContactPhone']) }}">
+						<input class="span12" type="text" id="emergencyContactPhone" name="emergencyContactPhone" placeholder="Emergency Number" value="{{ app['values']['emergencyContactPhone']|default(volunteer['emergencyContactPhone']|phone) }}">
 					</div>
 				</div>
 
@@ -103,6 +103,7 @@
 
 				<div class="row-fluid">
 					<div class="span3 offset1">
+						<span class="help-block">(Minors require DOB and consent)</span>
 						<label class="checkbox">
 							<input type="checkbox" id="minor" name="minor" value="1"{% if app['values']['minor']|default(volunteer['minor']) %} checked{% endif %}> Under 18
 						</label>
@@ -120,7 +121,7 @@
 				<div class="row-fluid">
 					<div class="span6 offset1">
 						<label for="agency">Agency</label>
-						<input class="span6" type="text" id="agency" name="agency" placeholder="Agency" value="{{ app['values']['agency']|default(volunteer['agency']) }}">
+						<input class="span12" type="text" id="agency" name="agency" placeholder="Agency" value="{{ app['values']['agency']|default(volunteer['agency']) }}">
 
 						<label for="training">Training</label>
 						<textarea class="span12" id="training" name="training" placeholder="Training" rows="8">{{ app['values']['training']|default(volunteer['training']) }}</textarea>
@@ -158,6 +159,81 @@
 			<fieldset>
 
 				<legend>Application Details</legend>
+
+				<div class="row-fluid">
+					<div class="span3 offset1">
+						<label for="intakeBy">Initial Intake Application</label>
+						<input class="span12" type="text" id="intakeBy" name="intakeBy" placeholder="Intake By" value="{{ app['values']['intakeBy']|default(volunteer['intakeBy']) }}">
+					</div>
+					<div class="span3">
+						<label for="intakeTime">Date & Time</label>
+						<input class="span12" type="text" id="intakeTime" name="intakeTime" placeholder="Intake Date & Time" value="{{ app['values']['intakeTime']|default(volunteer['intakeTime']|date('Y-m-d H:i:s')) }}">
+					</div>
+					<div class="span3">
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span3 offset1">
+						<label for="backgroundBy">Background</label>
+						<input class="span12" type="text" id="backgroundBy" name="backgroundBy" placeholder="Backround By" value="{{ app['values']['backgroundBy']|default(volunteer['backgroundBy']) }}">
+					</div>
+					<div class="span3">
+						<label for="backgroundTime">Date & Time</label>
+						<input class="span12" type="text" id="backgroundTime" name="backgroundTime" placeholder="Background Date & Time" value="{{ app['values']['backgroundTime']|default(volunteer['backgroundTime']|date('Y-m-d H:i:s')) }}">
+					</div>
+					<div class="span3">
+						<label class="checkbox margin-top-xlarge">
+							<input type="checkbox" id="backgroundPass" name="backgroundPass" value="1"{% if app['values']['backgroundPass']|default(volunteer['backgroundPass']) %} checked{% endif %}> Passed?
+						</label>
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span3 offset1">
+						<label for="screenBy">Screened</label>
+						<input class="span12" type="text" id="screenBy" name="screenBy" placeholder="Screened By" value="{{ app['values']['screenBy']|default(volunteer['screenBy']) }}">
+					</div>
+					<div class="span3">
+						<label for="screenTime">Date & Time</label>
+						<input class="span12" type="text" id="screenTime" name="screenTime" placeholder="Screen Date & Time" value="{{ app['values']['screenTime']|default(volunteer['screenTime']|date('Y-m-d H:i:s')) }}">
+					</div>
+					<div class="span3">
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span3 offset1">
+						<label for="reviewBy">Reviewed</label>
+						<input class="span12" type="text" id="reviewBy" name="reviewBy" placeholder="Reviewed By" value="{{ app['values']['reviewBy']|default(volunteer['reviewBy']) }}">
+					</div>
+					<div class="span3">
+						<label for="reviewTime">Date & Time</label>
+						<input class="span12" type="text" id="reviewTime" name="reviewTime" placeholder="Review Date & Time" value="{{ app['values']['reviewTime']|default(volunteer['reviewTime']|date('Y-m-d H:i:s')) }}">
+					</div>
+					<div class="span3">
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span3 offset1">
+						<label for="entryBy">Database Entry</label>
+						<input class="span12" type="text" id="entryBy" name="entryBy" placeholder="Entry By" value="{{ app['values']['entryBy']|default(volunteer['entryBy']) }}">
+					</div>
+					<div class="span3">
+						<label for="entryTime">Date & Time</label>
+						<input class="span12" type="text" id="entryTime" name="entryTime" placeholder="Entry Date & Time" value="{{ app['values']['entryTime']|default(volunteer['entryTime']|date('Y-m-d H:i:s')) }}" readonly>
+					</div>
+					<div class="span3">
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span9 offset1">
+						<label for="comment">Comments</label>
+						<textarea class="span12" id="comment" name="comment" placeholder="Comments" rows="8">{{ app['values']['comment']|default(volunteer['comment']) }}</textarea>
+					</div>
+				</div>
 
 			</fieldset>
 

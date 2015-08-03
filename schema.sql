@@ -412,7 +412,7 @@ CREATE TABLE `volunteers` (
   `agency` varchar(60) DEFAULT NULL COMMENT 'Agency, School, etc.',
   `training` mediumtext COMMENT 'Disaster training',
   `ec_name` varchar(40) DEFAULT NULL COMMENT 'Emergency Contact Name',
-  `ec_phone` char(10) DEFAULT NULL COMMENT 'Emergency Contact Phone',
+  `ec_phone` char(16) DEFAULT NULL COMMENT 'Emergency Contact Phone',
   `image` mediumblob COMMENT 'Volunteer Photo',
   `intake_by` char(3) DEFAULT NULL COMMENT 'Intake Form by',
   `intake_time` datetime DEFAULT NULL COMMENT 'Intake Form time',
@@ -451,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-02 21:40:45
+-- Dump completed on 2015-08-03  2:47:30

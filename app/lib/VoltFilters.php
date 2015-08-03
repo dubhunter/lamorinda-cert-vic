@@ -26,4 +26,24 @@ class VoltFilters extends FilterCollection {
 	public static function phone($number) {
 		return $number ? LibPhoneNumber::formatLocalized($number) : null;
 	}
+
+	/**
+	 * @param $input
+	 * @param $length
+	 * @param string $string
+	 * @return string
+	 */
+	public static function padLeft($input, $length, $string = " ") {
+		return str_pad($input, $length, $string, STR_PAD_LEFT);
+	}
+
+	/**
+	 * @param $input
+	 * @param $length
+	 * @param string $string
+	 * @return string
+	 */
+	public static function padRight($input, $length, $string = " ") {
+		return str_pad($input, $length, $string, STR_PAD_RIGHT);
+	}
 }

@@ -102,9 +102,7 @@ class VolunteerInstanceController extends UsersController {
 			if ($this->request->hasPost('email')) {
 				$volunteer->setEmail($this->request->getPost('email', 'email'));
 			}
-			if ($this->request->hasPost('minor')) {
-				$volunteer->setMinor($this->request->getPost('minor', 'int'));
-			}
+			$volunteer->setMinor($this->request->getPost('minor', 'int'));
 			if ($this->request->hasPost('dob')) {
 				$volunteer->setDOB($this->request->getPost('dob', 'int'));
 			}
@@ -136,44 +134,37 @@ class VolunteerInstanceController extends UsersController {
 				$volunteer->setIntakeBy($this->request->getPost('intakeBy', 'string'));
 			}
 			if ($this->request->hasPost('intakeTime')) {
-				$volunteer->setIntakeTime($this->request->getPost('intakeTime', 'int'));
+				$volunteer->setIntakeTime($this->request->getPost('intakeTime', 'trim'));
 			}
 			if ($this->request->hasPost('backgroundBy')) {
 				$volunteer->setBackgroundBy($this->request->getPost('backgroundBy', 'string'));
 			}
 			if ($this->request->hasPost('backgroundTime')) {
-				$volunteer->setBackgroundTime($this->request->getPost('backgroundTime', 'int'));
+				$volunteer->setBackgroundTime($this->request->getPost('backgroundTime', 'trim'));
 			}
-			if ($this->request->hasPost('backgroundPass')) {
-				$volunteer->setBackgroundPass($this->request->getPost('backgroundPass', 'int'));
-			}
+			$volunteer->setBackgroundPass($this->request->getPost('backgroundPass', 'int'));
 			if ($this->request->hasPost('screenBy')) {
 				$volunteer->setScreenBy($this->request->getPost('screenBy', 'string'));
 			}
 			if ($this->request->hasPost('screenTime')) {
-				$volunteer->setScreenTime($this->request->getPost('screenTime', 'int'));
+				$volunteer->setScreenTime($this->request->getPost('screenTime', 'trim'));
 			}
 			if ($this->request->hasPost('reviewBy')) {
 				$volunteer->setReviewBy($this->request->getPost('reviewBy', 'string'));
 			}
 			if ($this->request->hasPost('reviewTime')) {
-				$volunteer->setReviewTime($this->request->getPost('reviewTime', 'int'));
+				$volunteer->setReviewTime($this->request->getPost('reviewTime', 'trim'));
 			}
 			if ($this->request->hasPost('entryBy')) {
 				$volunteer->setEntryBy($this->request->getPost('entryBy', 'string'));
 			}
-			if ($this->request->hasPost('entryTime')) {
-				$volunteer->setEntryTime($this->request->getPost('entryTime', 'int'));
-			}
 			if ($this->request->hasPost('comment')) {
 				$volunteer->setComment($this->request->getPost('comment', 'string'));
 			}
-			if ($this->request->hasPost('available')) {
-				$volunteer->setAvailable($this->request->getPost('available', 'int'));
-			}
+			$volunteer->setAvailable($this->request->getPost('available', 'int'));
 			/** @var \Phalcon\Http\Request\File $file */
 			foreach ($this->request->getUploadedFiles() as $file) {
-				if ($file->getKey() != 'image') {
+				if (!$file->isUploadedFile() || $file->getKey() != 'image') {
 					continue;
 				}
 				$volunteer->uploadImage($file);
