@@ -54,6 +54,17 @@ class VolunteerInstanceController extends UsersController {
 			'hasImage' => $volunteer->hasImage(),
 		));
 
+		foreach ($volunteer->getVolunteerSkills() as $volunteerSkill) {
+			$skill = $volunteerSkill->getSkill();
+			$template->add('skills', array(
+				'id' => $volunteerSkill->getId(),
+				'code' => $skill->getCode(),
+				'skill' => $skill->getSkill(),
+				'licenseExp' => $volunteerSkill->getLicenseExp(),
+				'comment' => $volunteerSkill->getComment(),
+			));
+		}
+
 		return Response::ok($template);
 	}
 

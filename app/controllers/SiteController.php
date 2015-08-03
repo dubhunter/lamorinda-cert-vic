@@ -37,6 +37,7 @@ class SiteController extends BaseController {
 			->addJs('bootstrap-collapse.js')
 			->addJs('bootstrap-dropdown.js')
 			->addJs('bootstrap-modal.js')
+			->addJs('bootstrap-modal-plus.js')
 			->addJs('bootstrap-tooltip.js')
 			->addJs('bootstrap-file-input.js')
 			->addJs('bootstrap-init.js')

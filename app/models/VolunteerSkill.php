@@ -55,6 +55,20 @@ class VolunteerSkill extends Model {
 	/**
 	 * @return mixed
 	 */
+	public function getVolunteerId() {
+		return $this->volunteer_id;
+	}
+
+	/**
+	 * @param mixed $volunteer_id
+	 */
+	public function setVolunteerId($volunteer_id) {
+		$this->volunteer_id = $volunteer_id;
+	}
+
+	/**
+	 * @return mixed
+	 */
 	public function getSkillCode() {
 		return $this->skill_code;
 	}
