@@ -403,7 +403,9 @@ CREATE TABLE `volunteers` (
   `phone_eve` char(16) DEFAULT NULL COMMENT 'Phone Eve',
   `phone_cell` char(16) NOT NULL DEFAULT '' COMMENT 'Phone Cell',
   `email` varchar(60) NOT NULL COMMENT 'Email',
-  `dob` date NOT NULL COMMENT 'Date of Birth',
+  `minor` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Under 18',
+  `dob` date DEFAULT NULL COMMENT 'Date of Birth',
+  `guardian_name` varchar(60) DEFAULT NULL COMMENT 'Parent/Guardian name if under 18',
   `id_type` char(3) DEFAULT NULL COMMENT 'ID Type',
   `id_number` char(10) DEFAULT NULL COMMENT 'ID Number',
   `id_state` char(4) DEFAULT NULL COMMENT 'ID State, Country or Branch',
@@ -449,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-10  2:55:37
+-- Dump completed on 2015-08-02 18:53:54

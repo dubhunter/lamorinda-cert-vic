@@ -72,8 +72,22 @@
 						<input class="span12" type="text" id="email" name="email" placeholder="Email" value="{{ app['values']['email']|default(volunteer['email']) }}">
 					</div>
 					<div class="span3">
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span3 offset1">
+						<label class="checkbox">
+							<input type="checkbox" id="minor" name="minor" value="1"{% if app['values']['minor']|default(volunteer['minor']) %} checked{% endif %}> Under 18
+						</label>
+					</div>
+					<div class="span3">
 						<label for="dob">DOB</label>
 						<input class="span12" type="text" id="dob" name="dob" placeholder="DOB" value="{{ app['values']['dob']|default(volunteer['dob']|date('Y-m-d')) }}">
+					</div>
+					<div class="span3">
+						<label for="guardianName">Parent/Guardian Name</label>
+						<input class="span12" type="text" id="guardianName" name="guardianName" placeholder="Parent/Guardian Name" value="{{ app['values']['guardianName']|default(volunteer['guardianName']) }}">
 					</div>
 				</div>
 

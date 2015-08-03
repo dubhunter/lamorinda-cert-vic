@@ -28,7 +28,9 @@ class VolunteerInstanceController extends UsersController {
 			'phoneEve' => $volunteer->getPhoneEve(),
 			'phoneCell' => $volunteer->getPhoneCell(),
 			'email' => $volunteer->getEmail(),
+			'minor' => $volunteer->getMinor(),
 			'dob' => $volunteer->getDOB(),
+			'guardianName' => $volunteer->getGuardianName(),
 			'idType' => $volunteer->getIdType(),
 			'idNumber' => $volunteer->getIdNumber(),
 			'idState' => $volunteer->getIdState(),
@@ -99,8 +101,12 @@ class VolunteerInstanceController extends UsersController {
 			if ($this->request->hasPost('email')) {
 				$volunteer->setEmail($this->request->getPost('email', 'email'));
 			}
+			$volunteer->setMinor($this->request->getPost('minor', 'int'));
 			if ($this->request->hasPost('dob')) {
 				$volunteer->setDOB($this->request->getPost('dob', 'int'));
+			}
+			if ($this->request->hasPost('guardianName')) {
+				$volunteer->setGuardianName($this->request->getPost('guardianName', 'string'));
 			}
 			if ($this->request->hasPost('idType')) {
 				$volunteer->setIdType($this->request->getPost('idType', 'string'));

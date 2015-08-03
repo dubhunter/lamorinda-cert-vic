@@ -32,7 +32,9 @@ class Volunteer extends Model {
 	protected $phone_eve;
 	protected $phone_cell;
 	protected $email;
+	protected $minor;
 	protected $dob;
+	protected $guardian_name;
 	protected $id_type;
 	protected $id_number;
 	protected $id_state;
@@ -260,6 +262,20 @@ class Volunteer extends Model {
 	/**
 	 * @return mixed
 	 */
+	public function getMinor() {
+		return $this->minor == 1;
+	}
+
+	/**
+	 * @param mixed $minor
+	 */
+	public function setMinor($minor) {
+		$this->minor = $minor ? 1 : 0;
+	}
+
+	/**
+	 * @return mixed
+	 */
 	public function getDOB() {
 		return strtotime($this->dob);
 	}
@@ -272,6 +288,20 @@ class Volunteer extends Model {
 			$dob = Date::sqlDatetime($dob);
 		}
 		$this->dob = $dob;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getGuardianName() {
+		return $this->guardian_name;
+	}
+
+	/**
+	 * @param mixed $guardian_name
+	 */
+	public function setGuardianName($guardian_name) {
+		$this->guardian_name = $guardian_name;
 	}
 
 	/**
