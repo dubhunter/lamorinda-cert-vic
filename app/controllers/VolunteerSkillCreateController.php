@@ -12,7 +12,7 @@ class VolunteerSkillCreateController extends UsersController {
 			return Response::notFound();
 		}
 
-		$template = $this->getTemplate('volunteer-skill-instance');
+		$template = $this->getTemplate('modals/volunteer-skill-instance');
 
 		$template->set('volunteerId', $volunteer->getId());
 

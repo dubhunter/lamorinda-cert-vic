@@ -5,6 +5,31 @@ use Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerSkillListController extends UsersController {
 
+	public function get($volunteerId) {
+		/** @var Volunteer $volunteer */
+		$volunteer = Volunteer::findFirst($volunteerId);
+		if (!$volunteer) {
+			return Response::notFound();
+		}
+
+		$template = $this->getTemplate('lists/volunteer-skill-list');
+
+		$template->set('volunteerId', $volunteer->getId());
+
+		foreach ($volunteer->getVolunteerSkills() as $volunteerSkill) {
+			$skill = $volunteerSkill->getSkill();
+			$template->add('volunteerSkills', array(
+				'id' => $volunteerSkill->getId(),
+				'code' => $skill->getCode(),
+				'skill' => $skill->getSkill(),
+				'licenseExp' => $volunteerSkill->getLicenseExp(),
+				'comment' => $volunteerSkill->getComment(),
+			));
+		}
+
+		return Response::ok($template);
+	}
+
 	public function post($volunteerId) {
 		try {
 //			if (!$this->security->checkToken()) {

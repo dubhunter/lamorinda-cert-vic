@@ -1,7 +1,7 @@
 {% set token = security.getToken() %}
 {% set tokenKey = security.getTokenKey() %}
 
-<form method="post" action="{{ volunteerSkill['id'] ? url({'for': 'volunteer-skill-instance', 'volunteerId': volunteerId, 'id': volunteerSkill['id']}) : url({'for': 'volunteer-skill-list', 'volunteerId': volunteerId}) }}" id="volunteerSkill" class="modal hide fade form-horizontal" tabindex="-1" role="ajax dialog" aria-labelledby="volunteerSkillLabel" aria-hidden="true">
+<form method="post" action="{{ volunteerSkill['id'] ? url({'for': 'volunteer-skill-instance', 'volunteerId': volunteerId, 'id': volunteerSkill['id']}) : url({'for': 'volunteer-skill-list', 'volunteerId': volunteerId}) }}" id="volunteerSkill" data-reload="#skills" class="modal hide fade form-horizontal" tabindex="-1" role="ajax modal" aria-labelledby="volunteerSkillLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<h3 id="volunteerSkillLabel">Volunteer Skill {% if volunteerSkill['id'] %}Edit{% else %}Add{% endif %}</h3>

@@ -44,6 +44,7 @@ class SiteController extends BaseController {
 			->addJs('alert.js')
 			->addJs('behaviors.js')
 			->addJs('form.js')
+			->addJs('list.js')
 			->addJs('rest.js')
 			->join(true)
 			->addFilter(new Jsmin());

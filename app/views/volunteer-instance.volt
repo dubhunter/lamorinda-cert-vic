@@ -146,37 +146,7 @@
 					<div class="span1">
 						<a href="{{ url({'for': 'volunteer-skill-create', 'volunteerId': volunteer['id']}) }}" class="btn btn-small" data-toggle="modal"><i class="icon icon-plus"></i> Add</a>
 					</div>
-					<div class="span9">
-						{% if skills %}
-							<table class="table table-hover">
-								<thead>
-								<tr>
-									<th>Skill</th>
-									<th>Description</th>
-									<th>Expiration</th>
-									<th>Comments</th>
-								</tr>
-								</thead>
-								<tbody>
-								{% for skill in skills %}
-									<tr>
-										<td>{{ skill['code'] }}</td>
-										<td>{{ skill['skill'] }}</td>
-										<td>{{ skill['licenseExp']|date('Y-m-d') }}</td>
-										<td>{{ skill['comment'] }}</td>
-										<td class="text-right">
-											<a href="{{ url({'for': 'volunteer-skill-instance', 'volunteerId': volunteer['id'], 'id': skill['id']}) }}" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
-										</td>
-									</tr>
-								{% endfor %}
-								</tbody>
-							</table>
-						{% else %}
-							<div class="well clearfix">
-								<h3 class="text-center">No Skills Added.</h3>
-							</div>
-						{% endif %}
-					</div>
+					<div class="span9" id="skills" role="data-list" data-source="{{ url({'for': 'volunteer-skill-list', 'volunteerId': volunteer['id']}) }}" data-loading-text="{{ '<i class="icon icon-spinner icon-pulse icon-3x center"></i>'|e }}"></div>
 				</div>
 
 			</fieldset>
