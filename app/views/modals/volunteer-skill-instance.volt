@@ -52,7 +52,7 @@
 		<div class="control-group">
 			<label class="control-label" for="comment">Comments</label>
 			<div class="controls">
-				<input type="text" id="comment" name="comment" placeholder="Comments" value="{{ app['values']['comment']|default(volunteerSkill['comment']) }}">
+				<textarea id="comment" name="comment" placeholder="Comments" rows="3">{{ app['values']['comment']|default(volunteerSkill['comment']) }}</textarea>
 			</div>
 		</div>
 

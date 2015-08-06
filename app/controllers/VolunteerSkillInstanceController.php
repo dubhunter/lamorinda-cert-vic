@@ -76,7 +76,7 @@ class VolunteerSkillInstanceController extends UsersController {
 				$volunteerSkill->setLicenseAuth($this->request->getPost('licenseAuth', 'string'));
 			}
 			if ($this->request->hasPost('licenseExp')) {
-				$volunteerSkill->setLicenseExp($this->request->getPost('licenseExp', 'int'));
+				$volunteerSkill->setLicenseExp($this->request->getPost('licenseExp', 'date'));
 			}
 			if ($this->request->hasPost('specialty')) {
 				$volunteerSkill->setSpecialty($this->request->getPost('specialty', 'string'));

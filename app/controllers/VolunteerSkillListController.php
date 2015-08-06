@@ -12,7 +12,7 @@ class VolunteerSkillListController extends UsersController {
 			return Response::notFound();
 		}
 
-		$template = $this->getTemplate('lists/volunteer-skill-list');
+		$template = $this->getTemplate('data-lists/volunteer-skill-list');
 
 		$template->set('volunteerId', $volunteer->getId());
 
@@ -56,7 +56,7 @@ class VolunteerSkillListController extends UsersController {
 				$volunteerSkill->setLicenseAuth($this->request->getPost('licenseAuth', 'string'));
 			}
 			if ($this->request->hasPost('licenseExp')) {
-				$volunteerSkill->setLicenseExp($this->request->getPost('licenseExp', 'int'));
+				$volunteerSkill->setLicenseExp($this->request->getPost('licenseExp', 'date'));
 			}
 			if ($this->request->hasPost('specialty')) {
 				$volunteerSkill->setSpecialty($this->request->getPost('specialty', 'string'));

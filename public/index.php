@@ -4,14 +4,13 @@ use Patchwork\Utf8\Bootup as Utf8;
 use Talon\Http\RestRequest;
 use Talon\Mvc\RestDispatcher;
 use Phalcon\Loader;
-use Phalcon\Security;
+use Phalcon\Filter;
 use Phalcon\DI\FactoryDefault as DI;
 use Phalcon\Assets\Manager as AssetManager;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Mvc\Router;
-use Phalcon\Mvc\Url;
 use Phalcon\Mvc\ViewInterface as ViewInterface;
 use Phalcon\Mvc\View\Simple as View;
 use Phalcon\Mvc\View\Engine\Volt;
@@ -112,9 +111,18 @@ try {
 	});
 
 	/**
+	 * Setting up the filter service
+	 */
+	$di->set('filter', function () {
+		$filter = new Filter();
+		Filters::install($filter);
+		return $filter;
+	});
+
+	/**
 	 * Setting up the flash service
 	 */
-	$di->set('flash', function() {
+	$di->set('flash', function () {
 		return new FlashSession(array(
 			'notice' => 'alert alert-info',
 			'success' => 'alert alert-success',

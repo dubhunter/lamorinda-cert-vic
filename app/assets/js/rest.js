@@ -58,6 +58,8 @@ $(function () {
 						$removeTarget.fadeOut(function () {
 							$removeTarget.remove();
 						});
+					} else if (element.data('reload')) {
+						$(element.data('reload')).data('reload')();
 					}
 				}
 			});

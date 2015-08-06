@@ -145,26 +145,26 @@ class VolunteerInstanceController extends UsersController {
 				$volunteer->setIntakeBy($this->request->getPost('intakeBy', 'string'));
 			}
 			if ($this->request->hasPost('intakeTime')) {
-				$volunteer->setIntakeTime($this->request->getPost('intakeTime', 'trim'));
+				$volunteer->setIntakeTime($this->request->getPost('intakeTime', 'date'));
 			}
 			if ($this->request->hasPost('backgroundBy')) {
 				$volunteer->setBackgroundBy($this->request->getPost('backgroundBy', 'string'));
 			}
 			if ($this->request->hasPost('backgroundTime')) {
-				$volunteer->setBackgroundTime($this->request->getPost('backgroundTime', 'trim'));
+				$volunteer->setBackgroundTime($this->request->getPost('backgroundTime', 'date'));
 			}
 			$volunteer->setBackgroundPass($this->request->getPost('backgroundPass', 'int'));
 			if ($this->request->hasPost('screenBy')) {
 				$volunteer->setScreenBy($this->request->getPost('screenBy', 'string'));
 			}
 			if ($this->request->hasPost('screenTime')) {
-				$volunteer->setScreenTime($this->request->getPost('screenTime', 'trim'));
+				$volunteer->setScreenTime($this->request->getPost('screenTime', 'date'));
 			}
 			if ($this->request->hasPost('reviewBy')) {
 				$volunteer->setReviewBy($this->request->getPost('reviewBy', 'string'));
 			}
 			if ($this->request->hasPost('reviewTime')) {
-				$volunteer->setReviewTime($this->request->getPost('reviewTime', 'trim'));
+				$volunteer->setReviewTime($this->request->getPost('reviewTime', 'date'));
 			}
 			if ($this->request->hasPost('entryBy')) {
 				$volunteer->setEntryBy($this->request->getPost('entryBy', 'string'));

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e3dd6552dfd598b840213539973daa7f",
+    "hash": "d1d17c81dd592f2c2d9f561b18919168",
     "packages": [
         {
             "name": "dubhunter/talon",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dubhunter/talon.git",
-                "reference": "3071f143b334afa9e7b35edce7e04df79cc2779a"
+                "reference": "c53c1c2e38cd014fee0d7d320cb873a010d78680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dubhunter/talon/zipball/3071f143b334afa9e7b35edce7e04df79cc2779a",
-                "reference": "3071f143b334afa9e7b35edce7e04df79cc2779a",
+                "url": "https://api.github.com/repos/dubhunter/talon/zipball/c53c1c2e38cd014fee0d7d320cb873a010d78680",
+                "reference": "c53c1c2e38cd014fee0d7d320cb873a010d78680",
                 "shasum": ""
             },
             "type": "library",
@@ -37,7 +37,7 @@
                 }
             ],
             "description": "Phalcon PHP framework tools for RESTful development.",
-            "time": "2015-07-20 10:06:31"
+            "time": "2015-08-06 07:34:08"
         },
         {
             "name": "giggsey/libphonenumber-for-php",

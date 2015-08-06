@@ -26,14 +26,4 @@ $(function () {
 
 		load();
 	});
-
-	$(document).on('shown', '@ajax[data-reload]', function () {
-		var $form = $(this);
-		$form.on('submit', function () {
-			$form.data('done', function () {
-				$($form.data('reload')).data('reload')();
-				$form.modal('hide');
-			});
-		});
-	});
 });
