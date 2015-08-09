@@ -142,14 +142,14 @@ DROP TABLE IF EXISTS `placements`;
 CREATE TABLE `placements` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Placement ID',
   `volunteer_id` int(11) NOT NULL COMMENT 'Volunteer ID',
-  `requests_details_id` int(11) NOT NULL COMMENT 'Request Detail ID',
+  `request_detail_id` int(11) NOT NULL COMMENT 'Request Detail ID',
   `comment` varchar(240) DEFAULT NULL COMMENT 'Placement Comments',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Placement Date & Time',
   PRIMARY KEY (`id`),
   KEY `fk_pvolunteer_id` (`volunteer_id`),
-  KEY `fk_prd` (`requests_details_id`),
+  KEY `fk_prd` (`request_detail_id`),
   CONSTRAINT `placements_ibfk_1` FOREIGN KEY (`volunteer_id`) REFERENCES `volunteers` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `placements_ibfk_2` FOREIGN KEY (`requests_details_id`) REFERENCES `request_details` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `placements_ibfk_2` FOREIGN KEY (`request_detail_id`) REFERENCES `request_details` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Placement details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -452,4 +452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-08 19:44:12
+-- Dump completed on 2015-08-08 22:14:47
