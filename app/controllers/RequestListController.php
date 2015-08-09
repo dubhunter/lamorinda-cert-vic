@@ -67,13 +67,13 @@ class RequestListController extends UsersController {
 				$request->setContact($this->request->getPost('contact', 'string'));
 			}
 			if ($this->request->hasPost('phoneWork')) {
-				$request->setPhoneWork($this->request->getPost('phoneWork', 'string'));
+				$request->setPhoneWork($this->request->getPost('phoneWork', 'phone'));
 			}
 			if ($this->request->hasPost('fax')) {
-				$request->setFax($this->request->getPost('fax', 'string'));
+				$request->setFax($this->request->getPost('fax', 'phone'));
 			}
 			if ($this->request->hasPost('phoneCell')) {
-				$request->setPhoneCell($this->request->getPost('phoneCell', 'string'));
+				$request->setPhoneCell($this->request->getPost('phoneCell', 'phone'));
 			}
 			if ($this->request->hasPost('email')) {
 				$request->setEmail($this->request->getPost('email', 'email'));

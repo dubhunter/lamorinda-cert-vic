@@ -19,4 +19,12 @@ class Filters extends FilterCollection {
 	public static function time($value) {
 		return preg_replace('#[^0-9:]#i', '', $value);
 	}
+
+	/**
+	 * @param string $value
+	 * @return string
+	 */
+	public static function phone($value) {
+		return preg_replace('#[^0-9+]#i', '', $value);
+	}
 }

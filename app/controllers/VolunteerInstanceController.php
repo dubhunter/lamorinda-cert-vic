@@ -102,13 +102,13 @@ class VolunteerInstanceController extends UsersController {
 				$volunteer->setZip($this->request->getPost('zip', 'string'));
 			}
 			if ($this->request->hasPost('phoneDay')) {
-				$volunteer->setPhoneDay($this->request->getPost('phoneDay', 'string'));
+				$volunteer->setPhoneDay($this->request->getPost('phoneDay', 'phone'));
 			}
 			if ($this->request->hasPost('phoneEve')) {
-				$volunteer->setPhoneEve($this->request->getPost('phoneEve', 'string'));
+				$volunteer->setPhoneEve($this->request->getPost('phoneEve', 'phone'));
 			}
 			if ($this->request->hasPost('phoneCell')) {
-				$volunteer->setPhoneCell($this->request->getPost('phoneCell', 'string'));
+				$volunteer->setPhoneCell($this->request->getPost('phoneCell', 'phone'));
 			}
 			if ($this->request->hasPost('email')) {
 				$volunteer->setEmail($this->request->getPost('email', 'email'));
