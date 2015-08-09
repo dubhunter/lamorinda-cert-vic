@@ -3,6 +3,7 @@
 /**
  * @method Agency getAgency (array $parameters = array()) {}
  * @method Jurisdiction getJurisdiction (array $parameters = array()) {}
+ * @method RequestDetail[] getRequestDetails (array $parameters = array()) {}
  */
 class Request extends Model {
 
@@ -37,6 +38,7 @@ class Request extends Model {
 		$this->setSource('requests');
 		$this->hasOne('agency_id', 'Agency', 'id');
 		$this->hasOne('jurisdiction_id', 'Jurisdiction', 'id');
+		$this->hasMany('id', 'RequestDetail', 'request_id', array('alias' => 'RequestDetails'));
 	}
 
 	/**

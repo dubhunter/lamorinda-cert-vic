@@ -65,8 +65,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-
-		<button type="reset" class="btn">Cancel</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
 		<button type="submit" class="btn btn-primary" data-loading-text="{{ '<i class="icon icon-spinner icon-spin"></i>'|e }} Saving &hellip;"><i class="icon icon-save"></i> Save</button>
 	</div>
 </form>

@@ -91,12 +91,12 @@
 
 					<legend>Skills</legend>
 
-					{#<div class="row-fluid">#}
-						{#<div class="span1">#}
-							{#<a href="{{ url({'for': 'request-skill-create', 'requestId': request['id']}) }}" class="btn btn-small" data-toggle="modal"><i class="icon icon-plus"></i> Add</a>#}
-						{#</div>#}
-						{#<div class="span9" id="skills" role="data-list" data-source="{{ url({'for': 'request-skill-list', 'requestId': request['id']}) }}" data-loading-text="{{ '<i class="icon icon-spinner icon-pulse icon-3x center"></i>'|e }}"></div>#}
-					{#</div>#}
+					<div class="row-fluid">
+						<div class="span1">
+							<a href="{{ url({'for': 'request-detail-create', 'requestId': request['id']}) }}" class="btn btn-small" data-toggle="modal"><i class="icon icon-plus"></i> Add</a>
+						</div>
+						<div class="span9" id="details" role="data-list" data-source="{{ url({'for': 'request-detail-list', 'requestId': request['id']}) }}" data-loading-text="{{ '<i class="icon icon-spinner icon-pulse icon-3x center"></i>'|e }}"></div>
+					</div>
 
 				</fieldset>
 			{% endif %}
