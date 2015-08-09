@@ -9,6 +9,22 @@ class Skill extends Model {
 	protected $skill;
 
 	/**
+	 * @param null|array $parameters
+	 * @return self
+	 */
+	public static function findFirst($parameters = null) {
+		if (is_scalar($parameters)) {
+			$parameters = array(
+				'conditions' => 'code = :code:',
+				'bind' => array(
+					'code' => $parameters,
+				),
+			);
+		}
+		return parent::findFirst($parameters);
+	}
+
+	/**
 	 * @param array $parameters
 	 * @return self[]
 	 */

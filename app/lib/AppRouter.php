@@ -37,7 +37,7 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/jurisdictions/{id:[0-9]+}' => 'jurisdictionInstance',
 		'/skills' => 'skillList',
 		'/skills/create' => 'skillCreate',
-		'/skills/{id:[0-9]+}' => 'skillInstance',
+		'/skills/{code:[A-Z\-0-9]+}' => 'skillInstance',
 		'/dsw-classes' => 'dswClassList',
 		'/dsw-classes/create' => 'dswClassCreate',
 		'/dsw-classes/{id:[0-9]+}' => 'dswClassInstance',
