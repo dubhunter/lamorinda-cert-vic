@@ -23,6 +23,8 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/volunteers/{volunteerId:[0-9]+}/placements/create' => 'volunteerPlacementCreate',
 		'/volunteers/{volunteerId:[0-9]+}/placements/{id:[0-9]+}' => 'volunteerPlacementInstance',
 		'/requests' => 'requestList',
+		'/requests/create' => 'requestCreate',
+		'/requests/{id:[0-9]+}' => 'requestInstance',
 		'/users' => 'userList',
 		'/users/create' => 'userCreate',
 		'/users/{id:[0-9]+}' => 'userInstance',

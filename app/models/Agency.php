@@ -101,7 +101,7 @@ class Agency extends Model {
 	 * @param mixed $phone
 	 */
 	public function setPhone($phone) {
-		$this->phone = $phone;
+		$this->phone = !empty($phone) ? LibPhoneNumber::formatE164($phone) : null;
 	}
 
 	/**
@@ -143,7 +143,7 @@ class Agency extends Model {
 	 * @param mixed $phone_direct
 	 */
 	public function setPhoneDirect($phone_direct) {
-		$this->phone_direct = $phone_direct;
+		$this->phone_direct = !empty($phone_direct) ? LibPhoneNumber::formatE164($phone_direct) : null;
 	}
 
 	/**
@@ -157,7 +157,7 @@ class Agency extends Model {
 	 * @param mixed $fax
 	 */
 	public function setFax($fax) {
-		$this->fax = $fax;
+		$this->fax = !empty($fax) ? LibPhoneNumber::formatE164($fax) : null;
 	}
 
 	/**
@@ -171,7 +171,7 @@ class Agency extends Model {
 	 * @param mixed $phone_cell
 	 */
 	public function setPhoneCell($phone_cell) {
-		$this->phone_cell = $phone_cell;
+		$this->phone_cell = !empty($phone_cell) ? LibPhoneNumber::formatE164($phone_cell) : null;
 	}
 
 	/**

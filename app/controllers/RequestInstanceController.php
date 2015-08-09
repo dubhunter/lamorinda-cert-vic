@@ -2,60 +2,63 @@
 
 use Talon\Http\Response;
 
-class RequestListController extends UsersController {
+class RequestInstanceController extends UsersController {
 
-	public function get() {
-		$template = $this->getTemplate('request-list');
-
-		$options = array();
-
-		$search = $this->request->getQuery('q', array('string', 'trim'));
-
-		if (!empty($search)) {
-			$search = strtolower($search);
-
-			$options['conditions'] = 'LOWER(contact) = :search:';
-			$options['conditions'] .= ' OR email = :search:';
-			$options['conditions'] .= ' OR phone_work = :search: OR fax = :search: OR phone_cell = :search:';
-			$options['bind'] = array(
-				'search' => $search,
-			);
+	public function get($id) {
+		/** @var Request $request */
+		$request = Request::findFirst($id);
+		if (!$request) {
+			return Response::notFound();
 		}
 
-		foreach (Request::find($options) as $request) {
-			$agency = $request->getAgency();
-			$jurisdiction = $request->getJurisdiction();
-			$template->add('requests', array(
-				'id' => $request->getId(),
-				'agencyId' => $request->getAgencyId(),
-				'agency' => $agency->getName(),
-				'street' => $request->getStreet(),
-				'jurisdictionId' => $request->getJurisdictionId(),
-				'jurisdiction' => $jurisdiction->getJurisdiction(),
-				'contact' => $request->getContact(),
-				'phoneWork' => $request->getPhoneWork(),
-				'fax' => $request->getFax(),
-				'phoneCell' => $request->getPhoneCell(),
-				'email' => $request->getEmail(),
-				'radio' => $request->getRadio(),
-				'comment' => $request->getComment(),
-				'open' => $request->getOpen(),
+		$template = $this->getTemplate('request-instance');
+
+		foreach (Agency::find() as $agency) {
+			$template->add('agencies', array(
+				'id' => $agency->getId(),
+				'name' => $agency->getName(),
 			));
 		}
+
+		foreach (Jurisdiction::find() as $jurisdiction) {
+			$template->add('jurisdictions', array(
+				'id' => $jurisdiction->getId(),
+				'jurisdiction' => $jurisdiction->getJurisdiction(),
+			));
+		}
+
+		$template->set('request', array(
+			'id' => $request->getId(),
+			'agencyId' => $request->getAgencyId(),
+			'street' => $request->getStreet(),
+			'jurisdictionId' => $request->getJurisdictionId(),
+			'contact' => $request->getContact(),
+			'phoneWork' => $request->getPhoneWork(),
+			'fax' => $request->getFax(),
+			'phoneCell' => $request->getPhoneCell(),
+			'email' => $request->getEmail(),
+			'radio' => $request->getRadio(),
+			'comment' => $request->getComment(),
+			'open' => $request->getOpen(),
+		));
 
 		return Response::ok($template);
 	}
 
-	public function post() {
+	public function post($id) {
 		try {
 			if (!$this->security->checkToken()) {
 				throw new Exception('Something went wrong. Please try again.');
 			}
 
-			$request = new Request();
+			/** @var Request $request */
+			$request = Request::findFirst($id);
+			if (!$request) {
+				return Response::notFound();
+			}
 
 			if ($this->request->hasPost('agencyId')) {
-				$request->setAgencyId($this->request->getPost('agencyId', 'string'));
+				$request->setAgencyId($this->request->getPost('agencyId', 'int'));
 			}
 			if ($this->request->hasPost('street')) {
 				$request->setStreet($this->request->getPost('street', 'string'));
@@ -92,7 +95,7 @@ class RequestListController extends UsersController {
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'request-create'));
+			return Response::temporaryRedirect(array('for' => 'request-instance', 'id' => $id));
 		}
 	}
 }

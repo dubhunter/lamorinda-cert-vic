@@ -120,7 +120,7 @@ class Request extends Model {
 	 * @param mixed $phone_work
 	 */
 	public function setPhoneWork($phone_work) {
-		$this->phone_work = $phone_work;
+		$this->phone_work = !empty($phone_work) ? LibPhoneNumber::formatE164($phone_work) : null;
 	}
 
 	/**
@@ -134,7 +134,7 @@ class Request extends Model {
 	 * @param mixed $fax
 	 */
 	public function setFax($fax) {
-		$this->fax = $fax;
+		$this->fax = !empty($fax) ? LibPhoneNumber::formatE164($fax) : null;
 	}
 
 	/**
@@ -148,7 +148,7 @@ class Request extends Model {
 	 * @param mixed $phone_cell
 	 */
 	public function setPhoneCell($phone_cell) {
-		$this->phone_cell = $phone_cell;
+		$this->phone_cell = !empty($phone_cell) ? LibPhoneNumber::formatE164($phone_cell) : null;
 	}
 
 	/**

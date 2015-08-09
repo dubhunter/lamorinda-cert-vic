@@ -138,6 +138,7 @@
 
 			</fieldset>
 
+		{% if volunteer['id'] %}
 			<fieldset>
 
 				<legend>Skills</legend>
@@ -176,6 +177,7 @@
 				{#</div>#}
 
 			</fieldset>
+		{% endif %}
 
 			<fieldset>
 

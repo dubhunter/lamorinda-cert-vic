@@ -175,5 +175,5 @@ try {
 	$app->handle()->send();
 
 } catch (Exception $e) {
-	echo 'Uncaught Exception: ' . get_class($e) . $e->getMessage();
+	echo 'Uncaught Exception: ' . get_class($e) . ' ' . $e->getMessage();
 }
