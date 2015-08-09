@@ -17,6 +17,22 @@ class Agency extends Model {
 	protected $comment;
 
 	/**
+	 * @param null|array $parameters
+	 * @return self
+	 */
+	public static function findFirst($parameters = null) {
+		if (is_scalar($parameters)) {
+			$parameters = array(
+				'conditions' => 'id = :id:',
+				'bind' => array(
+					'id' => $parameters,
+				),
+			);
+		}
+		return parent::findFirst($parameters);
+	}
+
+	/**
 	 * @param array $parameters
 	 * @return self[]
 	 */
@@ -32,6 +48,18 @@ class Agency extends Model {
 	 */
 	public function initialize() {
 		$this->setSource('agencies');
+	}
+
+	/**
+	 * @param array $parameters
+	 * @return Request[]
+	 */
+	public function getOpenRequests($parameters = array()) {
+		$parameters['conditions'] = 'agency_id = :agency_id: AND open = 1';
+		$parameters['bind'] = array(
+			'agency_id' => $this->id,
+		);
+		return Request::find($parameters);
 	}
 
 	/**

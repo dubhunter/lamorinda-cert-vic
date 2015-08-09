@@ -53,6 +53,6 @@
 	</section>
 
 	{% if user['id'] %}
-		{% include 'modals/delete-confirm.volt' %}
+		{% include 'modals/user-delete-confirm.volt' %}
 	{% endif %}
 {%  endblock %}

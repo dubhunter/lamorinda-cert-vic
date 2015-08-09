@@ -5,6 +5,21 @@
 	'Requests': {
 		'for': 'request-list'
 	},
+	'Agencies': {
+		'for': 'agency-list'
+	},
+	'Jurisdictions': {
+		'for': 'jurisdiction-list',
+		'role': 'admin'
+	},
+	'Skills': {
+		'for': 'skill-list',
+		'role': 'admin'
+	},
+	'DSW Classes': {
+		'for': 'dsw-class-list',
+		'role': 'admin'
+	},
 	'Users': {
 		'for': 'user-list',
 		'role': 'admin'
