@@ -41,6 +41,15 @@ class Request extends Model {
 	}
 
 	/**
+	 * @param array $parameters
+	 * @return mixed
+	 */
+	public static function countOpen($parameters = null) {
+		$parameters['conditions'] = 'open = 1';
+		return parent::count($parameters);
+	}
+
+	/**
 	 * Set the source table and relationships
 	 */
 	public function initialize() {

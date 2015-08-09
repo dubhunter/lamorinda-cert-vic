@@ -72,6 +72,15 @@ class Volunteer extends Model {
 	}
 
 	/**
+	 * @param array $parameters
+	 * @return mixed
+	 */
+	public static function countAvailable($parameters = null) {
+		$parameters['conditions'] = 'available = 1';
+		return parent::count($parameters);
+	}
+
+	/**
 	 * @return array
 	 */
 	public static function getIdTypes() {

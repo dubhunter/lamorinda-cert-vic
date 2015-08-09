@@ -44,6 +44,14 @@ class Agency extends Model {
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public static function countOpenRequests() {
+		$parameters['distinct'] = 'agency_id';
+		return Request::countOpen($parameters);
+	}
+
+	/**
 	 * Set the source table and relationships
 	 */
 	public function initialize() {
