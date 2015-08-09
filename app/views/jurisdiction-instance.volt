@@ -9,7 +9,7 @@
 	<section>
 		<h2>Jurisdiction {% if jurisdiction['id'] %}Edit{% else %}Add{% endif %}</h2>
 
-		<form class="form-horizontal" method="post" action="{{ user['id'] ? url({'for': 'jurisdiction-instance', 'id': user['id']}) : url({'for': 'jurisdiction-list'}) }}">
+		<form class="form-horizontal" method="post" action="{{ jurisdiction['id'] ? url({'for': 'jurisdiction-instance', 'id': jurisdiction['id']}) : url({'for': 'jurisdiction-list'}) }}">
 
 			<input type="hidden" name="{{ tokenKey }}" value="{{ token }}">
 
