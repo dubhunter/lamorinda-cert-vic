@@ -15,7 +15,7 @@ class VolunteerListController extends UsersController {
 			$search = strtolower($search);
 
 			$options['conditions'] = 'LOWER(name_first) = :search: OR LOWER(name_last) = :search:';
-			$options['conditions'] .= ' OR email = :search:';
+			$options['conditions'] .= ' OR LOWER(email) = :search:';
 			$options['conditions'] .= ' OR phone_day = :search: OR phone_eve = :search: OR phone_cell = :search:';
 			$options['bind'] = array(
 				'search' => $search,

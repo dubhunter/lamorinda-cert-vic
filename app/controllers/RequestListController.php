@@ -15,7 +15,7 @@ class RequestListController extends UsersController {
 			$search = strtolower($search);
 
 			$options['conditions'] = 'LOWER(contact) = :search:';
-			$options['conditions'] .= ' OR email = :search:';
+			$options['conditions'] .= ' OR LOWER(email) = :search:';
 			$options['conditions'] .= ' OR phone_work = :search: OR fax = :search: OR phone_cell = :search:';
 			$options['bind'] = array(
 				'search' => $search,

@@ -81,6 +81,10 @@
 					<div class="span9 offset1">
 						<label for="comment">Comments</label>
 						<textarea class="span12" id="comment" name="comment" placeholder="Comments" rows="8">{{ app['values']['comment']|default(request['comment']) }}</textarea>
+
+						<label class="checkbox">
+							<input type="checkbox" id="open" name="open" value="1"{% if app['values']['open']|default(request['open']) %} checked{% endif %}> Open
+						</label>
 					</div>
 				</div>
 
