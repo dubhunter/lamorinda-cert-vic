@@ -39,7 +39,7 @@
 			</table>
 		{% else %}
 			<div class="well clearfix">
-				<h3 class="text-center">No Requests Found.</h3>
+				<h3 class="text-center">No requests found.</h3>
 			</div>
 		{% endif %}
 	</section>

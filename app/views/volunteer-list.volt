@@ -47,7 +47,7 @@
 			</table>
 		{% else %}
 			<div class="well clearfix">
-				<h3 class="text-center">No Volunteers Found.</h3>
+				<h3 class="text-center">No volunteers found.</h3>
 			</div>
 		{% endif %}
 	</section>

@@ -169,12 +169,12 @@
 
 				<legend>Placement</legend>
 
-				{#<div class="row-fluid">#}
-					{#<div class="span1">#}
-						{#<a href="{{ url({'for': 'volunteer-placement-create', 'volunteerId': volunteer['id']}) }}" class="btn btn-small" data-toggle="modal"><i class="icon icon-plus"></i> Add</a>#}
-					{#</div>#}
-					{#<div class="span9" id="placements" role="data-list" data-source="{{ url({'for': 'volunteer-placement-list', 'volunteerId': volunteer['id']}) }}" data-loading-text="{{ '<i class="icon icon-spinner icon-pulse icon-3x center"></i>'|e }}"></div>#}
-				{#</div>#}
+				<div class="row-fluid">
+					<div class="span1">
+						<a href="{{ url({'for': 'volunteer-placement-create', 'volunteerId': volunteer['id']}) }}" class="btn btn-small" data-toggle="modal"><i class="icon icon-plus"></i> Add</a>
+					</div>
+					<div class="span9" id="placements" role="data-list" data-source="{{ url({'for': 'volunteer-placement-list', 'volunteerId': volunteer['id']}) }}" data-loading-text="{{ '<i class="icon icon-spinner icon-pulse icon-3x center"></i>'|e }}"></div>
+				</div>
 
 			</fieldset>
 		{% endif %}

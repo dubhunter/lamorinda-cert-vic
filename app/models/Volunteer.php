@@ -5,6 +5,7 @@ use Talon\Date;
 /**
  * @method VolunteerSkill[] getVolunteerSkills (array $parameters = array()) {}
  * @method VolunteerAvailability[] getVolunteerAvailability (array $parameters = array()) {}
+ * @method Placement[] getVolunteerPlacements (array $parameters = array()) {}
  */
 class Volunteer extends Model {
 
@@ -84,6 +85,7 @@ class Volunteer extends Model {
 		$this->setSource('volunteers');
 		$this->hasMany('id', 'VolunteerSkill', 'volunteer_id', array('alias' => 'VolunteerSkills'));
 		$this->hasMany('id', 'VolunteerAvailability', 'volunteer_id');
+		$this->hasMany('id', 'Placement', 'volunteer_id', array('alias' => 'VolunteerPlacements'));
 	}
 
 	/**

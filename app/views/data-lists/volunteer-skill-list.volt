@@ -6,6 +6,7 @@
 			<th>Description</th>
 			<th>Expiration</th>
 			<th>Comments</th>
+			<th>&nbsp;</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -24,6 +25,6 @@
 	</table>
 {% else %}
 	<div class="well clearfix">
-		<h4 class="text-center">No Skills Added.</h4>
+		<h4 class="text-center">No skills added.</h4>
 	</div>
 {% endif %}

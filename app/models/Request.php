@@ -32,6 +32,15 @@ class Request extends Model {
 	}
 
 	/**
+	 * @param array $parameters
+	 * @return self[]
+	 */
+	public static function findOpen($parameters = array()) {
+		$parameters['conditions'] = 'open = 1';
+		return self::find($parameters);
+	}
+
+	/**
 	 * Set the source table and relationships
 	 */
 	public function initialize() {
@@ -39,6 +48,15 @@ class Request extends Model {
 		$this->hasOne('agency_id', 'Agency', 'id');
 		$this->hasOne('jurisdiction_id', 'Jurisdiction', 'id');
 		$this->hasMany('id', 'RequestDetail', 'request_id', array('alias' => 'RequestDetails'));
+	}
+
+	/**
+	 * @param array $parameters
+	 * @return RequestDetail[]
+	 */
+	public function getOpenRequestDetails($parameters = array()) {
+		$parameters['conditions'] = 'open = 1';
+		return $this->getRequestDetails($parameters);
 	}
 
 	/**

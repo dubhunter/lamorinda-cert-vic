@@ -2,10 +2,11 @@
 	<table class="table table-hover">
 		<thead>
 		<tr>
-			<th>Skill</th>
-			<th>Description</th>
-			<th>Expiration</th>
+			<th>Date</th>
+			<th>Start</th>
+			<th>End</th>
 			<th>Comments</th>
+			<th>&nbsp;</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -24,6 +25,6 @@
 	</table>
 {% else %}
 	<div class="well clearfix">
-		<h4 class="text-center">No Skills Added.</h4>
+		<h4 class="text-center">No availability added.</h4>
 	</div>
 {% endif %}
