@@ -31,8 +31,8 @@ CREATE TABLE `agencies` (
   `contact` varchar(60) NOT NULL COMMENT 'Agency Contact',
   `position` varchar(30) NOT NULL COMMENT 'Contact position',
   `phone_direct` char(16) NOT NULL DEFAULT '' COMMENT 'Contact Phone Direct',
-  `fax` char(10) DEFAULT NULL COMMENT 'Contact Fax Number',
-  `phone_cell` char(10) NOT NULL COMMENT 'Contact Phone Cell',
+  `fax` char(16) DEFAULT NULL COMMENT 'Contact Fax Number',
+  `phone_cell` char(16) NOT NULL DEFAULT '' COMMENT 'Contact Phone Cell',
   `email` varchar(60) NOT NULL COMMENT 'Contact Email',
   `radio` varchar(12) DEFAULT NULL COMMENT 'Contact radio channel',
   `comment` varchar(240) DEFAULT NULL COMMENT 'Contact Comments',
@@ -149,7 +149,7 @@ CREATE TABLE `placements` (
   KEY `fk_pvolunteer_id` (`volunteer_id`),
   KEY `fk_prd` (`requests_details_id`),
   CONSTRAINT `placements_ibfk_1` FOREIGN KEY (`volunteer_id`) REFERENCES `volunteers` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `placements_ibfk_2` FOREIGN KEY (`requests_details_id`) REFERENCES `requests_details` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `placements_ibfk_2` FOREIGN KEY (`requests_details_id`) REFERENCES `request_details` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Placement details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -160,6 +160,42 @@ CREATE TABLE `placements` (
 LOCK TABLES `placements` WRITE;
 /*!40000 ALTER TABLE `placements` DISABLE KEYS */;
 /*!40000 ALTER TABLE `placements` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_details`
+--
+
+DROP TABLE IF EXISTS `request_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Request Detail ID',
+  `request_id` int(11) NOT NULL COMMENT 'Request ID',
+  `skill_code` char(7) NOT NULL COMMENT 'Req Skill',
+  `number` int(11) NOT NULL COMMENT 'Req Number Needed',
+  `days` int(11) NOT NULL COMMENT 'Req Number Days',
+  `start_date` date NOT NULL COMMENT 'Req Start Date',
+  `start_time` time NOT NULL COMMENT 'Req Start Time',
+  `hours` decimal(10,0) NOT NULL COMMENT 'Req Hours per Day',
+  `comment` varchar(240) DEFAULT NULL COMMENT 'Request Comments',
+  `open` int(11) NOT NULL COMMENT 'Req Number Open',
+  PRIMARY KEY (`id`),
+  KEY `rid` (`request_id`),
+  KEY `fk_rdsc` (`skill_code`),
+  CONSTRAINT `request_details_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `request_details_ibfk_2` FOREIGN KEY (`skill_code`) REFERENCES `skills` (`code`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Request details';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_details`
+--
+
+LOCK TABLES `request_details` WRITE;
+/*!40000 ALTER TABLE `request_details` DISABLE KEYS */;
+INSERT INTO `request_details` VALUES (1,1,'EV-101',3,1,'2015-09-01','07:00:00',3,'Most important.',1);
+/*!40000 ALTER TABLE `request_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -176,8 +212,8 @@ CREATE TABLE `requests` (
   `jurisdiction_id` int(11) NOT NULL COMMENT 'Req City',
   `contact` varchar(60) NOT NULL COMMENT 'Req Contact',
   `phone_work` char(16) NOT NULL DEFAULT '' COMMENT 'Req Phone Work',
-  `fax` char(10) DEFAULT NULL COMMENT 'Req Fax Number',
-  `phone_cell` char(10) NOT NULL COMMENT 'Req Phone Cell',
+  `fax` char(16) DEFAULT NULL COMMENT 'Req Fax Number',
+  `phone_cell` char(16) NOT NULL DEFAULT '' COMMENT 'Req Phone Cell',
   `email` varchar(60) NOT NULL COMMENT 'Req Email',
   `radio` varchar(12) DEFAULT NULL COMMENT 'Contact radio channel',
   `comment` varchar(240) DEFAULT NULL COMMENT 'Request Comments',
@@ -198,41 +234,6 @@ CREATE TABLE `requests` (
 LOCK TABLES `requests` WRITE;
 /*!40000 ALTER TABLE `requests` DISABLE KEYS */;
 /*!40000 ALTER TABLE `requests` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `requests_details`
---
-
-DROP TABLE IF EXISTS `requests_details`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `requests_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Request Detail ID',
-  `request_id` int(11) NOT NULL COMMENT 'Request ID',
-  `skill_code` char(7) NOT NULL COMMENT 'Req Skill',
-  `number` int(11) NOT NULL COMMENT 'Req Number Needed',
-  `days` int(11) NOT NULL COMMENT 'Req Number Days',
-  `start_date` date NOT NULL COMMENT 'Req Start Date',
-  `start_time` time NOT NULL COMMENT 'Req Start Time',
-  `hours` decimal(10,0) NOT NULL COMMENT 'Req Hours per Day',
-  `comment` varchar(240) DEFAULT NULL COMMENT 'Request Comments',
-  `open` int(11) NOT NULL COMMENT 'Req Number Open',
-  PRIMARY KEY (`id`),
-  KEY `rid` (`request_id`),
-  KEY `fk_rdsc` (`skill_code`),
-  CONSTRAINT `requests_details_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `requests_details_ibfk_2` FOREIGN KEY (`skill_code`) REFERENCES `skills` (`code`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Request details';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `requests_details`
---
-
-LOCK TABLES `requests_details` WRITE;
-/*!40000 ALTER TABLE `requests_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `requests_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -277,7 +278,7 @@ CREATE TABLE `timesheets` (
   KEY `fk_tsvolunteer_id` (`volunteer_id`),
   KEY `fk_tsrequests_details_id` (`requests_details_id`),
   CONSTRAINT `timesheets_ibfk_1` FOREIGN KEY (`volunteer_id`) REFERENCES `volunteers` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `timesheets_ibfk_2` FOREIGN KEY (`requests_details_id`) REFERENCES `requests_details` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `timesheets_ibfk_2` FOREIGN KEY (`requests_details_id`) REFERENCES `request_details` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Timesheet details';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -451,4 +452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-03  2:47:30
+-- Dump completed on 2015-08-08 19:44:12
