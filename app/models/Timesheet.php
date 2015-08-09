@@ -21,7 +21,7 @@ class Timesheet extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'date';
+			$parameters['order'] = arra('date');
 		}
 		return parent::find($parameters);
 	}

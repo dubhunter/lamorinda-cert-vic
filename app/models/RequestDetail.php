@@ -25,7 +25,7 @@ class RequestDetail extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'start_date, start_time';
+			$parameters['order'] = array('start_date', 'start_time');
 		}
 		return parent::find($parameters);
 	}

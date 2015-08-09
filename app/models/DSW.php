@@ -22,7 +22,7 @@ class DSW extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'date';
+			$parameters['order'] = array('date');
 		}
 		return parent::find($parameters);
 	}

@@ -39,7 +39,7 @@ class User extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'username';
+			$parameters['order'] = array('username');
 		}
 		return parent::find($parameters);
 	}

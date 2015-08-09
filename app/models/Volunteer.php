@@ -65,7 +65,7 @@ class Volunteer extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'name_first, name_last';
+			$parameters['order'] = array('name_first', 'name_last');
 		}
 		return parent::find($parameters);
 	}

@@ -21,7 +21,7 @@ class VolunteerAvailability extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'date, start, end';
+			$parameters['order'] = array('date', 'start', 'end');
 		}
 		return parent::find($parameters);
 	}

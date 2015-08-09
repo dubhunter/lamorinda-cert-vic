@@ -24,7 +24,7 @@ class VolunteerSkill extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'skill_code';
+			$parameters['order'] = array('skill_code');
 		}
 		return parent::find($parameters);
 	}

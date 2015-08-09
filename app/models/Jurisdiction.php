@@ -11,7 +11,7 @@ class Jurisdiction extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'jurisdiction';
+			$parameters['order'] = array('jurisdiction');
 		}
 		return parent::find($parameters);
 	}

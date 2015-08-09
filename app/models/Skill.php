@@ -14,7 +14,7 @@ class Skill extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'code';
+			$parameters['order'] = array('code');
 		}
 		return parent::find($parameters);
 	}

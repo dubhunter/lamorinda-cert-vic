@@ -11,7 +11,7 @@ class DSWClass extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'class';
+			$parameters['order'] = array('class');
 		}
 		return parent::find($parameters);
 	}

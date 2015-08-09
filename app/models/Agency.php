@@ -22,7 +22,7 @@ class Agency extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'name';
+			$parameters['order'] = array('name');
 		}
 		return parent::find($parameters);
 	}

@@ -25,7 +25,7 @@ class Request extends Model {
 	 */
 	public static function find($parameters = array()) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = 'open';
+			$parameters['order'] = array('open');
 		}
 		return parent::find($parameters);
 	}
