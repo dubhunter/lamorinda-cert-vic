@@ -4,7 +4,7 @@
 
 {% block content %}
 	<section>
-		<a href="{{ url({'for': 'agency-create'}) }}" class="btn pull-right"><i class="icon icon-agency-plus"></i> Add Agency</a>
+		<a href="{{ url({'for': 'agency-create'}) }}" class="btn pull-right"><i class="icon icon-plus"></i> Add Agency</a>
 		<h2>Agencies</h2>
 		<table class="table table-hover">
 			<thead>

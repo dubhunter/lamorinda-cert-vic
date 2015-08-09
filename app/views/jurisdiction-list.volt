@@ -4,7 +4,7 @@
 
 {% block content %}
 	<section>
-		<a href="{{ url({'for': 'jurisdiction-create'}) }}" class="btn pull-right"><i class="icon icon-jurisdiction-plus"></i> Add Jurisdiction</a>
+		<a href="{{ url({'for': 'jurisdiction-create'}) }}" class="btn pull-right"><i class="icon icon-plus"></i> Add Jurisdiction</a>
 		<h2>Jurisdictions</h2>
 		<table class="table table-hover">
 			<thead>

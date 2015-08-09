@@ -4,7 +4,7 @@
 
 {% block content %}
 	<section>
-		<a href="{{ url({'for': 'skill-create'}) }}" class="btn pull-right"><i class="icon icon-skill-plus"></i> Add Skill</a>
+		<a href="{{ url({'for': 'skill-create'}) }}" class="btn pull-right"><i class="icon icon-plus"></i> Add Skill</a>
 		<h2>Skills</h2>
 		<table class="table table-hover">
 			<thead>

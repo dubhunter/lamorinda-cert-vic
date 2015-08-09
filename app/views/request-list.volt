@@ -4,7 +4,7 @@
 
 {% block content %}
 	<section>
-		<a href="{{ url({'for': 'request-create'}) }}" class="btn pull-right margin-left-xlarge"><i class="icon icon-user-plus"></i> Add Request</a>
+		<a href="{{ url({'for': 'request-create'}) }}" class="btn pull-right margin-left-xlarge"><i class="icon icon-plus"></i> Add Request</a>
 		<form class="pull-right" method="get" action="{{ url({'for': 'request-list'}) }}">
 			<div class="input-append">
 				<input type="text" class="input-large" name="q" value="{{ app['values']['q'] }}">
