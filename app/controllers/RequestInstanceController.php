@@ -58,7 +58,7 @@ class RequestInstanceController extends UsersController {
 			}
 
 			if ($this->request->hasPost('agencyId')) {
-				$request->setAgencyId($this->request->getPost('agencyId', 'int'));
+				$request->setAgencyId($this->request->getPost('agencyId', 'string'));
 			}
 			if ($this->request->hasPost('street')) {
 				$request->setStreet($this->request->getPost('street', 'string'));
