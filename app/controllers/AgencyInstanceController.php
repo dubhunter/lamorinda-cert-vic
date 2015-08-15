@@ -93,7 +93,7 @@ class AgencyInstanceController extends UsersController {
 	}
 
 	public function delete($id) {
-		if (!$this->user->isAdmin() || $id == $this->user->getId()) {
+		if (!$this->user->isAdmin()) {
 			return Response::forbidden();
 		}
 

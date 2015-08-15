@@ -4,7 +4,7 @@ use Talon\Date;
 
 /**
  * @method Volunteer getVolunteer (array $parameters = array()) {}
- * @method DSWClass getDSWSkill (array $parameters = array()) {}
+ * @method DSWClass getDswClass (array $parameters = array()) {}
  * @method Jurisdiction getJurisdiction (array $parameters = array()) {}
  */
 class DSW extends Model {

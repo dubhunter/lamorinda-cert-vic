@@ -74,7 +74,6 @@ class VolunteerPlacementInstanceController extends UsersController {
 				return Response::notFound();
 			}
 
-			$volunteerPlacement->setVolunteerId($volunteer->getId());
 			if ($this->request->hasPost('requestDetailId')) {
 				$volunteerPlacement->setRequestDetailId($this->request->getPost('requestDetailId', 'int'));
 			}

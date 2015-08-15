@@ -52,7 +52,7 @@ class SkillInstanceController extends UsersController {
 	}
 
 	public function delete($code) {
-		if (!$this->user->isAdmin() || $code == $this->user->getId()) {
+		if (!$this->user->isAdmin()) {
 			return Response::forbidden();
 		}
 

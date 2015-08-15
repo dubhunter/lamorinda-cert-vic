@@ -177,6 +177,19 @@
 				</div>
 
 			</fieldset>
+
+			<fieldset>
+
+				<legend>DSW Designations</legend>
+
+				<div class="row-fluid">
+					<div class="span1">
+						<a href="{{ url({'for': 'volunteer-dsw-create', 'volunteerId': volunteer['id']}) }}" class="btn btn-small" data-toggle="modal"><i class="icon icon-plus"></i> Add</a>
+					</div>
+					<div class="span9" id="dsw" role="data-list" data-source="{{ url({'for': 'volunteer-dsw-list', 'volunteerId': volunteer['id']}) }}" data-loading-text="{{ '<i class="icon icon-spinner icon-pulse icon-3x center"></i>'|e }}"></div>
+				</div>
+
+			</fieldset>
 		{% endif %}
 
 			<fieldset>

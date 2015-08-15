@@ -57,7 +57,7 @@ class VolunteerPlacementListController extends UsersController {
 			$volunteerPlacement->save();
 
 			return JsonResponse::ok(array(
-				'success' => 'Volunteer availability successfully saved!',
+				'success' => 'Volunteer placement successfully saved!',
 			));
 		} catch (Exception $e) {
 			return JsonResponse::ok(array(
