@@ -17,7 +17,7 @@
 				<td>{{ item['end']|date('H:i:s') }}</td>
 				<td>{{ item['comment'] }}</td>
 				<td class="text-right">
-					<a href="{{ url({'for': 'volunteer-availability-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
+					<a href="{{ url({'for': 'volunteer-availability-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" title="Edit" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
 				</td>
 			</tr>
 		{% endfor %}

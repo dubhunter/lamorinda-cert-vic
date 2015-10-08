@@ -20,7 +20,7 @@
 					<td>{{ dswClass['id'] }}</td>
 					<td>{{ dswClass['class'] }}</td>
 					<td class="text-right">
-						<a href="{{ url({'for': 'dsw-class-instance', 'id': dswClass['id']}) }}" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
+						<a href="{{ url({'for': 'dsw-class-instance', 'id': dswClass['id']}) }}" title="Edit" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
 					</td>
 				</tr>
 			{% endfor %}

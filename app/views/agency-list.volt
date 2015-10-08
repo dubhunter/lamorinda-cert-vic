@@ -26,7 +26,7 @@
 					<td>{{ agency['contact'] }}</td>
 					<td>{{ agency['comment'] }}</td>
 					<td class="text-right">
-						<a href="{{ url({'for': 'agency-instance', 'id': agency['id']}) }}" class="btn btn-mini{% if agency['id'] == app['agency']['id'] %} disabled{% endif %}"><i class="icon icon-pencil"></i></a>
+						<a href="{{ url({'for': 'agency-instance', 'id': agency['id']}) }}" title="Edit" class="btn btn-mini{% if agency['id'] == app['agency']['id'] %} disabled{% endif %}"><i class="icon icon-pencil"></i></a>
 					</td>
 				</tr>
 			{% endfor %}

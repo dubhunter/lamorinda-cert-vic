@@ -20,7 +20,7 @@
 					<td>{{ jurisdiction['id'] }}</td>
 					<td>{{ jurisdiction['jurisdiction'] }}</td>
 					<td class="text-right">
-						<a href="{{ url({'for': 'jurisdiction-instance', 'id': jurisdiction['id']}) }}" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
+						<a href="{{ url({'for': 'jurisdiction-instance', 'id': jurisdiction['id']}) }}" title="Edit" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
 					</td>
 				</tr>
 			{% endfor %}

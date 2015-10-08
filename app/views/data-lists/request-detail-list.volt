@@ -21,7 +21,7 @@
 				<td>{{ item['number'] }}</td>
 				<td>{% if item['open'] %}<i class="icon icon-circle-o"></i>{% else %}<i class="icon icon-ban"></i>{% endif %}</td>
 				<td class="text-right">
-					<a href="{{ url({'for': 'request-detail-instance', 'requestId': requestId, 'id': item['id']}) }}" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
+					<a href="{{ url({'for': 'request-detail-instance', 'requestId': requestId, 'id': item['id']}) }}" title="Edit" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
 				</td>
 			</tr>
 		{% endfor %}

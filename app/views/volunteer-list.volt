@@ -39,7 +39,7 @@
 						<td>{{ volunteer['entryTime']|date('Y-m-d H:i:s') }}</td>
 						<td>{% if volunteer['available'] %}<i class="icon icon-check"></i>{% else %}<i class="icon icon-times"></i>{% endif %}</td>
 						<td class="text-right">
-							<a href="{{ url({'for': 'volunteer-instance', 'id': volunteer['id']}) }}" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
+							<a href="{{ url({'for': 'volunteer-instance', 'id': volunteer['id']}) }}" title="Edit" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
 						</td>
 					</tr>
 				{% endfor %}

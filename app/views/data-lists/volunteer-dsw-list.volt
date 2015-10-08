@@ -20,7 +20,7 @@
 				<td>{{ item['swornBy'] }}</td>
 			{% if app['user']['admin'] %}
 				<td class="text-right">
-					<a href="{{ url({'for': 'volunteer-dsw-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
+					<a href="{{ url({'for': 'volunteer-dsw-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" title="Edit" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
 				</td>
 			{% endif %}
 			</tr>

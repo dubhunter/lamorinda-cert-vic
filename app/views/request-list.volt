@@ -31,7 +31,7 @@
 						<td>{{ request['contact'] }}</td>
 						<td>{% if request['open'] %}<i class="icon icon-circle-o"></i>{% else %}<i class="icon icon-ban"></i>{% endif %}</td>
 						<td class="text-right">
-							<a href="{{ url({'for': 'request-instance', 'id': request['id']}) }}" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
+							<a href="{{ url({'for': 'request-instance', 'id': request['id']}) }}" title="Edit" class="btn btn-mini"><i class="icon icon-pencil"></i></a>
 						</td>
 					</tr>
 				{% endfor %}

@@ -17,7 +17,7 @@
 				<td>{{ item['licenseExp']|date('Y-m-d') }}</td>
 				<td>{{ item['comment'] }}</td>
 				<td class="text-right">
-					<a href="{{ url({'for': 'volunteer-skill-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
+					<a href="{{ url({'for': 'volunteer-skill-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" title="Edit" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
 				</td>
 			</tr>
 		{% endfor %}
