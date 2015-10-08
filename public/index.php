@@ -14,7 +14,7 @@ use Phalcon\Mvc\Router;
 use Phalcon\Mvc\ViewInterface as ViewInterface;
 use Phalcon\Mvc\View\Simple as View;
 use Phalcon\Mvc\View\Engine\Volt;
-use Phalcon\Session\Adapter\Memcache as Session;
+use Phalcon\Session\Adapter\Libmemcached as Session;
 
 define('APP_DIR', realpath('../app') . '/');
 define('PUBLIC_DIR', realpath('../public') . '/');
@@ -101,7 +101,14 @@ try {
 	$di->set('session', function () use ($di) {
 		$memcacheConfig = $di->get('config')->get('memcache');
 		$session = new Session(array(
-			'host' => $memcacheConfig->host,
+			'servers' => array(
+				array(
+					'host' => $memcacheConfig->host,
+					'port' => $memcacheConfig->port,
+					'weight' => 1,
+				),
+			),
+			'client' => array(),
 			'lifetime' => $memcacheConfig->lifetime,
 			'prefix' => $memcacheConfig->prefix,
 		));
