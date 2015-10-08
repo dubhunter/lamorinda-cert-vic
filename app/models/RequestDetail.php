@@ -1,6 +1,7 @@
 <?php
 
 use Talon\Date;
+use Talon\Time;
 
 /**
  * @method Request getRequest (array $parameters = array()) {}
@@ -130,7 +131,7 @@ class RequestDetail extends Model {
 	 * @return mixed
 	 */
 	public function getStartTime() {
-		return strtotime($this->start_time);
+		return Time::time($this->start_time);
 	}
 
 	/**
@@ -183,5 +184,12 @@ class RequestDetail extends Model {
 	 */
 	public function setOpen($open) {
 		$this->open = $open ? 1 : 0;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getEndDate() {
+		return strtotime('+' . $this->getDays() . ' days ' . $this->getHours() . ' hours', $this->getStartDate() + $this->getStartTime());
 	}
 }

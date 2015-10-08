@@ -1,6 +1,7 @@
 <?php
 
 use Talon\Date;
+use Talon\Time;
 
 /**
  * @method Volunteer getVolunteer (array $parameters = array()) {}
@@ -83,7 +84,7 @@ class VolunteerAvailability extends Model {
 	 * @return mixed
 	 */
 	public function getStart() {
-		return strtotime($this->start);
+		return Time::time($this->start);
 	}
 
 	/**
@@ -100,7 +101,7 @@ class VolunteerAvailability extends Model {
 	 * @return mixed
 	 */
 	public function getEnd() {
-		return strtotime($this->end);
+		return Time::time($this->end);
 	}
 
 	/**
