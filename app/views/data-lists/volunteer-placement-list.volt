@@ -19,6 +19,7 @@
 				<td>{{ item['days'] }}</td>
 				<td>{{ item['comment'] }}</td>
 				<td class="text-right">
+					<a href="{{ url({'for': 'volunteer-placement-instance-badge', 'volunteerId': volunteerId, 'id': item['id']}) }}" title="Print Badge" class="btn btn-mini" target="_blank"><i class="icon icon-print"></i></a>
 					<a href="{{ url({'for': 'volunteer-placement-instance', 'volunteerId': volunteerId, 'id': item['id']}) }}" title="Edit" class="btn btn-mini" data-toggle="modal"><i class="icon icon-pencil"></i></a>
 				</td>
 			</tr>

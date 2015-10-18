@@ -12,7 +12,7 @@
 		<meta name="author" content="Will Mason">
 		<meta name="description" content="Lamorinda CERT volunteer management.">
 
-		{{ assets.outputCss() }}
+		{{ assets.output(assets.getCss(), ['Tag', 'stylesheetLinkMediaAll'], 'css') }}
 	</head>
 	<body{% block bodyAttributes %}{% endblock %}>
 		{# Declare the main navigation area #}
