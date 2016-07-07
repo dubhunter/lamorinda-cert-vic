@@ -53,15 +53,6 @@ class BaseController extends Phalcon\Mvc\Controller {
 		return $url;
 	}
 
-	/**
-	 * @param $url
-	 * @param $params
-	 * @return string
-	 */
-	protected function buildUrl($url, $params) {
-		return http_build_url($url, array('query' => http_build_query($params)));
-	}
-
 	protected function saveValues() {
 		$this->session->set('values', $this->request->get(null, 'string'));
 	}
