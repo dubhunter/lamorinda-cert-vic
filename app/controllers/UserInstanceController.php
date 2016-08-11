@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class UserInstanceController extends UsersController {
 
@@ -20,14 +20,14 @@ class UserInstanceController extends UsersController {
 
 		$template->set('roles', User::getRoles());
 
-		$template->set('user', array(
+		$template->set('user', [
 			'id' => $user->getId(),
 			'username' => $user->getUsername(),
 			'role' => $user->getRole(),
 			'roleName' => User::getRoleName($user->getRole()),
 			'dateCreated' => $user->getDateCreated(),
 			'dateUpdated' => $user->getDateUpdated(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -60,11 +60,11 @@ class UserInstanceController extends UsersController {
 			$user->save();
 
 			$this->flash->success('User successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'user-list'));
+			return Response::temporaryRedirect(['for' => 'user-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'user-instance', 'id' => $id));
+			return Response::temporaryRedirect(['for' => 'user-instance', 'id' => $id]);
 		}
 	}
 
@@ -83,13 +83,13 @@ class UserInstanceController extends UsersController {
 			$user->delete();
 
 			$this->flash->success('User successfully deleted!');
-			return JsonResponse::ok(array(
-				'location' => $this->url->get(array('for' => 'user-list')),
-			));
+			return JsonResponse::ok([
+				'location' => $this->url->get(['for' => 'user-list']),
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

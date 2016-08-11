@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerPlacementListController extends UsersController {
 
@@ -19,7 +19,7 @@ class VolunteerPlacementListController extends UsersController {
 		foreach ($volunteer->getVolunteerPlacements() as $volunteerPlacement) {
 			$requestDetail = $volunteerPlacement->getRequestDetail();
 			$agency = $requestDetail->getRequest()->getAgency();
-			$template->add('volunteerPlacements', array(
+			$template->add('volunteerPlacements', [
 				'id' => $volunteerPlacement->getId(),
 				'date' => $requestDetail->getStartDate(),
 				'requestId' => $requestDetail->getRequestId(),
@@ -27,7 +27,7 @@ class VolunteerPlacementListController extends UsersController {
 				'agencyName' => $agency->getName(),
 				'days' => $requestDetail->getDays(),
 				'comment' => $volunteerPlacement->getComment(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -56,13 +56,13 @@ class VolunteerPlacementListController extends UsersController {
 			}
 			$volunteerPlacement->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Volunteer placement successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

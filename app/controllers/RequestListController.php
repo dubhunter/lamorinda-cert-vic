@@ -1,15 +1,15 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class RequestListController extends UsersController {
 
 	public function get() {
 		$template = $this->getTemplate('request-list');
 
-		$options = array();
+		$options = [];
 
-		$search = $this->request->getQuery('q', array('string', 'trim'));
+		$search = $this->request->getQuery('q', ['string', 'trim']);
 
 		if (!empty($search)) {
 			$search = strtolower($search);
@@ -25,7 +25,7 @@ class RequestListController extends UsersController {
 		foreach (Request::find($options) as $request) {
 			$agency = $request->getAgency();
 			$jurisdiction = $request->getJurisdiction();
-			$template->add('requests', array(
+			$template->add('requests', [
 				'id' => $request->getId(),
 				'agencyId' => $request->getAgencyId(),
 				'agency' => $agency->getName(),
@@ -40,7 +40,7 @@ class RequestListController extends UsersController {
 				'radio' => $request->getRadio(),
 				'comment' => $request->getComment(),
 				'open' => $request->getOpen(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -88,11 +88,11 @@ class RequestListController extends UsersController {
 			$request->save();
 
 			$this->flash->success('Request successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'request-list'));
+			return Response::temporaryRedirect(['for' => 'request-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'request-create'));
+			return Response::temporaryRedirect(['for' => 'request-create']);
 		}
 	}
 }

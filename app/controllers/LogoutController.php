@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class LogoutController extends UsersController {
 
@@ -8,7 +8,7 @@ class LogoutController extends UsersController {
 		$this->session->remove('auth');
 		$this->session->destroy();
 		$this->flash->notice('You have been logged out.');
-		return Response::temporaryRedirect(array('for' => 'home'));
+		return Response::temporaryRedirect(['for' => 'home']);
 	}
 
 }

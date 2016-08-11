@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerSkillListController extends UsersController {
 
@@ -18,13 +18,13 @@ class VolunteerSkillListController extends UsersController {
 
 		foreach ($volunteer->getVolunteerSkills() as $volunteerSkill) {
 			$skill = $volunteerSkill->getSkill();
-			$template->add('volunteerSkills', array(
+			$template->add('volunteerSkills', [
 				'id' => $volunteerSkill->getId(),
 				'code' => $skill->getCode(),
 				'skill' => $skill->getSkill(),
 				'licenseExp' => $volunteerSkill->getLicenseExp(),
 				'comment' => $volunteerSkill->getComment(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -66,13 +66,13 @@ class VolunteerSkillListController extends UsersController {
 			}
 			$volunteerSkill->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Volunteer skill successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

@@ -1,10 +1,10 @@
 <?php
 
-use Talon\Date;
+use Dubhunter\Talon\Date;
 
 /**
- * @method Volunteer getVolunteer (array $parameters = array()) {}
- * @method Skill getSkill (array $parameters = array()) {}
+ * @method Volunteer getVolunteer (array $parameters = []) {}
+ * @method Skill getSkill (array $parameters = []) {}
  */
 class VolunteerSkill extends Model {
 
@@ -22,9 +22,9 @@ class VolunteerSkill extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('skill_code');
+			$parameters['order'] = ['skill_code'];
 		}
 		return parent::find($parameters);
 	}

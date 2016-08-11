@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class AgencyListController extends UsersController {
 
@@ -8,7 +8,7 @@ class AgencyListController extends UsersController {
 		$template = $this->getTemplate('agency-list');
 
 		foreach (Agency::find() as $agency) {
-			$template->add('agencies', array(
+			$template->add('agencies', [
 				'id' => $agency->getId(),
 				'name' => $agency->getName(),
 				'street' => $agency->getStreet(),
@@ -22,7 +22,7 @@ class AgencyListController extends UsersController {
 				'email' => $agency->getEmail(),
 				'radio' => $agency->getRadio(),
 				'comment' => $agency->getComment(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -75,11 +75,11 @@ class AgencyListController extends UsersController {
 			$agency->save();
 
 			$this->flash->success('Agency successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'agency-list'));
+			return Response::temporaryRedirect(['for' => 'agency-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'agency-create'));
+			return Response::temporaryRedirect(['for' => 'agency-create']);
 		}
 	}
 }

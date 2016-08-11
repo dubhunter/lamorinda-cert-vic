@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class RequestDetailInstanceController extends UsersController {
 
@@ -25,13 +25,13 @@ class RequestDetailInstanceController extends UsersController {
 		$template->set('requestId', $request->getId());
 
 		foreach (Skill::find() as $skill) {
-			$template->add('skills', array(
+			$template->add('skills', [
 				'code' => $skill->getCode(),
 				'skill' => $skill->getSkill(),
-			));
+			]);
 		}
 
-		$template->set('requestDetail', array(
+		$template->set('requestDetail', [
 			'id' => $requestDetail->getId(),
 			'skillCode' => $requestDetail->getSkillCode(),
 			'number' => $requestDetail->getNumber(),
@@ -41,7 +41,7 @@ class RequestDetailInstanceController extends UsersController {
 			'hours' => $requestDetail->getNumber(),
 			'comment' => $requestDetail->getComment(),
 			'open' => $requestDetail->getOpen(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -90,13 +90,13 @@ class RequestDetailInstanceController extends UsersController {
 			$requestDetail->setOpen($this->request->getPost('open', 'int'));
 			$requestDetail->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Request detail successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

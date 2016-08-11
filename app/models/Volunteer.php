@@ -1,12 +1,13 @@
 <?php
 
-use Talon\Date;
+use Dubhunter\Libphonenumber\Format as PhoneNumberFormat;
+use Dubhunter\Talon\Date;
 
 /**
- * @method VolunteerSkill[] getVolunteerSkills (array $parameters = array()) {}
- * @method VolunteerAvailability[] getVolunteerAvailability (array $parameters = array()) {}
- * @method Placement[] getVolunteerPlacements (array $parameters = array()) {}
- * @method DSW[] getVolunteerDsw (array $parameters = array()) {}
+ * @method VolunteerSkill[] getVolunteerSkills (array $parameters = []) {}
+ * @method VolunteerAvailability[] getVolunteerAvailability (array $parameters = []) {}
+ * @method Placement[] getVolunteerPlacements (array $parameters = []) {}
+ * @method DSW[] getVolunteerDsw (array $parameters = []) {}
  */
 class Volunteer extends Model {
 
@@ -17,12 +18,12 @@ class Volunteer extends Model {
 	const ID_TYPE_MILITARY = 'MID';
 	const ID_TYPE_STATE = 'SID';
 
-	protected static $idTypes = array(
+	const ID_TYPES = [
 		self::ID_TYPE_DRIVERS_LICENSE => 'Drivers License',
 		self::ID_TYPE_PASSPORT => 'Passport',
 		self::ID_TYPE_MILITARY => 'Military ID',
 		self::ID_TYPE_STATE => 'State ID',
-	);
+	];
 
 	protected $id;
 	protected $name_last;
@@ -65,9 +66,9 @@ class Volunteer extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('name_first', 'name_last');
+			$parameters['order'] = ['name_first', 'name_last'];
 		}
 		return parent::find($parameters);
 	}
@@ -85,7 +86,7 @@ class Volunteer extends Model {
 	 * @return array
 	 */
 	public static function getIdTypes() {
-		return self::$idTypes;
+		return self::ID_TYPES;
 	}
 
 	/**
@@ -93,10 +94,10 @@ class Volunteer extends Model {
 	 */
 	public function initialize() {
 		$this->setSource('volunteers');
-		$this->hasMany('id', 'VolunteerSkill', 'volunteer_id', array('alias' => 'VolunteerSkills'));
+		$this->hasMany('id', 'VolunteerSkill', 'volunteer_id', ['alias' => 'VolunteerSkills']);
 		$this->hasMany('id', 'VolunteerAvailability', 'volunteer_id');
-		$this->hasMany('id', 'Placement', 'volunteer_id', array('alias' => 'VolunteerPlacements'));
-		$this->hasMany('id', 'DSW', 'volunteer_id', array('alias' => 'VolunteerDsw'));
+		$this->hasMany('id', 'Placement', 'volunteer_id', ['alias' => 'VolunteerPlacements']);
+		$this->hasMany('id', 'DSW', 'volunteer_id', ['alias' => 'VolunteerDsw']);
 	}
 
 	/**
@@ -229,7 +230,7 @@ class Volunteer extends Model {
 	 * @param mixed $phone_day
 	 */
 	public function setPhoneDay($phone_day) {
-		$this->phone_day = !empty($phone_day) ? LibPhoneNumber::formatE164($phone_day) : null;
+		$this->phone_day = !empty($phone_day) ? PhoneNumberFormat::e164($phone_day) : null;
 	}
 
 	/**
@@ -243,7 +244,7 @@ class Volunteer extends Model {
 	 * @param mixed $phone_eve
 	 */
 	public function setPhoneEve($phone_eve) {
-		$this->phone_eve = !empty($phone_eve) ? LibPhoneNumber::formatE164($phone_eve) : null;
+		$this->phone_eve = !empty($phone_eve) ? PhoneNumberFormat::e164($phone_eve) : null;
 	}
 
 	/**
@@ -257,7 +258,7 @@ class Volunteer extends Model {
 	 * @param mixed $phone_cell
 	 */
 	public function setPhoneCell($phone_cell) {
-		$this->phone_cell = !empty($phone_cell) ? LibPhoneNumber::formatE164($phone_cell) : null;
+		$this->phone_cell = !empty($phone_cell) ? PhoneNumberFormat::e164($phone_cell) : null;
 	}
 
 	/**
@@ -414,7 +415,7 @@ class Volunteer extends Model {
 	 * @param mixed $ec_phone
 	 */
 	public function setEmergencyContactPhone($ec_phone) {
-		$this->ec_phone = !empty($ec_phone) ? LibPhoneNumber::formatE164($ec_phone) : null;
+		$this->ec_phone = !empty($ec_phone) ? PhoneNumberFormat::e164($ec_phone) : null;
 	}
 
 	/**

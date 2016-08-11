@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class SkillListController extends UsersController {
 
@@ -8,10 +8,10 @@ class SkillListController extends UsersController {
 		$template = $this->getTemplate('skill-list');
 
 		foreach (Skill::find() as $skill) {
-			$template->add('skills', array(
+			$template->add('skills', [
 				'code' => $skill->getCode(),
 				'skill' => $skill->getSkill(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -34,11 +34,11 @@ class SkillListController extends UsersController {
 			$skill->save();
 
 			$this->flash->success('Skill successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'skill-list'));
+			return Response::temporaryRedirect(['for' => 'skill-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'skill-create'));
+			return Response::temporaryRedirect(['for' => 'skill-create']);
 		}
 	}
 }

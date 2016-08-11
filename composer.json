@@ -10,8 +10,11 @@
     }
   ],
   "require": {
+    "dubhunter/libphonenumber": "dev-master",
     "dubhunter/talon": "dev-master",
-    "giggsey/libphonenumber-for-php": "6.2",
     "patchwork/utf8": "v1.1.24"
+  },
+  "require-dev": {
+    "phalcon/devtools": "^2.0"
   }
 }

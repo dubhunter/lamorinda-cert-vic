@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class DswClassListController extends UsersController {
 
@@ -8,10 +8,10 @@ class DswClassListController extends UsersController {
 		$template = $this->getTemplate('dsw-class-list');
 
 		foreach (DSWClass::find() as $dswClass) {
-			$template->add('dswClasses', array(
+			$template->add('dswClasses', [
 				'id' => $dswClass->getId(),
 				'class' => $dswClass->getClass(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -31,11 +31,11 @@ class DswClassListController extends UsersController {
 			$dswClass->save();
 
 			$this->flash->success('DSW Class successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'dsw-class-list'));
+			return Response::temporaryRedirect(['for' => 'dsw-class-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'dsw-class-create'));
+			return Response::temporaryRedirect(['for' => 'dsw-class-create']);
 		}
 	}
 }

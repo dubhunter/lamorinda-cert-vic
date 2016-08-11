@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class VolunteerInstanceController extends UsersController {
 
@@ -15,7 +15,7 @@ class VolunteerInstanceController extends UsersController {
 
 		$template->set('idTypes', Volunteer::getIdTypes());
 
-		$template->set('volunteer', array(
+		$template->set('volunteer', [
 			'id' => $volunteer->getId(),
 			'nameFirst' => $volunteer->getNameFirst(),
 			'nameLast' => $volunteer->getNameLast(),
@@ -52,17 +52,17 @@ class VolunteerInstanceController extends UsersController {
 			'comment' => $volunteer->getComment(),
 			'available' => $volunteer->getAvailable(),
 			'hasImage' => $volunteer->hasImage(),
-		));
+		]);
 
 		foreach ($volunteer->getVolunteerSkills() as $volunteerSkill) {
 			$skill = $volunteerSkill->getSkill();
-			$template->add('skills', array(
+			$template->add('skills', [
 				'id' => $volunteerSkill->getId(),
 				'code' => $skill->getCode(),
 				'skill' => $skill->getSkill(),
 				'licenseExp' => $volunteerSkill->getLicenseExp(),
 				'comment' => $volunteerSkill->getComment(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -183,11 +183,11 @@ class VolunteerInstanceController extends UsersController {
 			$volunteer->save();
 
 			$this->flash->success('Volunteer successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'volunteer-list'));
+			return Response::temporaryRedirect(['for' => 'volunteer-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'volunteer-instance', 'id' => $id));
+			return Response::temporaryRedirect(['for' => 'volunteer-instance', 'id' => $id]);
 		}
 	}
 }

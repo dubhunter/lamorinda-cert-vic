@@ -1,11 +1,11 @@
 <?php
 
-use Talon\Date;
+use Dubhunter\Talon\Date;
 
 /**
- * @method Volunteer getVolunteer (array $parameters = array()) {}
- * @method DSWClass getDswClass (array $parameters = array()) {}
- * @method Jurisdiction getJurisdiction (array $parameters = array()) {}
+ * @method Volunteer getVolunteer (array $parameters = []) {}
+ * @method DSWClass getDswClass (array $parameters = []) {}
+ * @method Jurisdiction getJurisdiction (array $parameters = []) {}
  */
 class DSW extends Model {
 
@@ -20,9 +20,9 @@ class DSW extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('date');
+			$parameters['order'] = ['date'];
 		}
 		return parent::find($parameters);
 	}

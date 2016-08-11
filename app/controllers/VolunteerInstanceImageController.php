@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Image as ImageResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Image as ImageResponse;
 
 class VolunteerInstanceImageController extends UsersController {
 

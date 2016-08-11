@@ -1,16 +1,16 @@
 <?php
 
-use Talon\Date;
+use Dubhunter\Talon\Date;
 
 class User extends Model {
 
 	const ROLE_ADMIN = 1;
 	const ROLE_USER = 2;
 
-	protected static $roles = array(
+	const ROLES = [
 		self::ROLE_ADMIN => 'Admin',
 		self::ROLE_USER => 'User',
-	);
+	];
 
 	protected $id;
 	protected $username;
@@ -24,12 +24,12 @@ class User extends Model {
 	 * @return self
 	 */
 	public static function findFirstByUsername($username) {
-		$parameters = array(
+		$parameters = [
 			'conditions' => 'username = :username:',
-			'bind' => array(
+			'bind' => [
 				'username' => $username,
-			),
-		);
+			],
+		];
 		return self::findFirst($parameters);
 	}
 
@@ -37,9 +37,9 @@ class User extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('username');
+			$parameters['order'] = ['username'];
 		}
 		return parent::find($parameters);
 	}
@@ -48,7 +48,7 @@ class User extends Model {
 	 * @return array
 	 */
 	public static function getRoles() {
-		return self::$roles;
+		return self::ROLES;
 	}
 
 	/**
@@ -56,7 +56,7 @@ class User extends Model {
 	 * @return string
 	 */
 	public static function getRoleName($role) {
-		return isset(self::$roles[$role]) ? self::$roles[$role] : null;
+		return array_key_exists($role, self::ROLES) ? self::ROLES[$role] : null;
 	}
 
 	/**
@@ -135,7 +135,7 @@ class User extends Model {
 	 * @throws Exception
 	 */
 	public function setRole($role) {
-		if (!isset(self::$roles[$role])) {
+		if (!array_key_exists($role, self::ROLES)) {
 			throw new Exception('Invalid role (' . $role . ')');
 		}
 		$this->role = $role;

@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class SkillInstanceController extends UsersController {
 
@@ -14,10 +14,10 @@ class SkillInstanceController extends UsersController {
 
 		$template = $this->getTemplate('skill-instance');
 
-		$template->set('skill', array(
+		$template->set('skill', [
 			'code' => $skill->getCode(),
 			'skill' => $skill->getSkill(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -43,11 +43,11 @@ class SkillInstanceController extends UsersController {
 			$skill->save();
 
 			$this->flash->success('Skill successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'skill-list'));
+			return Response::temporaryRedirect(['for' => 'skill-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'skill-instance', 'id' => $code));
+			return Response::temporaryRedirect(['for' => 'skill-instance', 'id' => $code]);
 		}
 	}
 
@@ -66,13 +66,13 @@ class SkillInstanceController extends UsersController {
 			$skill->delete();
 
 			$this->flash->success('Skill successfully deleted!');
-			return JsonResponse::ok(array(
-				'location' => $this->url->get(array('for' => 'skill-list')),
-			));
+			return JsonResponse::ok([
+				'location' => $this->url->get(['for' => 'skill-list']),
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

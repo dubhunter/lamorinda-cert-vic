@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerDswCreateController extends UsersController {
 
@@ -17,17 +17,17 @@ class VolunteerDswCreateController extends UsersController {
 		$template->set('volunteerId', $volunteer->getId());
 
 		foreach (DSWClass::find() as $dswClass) {
-			$template->add('dswClasses', array(
+			$template->add('dswClasses', [
 				'id' => $dswClass->getId(),
 				'class' => $dswClass->getClass(),
-			));
+			]);
 		}
 
 		foreach (Jurisdiction::find() as $jurisdiction) {
-			$template->add('jurisdictions', array(
+			$template->add('jurisdictions', [
 				'id' => $jurisdiction->getId(),
 				'jurisdiction' => $jurisdiction->getJurisdiction(),
-			));
+			]);
 		}
 
 		return Response::ok($template);

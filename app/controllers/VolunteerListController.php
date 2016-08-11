@@ -1,15 +1,15 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class VolunteerListController extends UsersController {
 
 	public function get() {
 		$template = $this->getTemplate('volunteer-list');
 
-		$options = array();
+		$options = [];
 
-		$search = $this->request->getQuery('q', array('string', 'trim'));
+		$search = $this->request->getQuery('q', ['string', 'trim']);
 
 		if (!empty($search)) {
 			$search = strtolower($search);
@@ -23,7 +23,7 @@ class VolunteerListController extends UsersController {
 		}
 
 		foreach (Volunteer::find($options) as $volunteer) {
-			$template->add('volunteers', array(
+			$template->add('volunteers', [
 				'id' => $volunteer->getId(),
 				'nameFirst' => $volunteer->getNameFirst(),
 				'nameLast' => $volunteer->getNameLast(),
@@ -59,7 +59,7 @@ class VolunteerListController extends UsersController {
 				'entryTime' => $volunteer->getEntryTime(),
 				'comment' => $volunteer->getComment(),
 				'available' => $volunteer->getAvailable(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -176,11 +176,11 @@ class VolunteerListController extends UsersController {
 			$volunteer->save();
 
 			$this->flash->success('Volunteer successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'volunteer-list'));
+			return Response::temporaryRedirect(['for' => 'volunteer-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'volunteer-create'));
+			return Response::temporaryRedirect(['for' => 'volunteer-create']);
 		}
 	}
 }

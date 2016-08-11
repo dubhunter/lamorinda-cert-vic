@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class RequestCreateController extends UsersController {
 
@@ -8,17 +8,17 @@ class RequestCreateController extends UsersController {
 		$template = $this->getTemplate('request-instance');
 
 		foreach (Agency::find() as $agency) {
-			$template->add('agencies', array(
+			$template->add('agencies', [
 				'id' => $agency->getId(),
 				'name' => $agency->getName(),
-			));
+			]);
 		}
 
 		foreach (Jurisdiction::find() as $jurisdiction) {
-			$template->add('jurisdictions', array(
+			$template->add('jurisdictions', [
 				'id' => $jurisdiction->getId(),
 				'jurisdiction' => $jurisdiction->getJurisdiction(),
-			));
+			]);
 		}
 
 		return Response::ok($template);

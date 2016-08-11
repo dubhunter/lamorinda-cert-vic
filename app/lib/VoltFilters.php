@@ -1,6 +1,7 @@
 <?php
 
-use Talon\Mvc\View\Engine\Volt\FilterCollection;
+use Dubhunter\Libphonenumber\Format as PhoneNumberFormat;
+use Dubhunter\Talon\Mvc\View\Engine\Volt\FilterCollection;
 
 class VoltFilters extends FilterCollection {
 
@@ -24,7 +25,7 @@ class VoltFilters extends FilterCollection {
 	 * @return null|string
 	 */
 	public static function phone($number) {
-		return $number ? LibPhoneNumber::formatLocalized($number) : null;
+		return $number ? PhoneNumberFormat::localized($number) : null;
 	}
 
 	/**

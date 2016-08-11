@@ -1,11 +1,11 @@
 <?php
 
-use Talon\Date;
-use Talon\Time;
+use Dubhunter\Talon\Date;
+use Dubhunter\Talon\Time;
 
 /**
- * @method Request getRequest (array $parameters = array()) {}
- * @method Skill getSkill (array $parameters = array()) {}
+ * @method Request getRequest (array $parameters = []) {}
+ * @method Skill getSkill (array $parameters = []) {}
  */
 class RequestDetail extends Model {
 
@@ -24,9 +24,9 @@ class RequestDetail extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('start_date', 'start_time');
+			$parameters['order'] = ['start_date', 'start_time'];
 		}
 		return parent::find($parameters);
 	}

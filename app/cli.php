@@ -1,7 +1,7 @@
 <?php
 
 use Phalcon\Loader;
-use Phalcon\DI\FactoryDefault\CLI as DI;
+use Phalcon\Di\FactoryDefault\Cli as Di;
 use Phalcon\CLI\Console as ConsoleApp;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Db\Adapter\Pdo\Mysql;
@@ -25,7 +25,7 @@ $loader->registerDirs(array(
 require VENDOR_DIR . 'autoload.php';
 
 //Using the CLI factory default services container
-$di = new DI();
+$di = new Di();
 
 /**
  * Setting up the credentials config

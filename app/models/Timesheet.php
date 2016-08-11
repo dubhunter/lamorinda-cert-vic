@@ -1,10 +1,10 @@
 <?php
 
-use Talon\Date;
+use Dubhunter\Talon\Date;
 
 /**
- * @method Volunteer getVolunteer (array $parameters = array()) {}
- * @method RequestDetail getRequestDetail (array $parameters = array()) {}
+ * @method Volunteer getVolunteer (array $parameters = []) {}
+ * @method RequestDetail getRequestDetail (array $parameters = []) {}
  */
 class Timesheet extends Model {
 
@@ -19,7 +19,7 @@ class Timesheet extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
 			$parameters['order'] = arra('date');
 		}

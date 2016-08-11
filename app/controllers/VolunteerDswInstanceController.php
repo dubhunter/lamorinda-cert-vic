@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerDswInstanceController extends UsersController {
 
@@ -25,25 +25,25 @@ class VolunteerDswInstanceController extends UsersController {
 		$template->set('volunteerId', $volunteer->getId());
 
 		foreach (DSWClass::find() as $dswClass) {
-			$template->add('dswClasses', array(
+			$template->add('dswClasses', [
 				'id' => $dswClass->getId(),
 				'class' => $dswClass->getClass(),
-			));
+			]);
 		}
 
 		foreach (Jurisdiction::find() as $jurisdiction) {
-			$template->add('jurisdictions', array(
+			$template->add('jurisdictions', [
 				'id' => $jurisdiction->getId(),
 				'jurisdiction' => $jurisdiction->getJurisdiction(),
-			));
+			]);
 		}
 
-		$template->set('volunteerDsw', array(
+		$template->set('volunteerDsw', [
 			'id' => $volunteerDsw->getId(),
 			'dswClassId' => $volunteerDsw->getDswClassId(),
 			'jurisdictionId' => $volunteerDsw->getJurisdictionId(),
 			'swornBy' => $volunteerDsw->getSwornBy(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -83,13 +83,13 @@ class VolunteerDswInstanceController extends UsersController {
 			}
 			$volunteerDsw->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Volunteer dsw designation successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

@@ -4,26 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d1d17c81dd592f2c2d9f561b18919168",
+    "hash": "e36ba0535095613e9638a9c0dca4bb05",
+    "content-hash": "c45d79b4b2087bd3e6128dd95c28d20d",
     "packages": [
+        {
+            "name": "dubhunter/libphonenumber",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dubhunter/libphonenumber.git",
+                "reference": "75ce0ed360f99060475c5c777662631e58b18f0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dubhunter/libphonenumber/zipball/75ce0ed360f99060475c5c777662631e58b18f0f",
+                "reference": "75ce0ed360f99060475c5c777662631e58b18f0f",
+                "shasum": ""
+            },
+            "require": {
+                "giggsey/libphonenumber-for-php": "^7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dubhunter\\Libphonenumber\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Will Mason",
+                    "email": "the@dubhunter.com"
+                }
+            ],
+            "description": "A set of wrappers for working with giggsey/libphonenumber-for-php",
+            "time": "2016-07-22 00:49:14"
+        },
         {
             "name": "dubhunter/talon",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dubhunter/talon.git",
-                "reference": "cdec49a96e7b23f1ffbef8ca5980ff51c19793d2"
+                "reference": "803a9441ec55f45ffe024ee69a335fb02b74cb1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dubhunter/talon/zipball/cdec49a96e7b23f1ffbef8ca5980ff51c19793d2",
-                "reference": "cdec49a96e7b23f1ffbef8ca5980ff51c19793d2",
+                "url": "https://api.github.com/repos/dubhunter/talon/zipball/803a9441ec55f45ffe024ee69a335fb02b74cb1b",
+                "reference": "803a9441ec55f45ffe024ee69a335fb02b74cb1b",
                 "shasum": ""
+            },
+            "require": {
+                "ext-phalcon": "~2.0.0",
+                "league/uri": "4.1.1",
+                "php": "^5.3.0 || ^7.0.0"
+            },
+            "require-dev": {
+                "phalcon/devtools": "^2.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Talon": "src/"
+                "psr-4": {
+                    "Dubhunter\\Talon\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -37,35 +82,40 @@
                 }
             ],
             "description": "Phalcon PHP framework tools for RESTful development.",
-            "time": "2015-08-17 00:27:24"
+            "time": "2016-08-11 08:37:14"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "6.2",
+            "version": "7.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "cecc7b729f24a96898109711cb9af462ec7f5935"
+                "reference": "a03f2f7b9c832eed026995182c3a3100dc4d2938"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/cecc7b729f24a96898109711cb9af462ec7f5935",
-                "reference": "cecc7b729f24a96898109711cb9af462ec7f5935",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/a03f2f7b9c832eed026995182c3a3100dc4d2938",
+                "reference": "a03f2f7b9c832eed026995182c3a3100dc4d2938",
                 "shasum": ""
             },
             "require": {
-                "ext-intl": "*"
+                "ext-mbstring": "*",
+                "giggsey/locale": "^1.0",
+                "php": ">=5.3.2"
             },
             "require-dev": {
+                "pear/pear-core-minimal": "^1.9",
+                "pear/pear_exception": "^1.0",
+                "pear/versioncontrol_git": "dev-master",
                 "phing/phing": "~2.7",
                 "phpunit/phpunit": "~4.0",
                 "satooshi/php-coveralls": "~0.6",
-                "symfony/console": "~2.4"
+                "symfony/console": "^2.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.x-dev"
+                    "dev-master": "7.x-dev"
                 }
             },
             "autoload": {
@@ -84,7 +134,7 @@
                     "homepage": "http://giggsey.com/"
                 }
             ],
-            "description": "Unofficial PHP Port of Google's libphonenumber",
+            "description": "PHP Port of Google's libphonenumber",
             "homepage": "https://github.com/giggsey/libphonenumber-for-php",
             "keywords": [
                 "geocoding",
@@ -94,7 +144,179 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2014-07-01 09:41:50"
+            "time": "2016-08-10 09:28:45"
+        },
+        {
+            "name": "giggsey/locale",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/giggsey/Locale.git",
+                "reference": "9087acaf8493472fcd129118017fd7e06be3d8fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/giggsey/Locale/zipball/9087acaf8493472fcd129118017fd7e06be3d8fa",
+                "reference": "9087acaf8493472fcd129118017fd7e06be3d8fa",
+                "shasum": ""
+            },
+            "require-dev": {
+                "pear/pear-core-minimal": "^1.9",
+                "pear/pear_exception": "^1.0",
+                "pear/versioncontrol_git": "dev-master",
+                "phing/phing": "~2.7",
+                "phpunit/phpunit": "^4.8|^5.0",
+                "satooshi/php-coveralls": "^1.0",
+                "symfony/console": "^2.8|^3.0",
+                "symfony/filesystem": "^2.8|^3.0",
+                "symfony/finder": "^2.8|^3.0",
+                "symfony/process": "^2.8|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Giggsey\\Locale\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joshua Gigg",
+                    "email": "giggsey@gmail.com",
+                    "homepage": "http://giggsey.com/"
+                }
+            ],
+            "description": "Locale functions required by libphonenumber-for-php",
+            "time": "2016-08-04 23:02:29"
+        },
+        {
+            "name": "jeremykendall/php-domain-parser",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykendall/php-domain-parser.git",
+                "reference": "896e7e70f02bd4fd77190052799bc61e4d779672"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykendall/php-domain-parser/zipball/896e7e70f02bd4fd77190052799bc61e4d779672",
+                "reference": "896e7e70f02bd4fd77190052799bc61e4d779672",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "jeremykendall/debug-die": "0.0.1.*",
+                "mikey179/vfsstream": "~1.4",
+                "phpunit/phpunit": "~4.4"
+            },
+            "bin": [
+                "bin/parse",
+                "bin/update-psl"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pdp\\": "src/"
+                },
+                "files": [
+                    "src/pdp-parse-url.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Kendall",
+                    "homepage": "http://about.me/jeremykendall",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/jeremykendall/php-domain-parser/graphs/contributors"
+                }
+            ],
+            "description": "Public Suffix List based URL parsing implemented in PHP.",
+            "homepage": "https://github.com/jeremykendall/php-domain-parser",
+            "keywords": [
+                "Public Suffix List",
+                "domain parsing",
+                "url parsing"
+            ],
+            "time": "2015-03-30 12:49:45"
+        },
+        {
+            "name": "league/uri",
+            "version": "4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/uri.git",
+                "reference": "0cbce9fe7d9808690ebda67b110ad96bcae9daee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/uri/zipball/0cbce9fe7d9808690ebda67b110ad96bcae9daee",
+                "reference": "0cbce9fe7d9808690ebda67b110ad96bcae9daee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "jeremykendall/php-domain-parser": "^3.0",
+                "php": ">=5.5.9",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Uri\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://nyamsprod.com"
+                }
+            ],
+            "description": "URI manipulation library",
+            "homepage": "http://url.thephpleague.com",
+            "keywords": [
+                "data",
+                "data-uri",
+                "ftp",
+                "http",
+                "parse_url",
+                "psr-7",
+                "rfc3986",
+                "uri",
+                "url",
+                "ws"
+            ],
+            "time": "2016-03-24 08:38:29"
         },
         {
             "name": "patchwork/utf8",
@@ -146,12 +368,120 @@
                 "utf8"
             ],
             "time": "2014-06-17 08:23:06"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06 14:39:51"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "phalcon/devtools",
+            "version": "v2.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phalcon/phalcon-devtools.git",
+                "reference": "660df5e050af2fe0f8a941402cc5492614e82d9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/660df5e050af2fe0f8a941402cc5492614e82d9d",
+                "reference": "660df5e050af2fe0f8a941402cc5492614e82d9d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-phalcon": "^2.0",
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "kherge/box": "^2.7"
+            },
+            "bin": [
+                "phalcon.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phalcon\\": "scripts/Phalcon/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Phalcon Team",
+                    "email": "team@phalconphp.com"
+                }
+            ],
+            "description": "This tools provide you useful scripts to generate code helping to develop faster and easy applications that use with Phalcon framework.",
+            "homepage": "http://phalconphp.com",
+            "keywords": [
+                "Devtools",
+                "framework",
+                "phalcon",
+                "phar",
+                "webtools"
+            ],
+            "time": "2016-05-21 09:44:47"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "dubhunter/libphonenumber": 20,
         "dubhunter/talon": 20
     },
     "prefer-stable": false,

@@ -1,8 +1,8 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\RestRequest;
-use Talon\Mvc\RestDispatcher;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\RestRequest;
+use Dubhunter\Talon\Mvc\RestDispatcher;
 
 class UsersController extends SiteController {
 
@@ -20,7 +20,7 @@ class UsersController extends SiteController {
 			$request = $this->request;
 			$this->session->set('target', $request->getURI());
 			$this->flash->warning('You must login first.');
-			$dispatcher->setReturnedValue(Response::temporaryRedirect(array('for' => 'home')));
+			$dispatcher->setReturnedValue(Response::temporaryRedirect(['for' => 'home']));
 			return false;
 		}
 		return true;

@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class RequestInstanceController extends UsersController {
 
@@ -14,20 +14,20 @@ class RequestInstanceController extends UsersController {
 		$template = $this->getTemplate('request-instance');
 
 		foreach (Agency::find() as $agency) {
-			$template->add('agencies', array(
+			$template->add('agencies', [
 				'id' => $agency->getId(),
 				'name' => $agency->getName(),
-			));
+			]);
 		}
 
 		foreach (Jurisdiction::find() as $jurisdiction) {
-			$template->add('jurisdictions', array(
+			$template->add('jurisdictions', [
 				'id' => $jurisdiction->getId(),
 				'jurisdiction' => $jurisdiction->getJurisdiction(),
-			));
+			]);
 		}
 
-		$template->set('request', array(
+		$template->set('request', [
 			'id' => $request->getId(),
 			'agencyId' => $request->getAgencyId(),
 			'street' => $request->getStreet(),
@@ -40,7 +40,7 @@ class RequestInstanceController extends UsersController {
 			'radio' => $request->getRadio(),
 			'comment' => $request->getComment(),
 			'open' => $request->getOpen(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -91,11 +91,11 @@ class RequestInstanceController extends UsersController {
 			$request->save();
 
 			$this->flash->success('Request successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'request-list'));
+			return Response::temporaryRedirect(['for' => 'request-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'request-instance', 'id' => $id));
+			return Response::temporaryRedirect(['for' => 'request-instance', 'id' => $id]);
 		}
 	}
 }

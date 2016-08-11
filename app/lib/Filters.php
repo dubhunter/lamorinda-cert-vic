@@ -1,6 +1,6 @@
 <?php
 
-use Talon\FilterCollection;
+use Dubhunter\Talon\FilterCollection;
 
 class Filters extends FilterCollection {
 

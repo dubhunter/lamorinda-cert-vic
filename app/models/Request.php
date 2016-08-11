@@ -1,9 +1,11 @@
 <?php
 
+use Dubhunter\Libphonenumber\Format as PhoneNumberFormat;
+
 /**
- * @method Agency getAgency (array $parameters = array()) {}
- * @method Jurisdiction getJurisdiction (array $parameters = array()) {}
- * @method RequestDetail[] getRequestDetails (array $parameters = array()) {}
+ * @method Agency getAgency (array $parameters = []) {}
+ * @method Jurisdiction getJurisdiction (array $parameters = []) {}
+ * @method RequestDetail[] getRequestDetails (array $parameters = []) {}
  */
 class Request extends Model {
 
@@ -24,9 +26,9 @@ class Request extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('open');
+			$parameters['order'] = ['open'];
 		}
 		return parent::find($parameters);
 	}
@@ -35,7 +37,7 @@ class Request extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function findOpen($parameters = array()) {
+	public static function findOpen($parameters = []) {
 		$parameters['conditions'] = 'open = 1';
 		return self::find($parameters);
 	}
@@ -56,14 +58,14 @@ class Request extends Model {
 		$this->setSource('requests');
 		$this->hasOne('agency_id', 'Agency', 'id');
 		$this->hasOne('jurisdiction_id', 'Jurisdiction', 'id');
-		$this->hasMany('id', 'RequestDetail', 'request_id', array('alias' => 'RequestDetails'));
+		$this->hasMany('id', 'RequestDetail', 'request_id', ['alias' => 'RequestDetails']);
 	}
 
 	/**
 	 * @param array $parameters
 	 * @return RequestDetail[]
 	 */
-	public function getOpenRequestDetails($parameters = array()) {
+	public function getOpenRequestDetails($parameters = []) {
 		$parameters['conditions'] = 'open = 1';
 		return $this->getRequestDetails($parameters);
 	}
@@ -149,7 +151,7 @@ class Request extends Model {
 	 * @param mixed $phone_work
 	 */
 	public function setPhoneWork($phone_work) {
-		$this->phone_work = !empty($phone_work) ? LibPhoneNumber::formatE164($phone_work) : null;
+		$this->phone_work = !empty($phone_work) ? PhoneNumberFormat::e164($phone_work) : null;
 	}
 
 	/**
@@ -163,7 +165,7 @@ class Request extends Model {
 	 * @param mixed $fax
 	 */
 	public function setFax($fax) {
-		$this->fax = !empty($fax) ? LibPhoneNumber::formatE164($fax) : null;
+		$this->fax = !empty($fax) ? PhoneNumberFormat::e164($fax) : null;
 	}
 
 	/**
@@ -177,7 +179,7 @@ class Request extends Model {
 	 * @param mixed $phone_cell
 	 */
 	public function setPhoneCell($phone_cell) {
-		$this->phone_cell = !empty($phone_cell) ? LibPhoneNumber::formatE164($phone_cell) : null;
+		$this->phone_cell = !empty($phone_cell) ? PhoneNumberFormat::e164($phone_cell) : null;
 	}
 
 	/**

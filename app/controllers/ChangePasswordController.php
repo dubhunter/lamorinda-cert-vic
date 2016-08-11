@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class ChangePasswordController extends UsersController {
 
@@ -28,10 +28,10 @@ class ChangePasswordController extends UsersController {
 			$this->user->save();
 
 			$this->flash->success('Password successfully changed!');
-			return Response::temporaryRedirect(array('for' => 'dashboard'));
+			return Response::temporaryRedirect(['for' => 'dashboard']);
 		} catch (Exception $e) {
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'change-password'));
+			return Response::temporaryRedirect(['for' => 'change-password']);
 		}
 	}
 }

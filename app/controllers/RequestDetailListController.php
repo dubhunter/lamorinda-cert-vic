@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class RequestDetailListController extends UsersController {
 
@@ -18,7 +18,7 @@ class RequestDetailListController extends UsersController {
 
 		foreach ($request->getRequestDetails() as $requestDetail) {
 			$skill = $requestDetail->getSkill();
-			$template->add('requestDetails', array(
+			$template->add('requestDetails', [
 				'id' => $requestDetail->getId(),
 				'code' => $skill->getCode(),
 				'skill' => $skill->getSkill(),
@@ -29,7 +29,7 @@ class RequestDetailListController extends UsersController {
 				'hours' => $requestDetail->getNumber(),
 				'comment' => $requestDetail->getComment(),
 				'open' => $requestDetail->getOpen(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -74,13 +74,13 @@ class RequestDetailListController extends UsersController {
 			$requestDetail->setOpen($this->request->getPost('open', 'int'));
 			$requestDetail->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Request detail successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

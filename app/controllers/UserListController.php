@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class UserListController extends UsersController {
 
@@ -12,14 +12,14 @@ class UserListController extends UsersController {
 		$template = $this->getTemplate('user-list');
 
 		foreach (User::find() as $user) {
-			$template->add('users', array(
+			$template->add('users', [
 				'id' => $user->getId(),
 				'username' => $user->getUsername(),
 				'role' => $user->getRole(),
 				'roleName' => User::getRoleName($user->getRole()),
 				'dateCreated' => $user->getDateCreated(),
 				'dateUpdated' => $user->getDateUpdated(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -49,11 +49,11 @@ class UserListController extends UsersController {
 			$user->save();
 
 			$this->flash->success('User successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'user-list'));
+			return Response::temporaryRedirect(['for' => 'user-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'user-create'));
+			return Response::temporaryRedirect(['for' => 'user-create']);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerPlacementCreateController extends UsersController {
 
@@ -17,7 +17,7 @@ class VolunteerPlacementCreateController extends UsersController {
 		$template->set('volunteerId', $volunteer->getId());
 
 		foreach (Request::findOpen() as $request) {
-			$requestDetails = array();
+			$requestDetails = [];
 			foreach ($request->getOpenRequestDetails() as $requestDetail) {
 				$skill = $requestDetail->getSkill();
 				$requestDetails[] = array(
@@ -29,12 +29,12 @@ class VolunteerPlacementCreateController extends UsersController {
 				);
 			}
 			$agency = $request->getAgency();
-			$template->add('requests', array(
+			$template->add('requests', [
 				'id' => $request->getId(),
 				'agencyId' => $agency->getId(),
 				'agencyName' => $agency->getName(),
 				'requestDetails' => $requestDetails,
-			));
+			]);
 		}
 
 		return Response::ok($template);

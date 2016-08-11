@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class AgencyInstanceController extends UsersController {
 
@@ -14,7 +14,7 @@ class AgencyInstanceController extends UsersController {
 
 		$template = $this->getTemplate('agency-instance');
 
-		$template->set('agency', array(
+		$template->set('agency', [
 			'id' => $agency->getId(),
 			'name' => $agency->getName(),
 			'street' => $agency->getStreet(),
@@ -28,7 +28,7 @@ class AgencyInstanceController extends UsersController {
 			'email' => $agency->getEmail(),
 			'radio' => $agency->getRadio(),
 			'comment' => $agency->getComment(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -84,11 +84,11 @@ class AgencyInstanceController extends UsersController {
 			$agency->save();
 
 			$this->flash->success('Agency successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'agency-list'));
+			return Response::temporaryRedirect(['for' => 'agency-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'agency-instance', 'id' => $id));
+			return Response::temporaryRedirect(['for' => 'agency-instance', 'id' => $id]);
 		}
 	}
 
@@ -107,13 +107,13 @@ class AgencyInstanceController extends UsersController {
 			$agency->delete();
 
 			$this->flash->success('Agency successfully deleted!');
-			return JsonResponse::ok(array(
-				'location' => $this->url->get(array('for' => 'agency-list')),
-			));
+			return JsonResponse::ok([
+				'location' => $this->url->get(['for' => 'agency-list']),
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

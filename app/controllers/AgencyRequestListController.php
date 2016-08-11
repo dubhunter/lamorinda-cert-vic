@@ -1,7 +1,6 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
 
 class AgencyRequestListController extends UsersController {
 
@@ -17,7 +16,7 @@ class AgencyRequestListController extends UsersController {
 		foreach ($agency->getOpenRequests() as $request) {
 			foreach ($request->getOpenRequestDetails() as $requestDetail) {
 				$skill = $requestDetail->getSkill();
-				$template->add('requestDetails', array(
+				$template->add('requestDetails', [
 					'id' => $requestDetail->getId(),
 					'requestId' => $requestDetail->getRequestId(),
 					'code' => $skill->getCode(),
@@ -28,7 +27,7 @@ class AgencyRequestListController extends UsersController {
 					'startTime' => $requestDetail->getStartTime(),
 					'hours' => $requestDetail->getNumber(),
 					'comment' => $requestDetail->getComment(),
-				));
+				]);
 			}
 		}
 

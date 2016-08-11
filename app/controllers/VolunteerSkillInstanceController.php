@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerSkillInstanceController extends UsersController {
 
@@ -25,13 +25,13 @@ class VolunteerSkillInstanceController extends UsersController {
 		$template->set('volunteerId', $volunteer->getId());
 
 		foreach (Skill::find() as $skill) {
-			$template->add('skills', array(
+			$template->add('skills', [
 				'code' => $skill->getCode(),
 				'skill' => $skill->getSkill(),
-			));
+			]);
 		}
 
-		$template->set('volunteerSkill', array(
+		$template->set('volunteerSkill', [
 			'id' => $volunteerSkill->getId(),
 			'skillCode' => $volunteerSkill->getSkillCode(),
 			'check' => $volunteerSkill->getCheck(),
@@ -40,7 +40,7 @@ class VolunteerSkillInstanceController extends UsersController {
 			'licenseExp' => $volunteerSkill->getLicenseExp(),
 			'specialty' => $volunteerSkill->getSpecialty(),
 			'comment' => $volunteerSkill->getComment(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -86,13 +86,13 @@ class VolunteerSkillInstanceController extends UsersController {
 			}
 			$volunteerSkill->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Volunteer skill successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

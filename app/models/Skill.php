@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @method VolunteerSkill getVolunteerSkill (array $parameters = array()) {}
+ * @method VolunteerSkill getVolunteerSkill (array $parameters = []) {}
  */
 class Skill extends Model {
 
@@ -14,12 +14,12 @@ class Skill extends Model {
 	 */
 	public static function findFirst($parameters = null) {
 		if (is_scalar($parameters)) {
-			$parameters = array(
+			$parameters = [
 				'conditions' => 'code = :code:',
-				'bind' => array(
+				'bind' => [
 					'code' => $parameters,
-				),
-			);
+				],
+			];
 		}
 		return parent::findFirst($parameters);
 	}
@@ -28,9 +28,9 @@ class Skill extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('code');
+			$parameters['order'] = ['code'];
 		}
 		return parent::find($parameters);
 	}

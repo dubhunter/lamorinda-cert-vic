@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerDswListController extends UsersController {
 
@@ -19,13 +19,13 @@ class VolunteerDswListController extends UsersController {
 		foreach ($volunteer->getVolunteerDsw() as $volunteerDsw) {
 			$dswClass = $volunteerDsw->getDswClass();
 			$jurisdiction = $volunteerDsw->getJurisdiction();
-			$template->add('volunteerDsw', array(
+			$template->add('volunteerDsw', [
 				'id' => $volunteerDsw->getId(),
 				'class' => $dswClass->getClass(),
 				'jurisdiction' => $jurisdiction->getJurisdiction(),
 				'swornBy' => $volunteerDsw->getSwornBy(),
 				'date' => $volunteerDsw->getDate(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -57,13 +57,13 @@ class VolunteerDswListController extends UsersController {
 			}
 			$volunteerDsw->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Volunteer dsw designation successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }

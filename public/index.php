@@ -1,20 +1,20 @@
 <?php
 
+use Dubhunter\Talon\Http\RestRequest;
+use Dubhunter\Talon\Flash\Bootstrap as BootstrapFlash;
+use Dubhunter\Talon\Mvc\RestApplication;
+use Dubhunter\Talon\Mvc\RestDispatcher;
+use Dubhunter\Talon\Mvc\RestRouter;
+use Dubhunter\Talon\Mvc\View\Engine\Volt;
+use Dubhunter\Talon\Session\Adapter\Libmemcached as Session;
 use Patchwork\Utf8\Bootup as Utf8;
-use Talon\Http\RestRequest;
-use Talon\Mvc\RestDispatcher;
 use Phalcon\Loader;
 use Phalcon\Filter;
-use Phalcon\DI\FactoryDefault as DI;
+use Phalcon\Di\FactoryDefault as Di;
 use Phalcon\Assets\Manager as AssetManager;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Db\Adapter\Pdo\Mysql;
-use Phalcon\Flash\Session as FlashSession;
-use Phalcon\Mvc\Router;
-use Phalcon\Mvc\ViewInterface as ViewInterface;
 use Phalcon\Mvc\View\Simple as View;
-use Phalcon\Mvc\View\Engine\Volt;
-use Phalcon\Session\Adapter\Libmemcached as Session;
 
 define('APP_DIR', realpath('../app') . '/');
 define('PUBLIC_DIR', realpath('../public') . '/');
@@ -30,7 +30,7 @@ try {
 
 	require VENDOR_DIR . 'autoload.php';
 
-	$di = new DI();
+	$di = new Di();
 
 	/**
 	 * Setting up the credentials config
@@ -48,21 +48,10 @@ try {
 
 		$view->registerEngines(array(
 			'.volt' => function ($view, $di) {
+				/** @var Di $di */
 				$env = $di->get('config')->get('environment');
 
-				/** @var ViewInterface|View $view */
-				$volt = new Volt($view, $di);
-				$volt->setOptions(array(
-					'compiledPath' => function ($templatePath) use ($view) {
-						$dir = rtrim(sys_get_temp_dir(), '/') . '/volt-cache';
-						if (!is_dir($dir)) {
-							mkdir($dir);
-						}
-						return $dir . '/lamorinda-cert-vrc%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
-					},
-					'compileAlways' => $env->realm != 'prod',
-				));
-
+				$volt = new Volt($view, $di, $env->realm != 'prod', 'owl-api');
 				$compiler = $volt->getCompiler();
 
 				VoltFilters::install($compiler);
@@ -78,8 +67,7 @@ try {
 	 * Setting up the asset manager
 	 */
 	$di->set('assets', function () {
-		$assetManager = new AssetManager();
-		return $assetManager;
+		return new AssetManager();
 	}, true);
 
 	/**
@@ -100,18 +88,12 @@ try {
 	 */
 	$di->set('session', function () use ($di) {
 		$memcacheConfig = $di->get('config')->get('memcache');
-		$session = new Session(array(
-			'servers' => array(
-				array(
-					'host' => $memcacheConfig->host,
-					'port' => $memcacheConfig->port,
-					'weight' => 1,
-				),
-			),
-			'client' => array(),
-			'lifetime' => $memcacheConfig->lifetime,
-			'prefix' => $memcacheConfig->prefix,
-		));
+		$session = new Session(
+			$memcacheConfig->host,
+			$memcacheConfig->port,
+			$memcacheConfig->prefix,
+			$memcacheConfig->lifetime
+		);
 		$session->start();
 
 		return $session;
@@ -130,12 +112,7 @@ try {
 	 * Setting up the flash service
 	 */
 	$di->set('flash', function () {
-		return new FlashSession(array(
-			'notice' => 'alert alert-info',
-			'success' => 'alert alert-success',
-			'warning' => 'alert alert-warning',
-			'error' => 'alert alert-error',
-		));
+		return new BootstrapFlash();
 	});
 
 	/**
@@ -156,16 +133,9 @@ try {
 	 * Setting up router and mounting AppRouter
 	 */
 	$di->set('router', function () {
-		$router = new Router(false);
-
-		$router->removeExtraSlashes(true);
-
-		$router->notFound(array(
-			'controller' => 'error404',
-		));
-
+		$router = new RestRouter();
+		$router->notFound('Error404');
 		$router->mount(new AppRouter());
-
 		return $router;
 	});
 
@@ -177,8 +147,7 @@ try {
 	/**
 	 * Run the application
 	 */
-	$app = new Application($di);
-	$app->useImplicitView(false);
+	$app = new RestApplication($di);
 	$app->handle()->send();
 
 } catch (Exception $e) {

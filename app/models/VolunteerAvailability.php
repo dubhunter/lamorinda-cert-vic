@@ -1,10 +1,10 @@
 <?php
 
-use Talon\Date;
-use Talon\Time;
+use Dubhunter\Talon\Date;
+use Dubhunter\Talon\Time;
 
 /**
- * @method Volunteer getVolunteer (array $parameters = array()) {}
+ * @method Volunteer getVolunteer (array $parameters = []) {}
  */
 class VolunteerAvailability extends Model {
 
@@ -20,9 +20,9 @@ class VolunteerAvailability extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('date', 'start', 'end');
+			$parameters['order'] = ['date', 'start', 'end'];
 		}
 		return parent::find($parameters);
 	}

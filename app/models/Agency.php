@@ -1,5 +1,7 @@
 <?php
 
+use Dubhunter\Libphonenumber\Format as PhoneNumberFormat;
+
 class Agency extends Model {
 
 	protected $id;
@@ -22,12 +24,12 @@ class Agency extends Model {
 	 */
 	public static function findFirst($parameters = null) {
 		if (is_scalar($parameters)) {
-			$parameters = array(
+			$parameters = [
 				'conditions' => 'id = :id:',
-				'bind' => array(
+				'bind' => [
 					'id' => $parameters,
-				),
-			);
+				],
+			];
 		}
 		return parent::findFirst($parameters);
 	}
@@ -36,9 +38,9 @@ class Agency extends Model {
 	 * @param array $parameters
 	 * @return self[]
 	 */
-	public static function find($parameters = array()) {
+	public static function find($parameters = []) {
 		if (!isset($parameters['order'])) {
-			$parameters['order'] = array('name');
+			$parameters['order'] = ['name'];
 		}
 		return parent::find($parameters);
 	}
@@ -62,11 +64,11 @@ class Agency extends Model {
 	 * @param array $parameters
 	 * @return Request[]
 	 */
-	public function getOpenRequests($parameters = array()) {
+	public function getOpenRequests($parameters = []) {
 		$parameters['conditions'] = 'agency_id = :agency_id: AND open = 1';
-		$parameters['bind'] = array(
+		$parameters['bind'] = [
 			'agency_id' => $this->id,
-		);
+		];
 		return Request::find($parameters);
 	}
 
@@ -137,7 +139,7 @@ class Agency extends Model {
 	 * @param mixed $phone
 	 */
 	public function setPhone($phone) {
-		$this->phone = !empty($phone) ? LibPhoneNumber::formatE164($phone) : null;
+		$this->phone = !empty($phone) ? PhoneNumberFormat::e164($phone) : null;
 	}
 
 	/**
@@ -179,7 +181,7 @@ class Agency extends Model {
 	 * @param mixed $phone_direct
 	 */
 	public function setPhoneDirect($phone_direct) {
-		$this->phone_direct = !empty($phone_direct) ? LibPhoneNumber::formatE164($phone_direct) : null;
+		$this->phone_direct = !empty($phone_direct) ? PhoneNumberFormat::e164($phone_direct) : null;
 	}
 
 	/**
@@ -193,7 +195,7 @@ class Agency extends Model {
 	 * @param mixed $fax
 	 */
 	public function setFax($fax) {
-		$this->fax = !empty($fax) ? LibPhoneNumber::formatE164($fax) : null;
+		$this->fax = !empty($fax) ? PhoneNumberFormat::e164($fax) : null;
 	}
 
 	/**
@@ -207,7 +209,7 @@ class Agency extends Model {
 	 * @param mixed $phone_cell
 	 */
 	public function setPhoneCell($phone_cell) {
-		$this->phone_cell = !empty($phone_cell) ? LibPhoneNumber::formatE164($phone_cell) : null;
+		$this->phone_cell = !empty($phone_cell) ? PhoneNumberFormat::e164($phone_cell) : null;
 	}
 
 	/**

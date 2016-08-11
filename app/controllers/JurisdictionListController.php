@@ -1,6 +1,6 @@
 <?php
 
-use Talon\Http\Response;
+use Dubhunter\Talon\Http\Response;
 
 class JurisdictionListController extends UsersController {
 
@@ -8,10 +8,10 @@ class JurisdictionListController extends UsersController {
 		$template = $this->getTemplate('jurisdiction-list');
 
 		foreach (Jurisdiction::find() as $jurisdiction) {
-			$template->add('jurisdictions', array(
+			$template->add('jurisdictions', [
 				'id' => $jurisdiction->getId(),
 				'jurisdiction' => $jurisdiction->getJurisdiction(),
-			));
+			]);
 		}
 
 		return Response::ok($template);
@@ -31,11 +31,11 @@ class JurisdictionListController extends UsersController {
 			$jurisdiction->save();
 
 			$this->flash->success('Jurisdiction successfully saved!');
-			return Response::temporaryRedirect(array('for' => 'jurisdiction-list'));
+			return Response::temporaryRedirect(['for' => 'jurisdiction-list']);
 		} catch (Exception $e) {
 			$this->saveValues();
 			$this->flash->error($e->getMessage());
-			return Response::temporaryRedirect(array('for' => 'jurisdiction-create'));
+			return Response::temporaryRedirect(['for' => 'jurisdiction-create']);
 		}
 	}
 }

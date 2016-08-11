@@ -1,7 +1,7 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
 
 class VolunteerPlacementInstanceController extends UsersController {
 
@@ -25,7 +25,7 @@ class VolunteerPlacementInstanceController extends UsersController {
 		$template->set('volunteerId', $volunteer->getId());
 
 		foreach (Request::findOpen() as $request) {
-			$requestDetails = array();
+			$requestDetails = [];
 			foreach ($request->getOpenRequestDetails() as $requestDetail) {
 				$skill = $requestDetail->getSkill();
 				$requestDetails[] = array(
@@ -37,19 +37,19 @@ class VolunteerPlacementInstanceController extends UsersController {
 				);
 			}
 			$agency = $request->getAgency();
-			$template->add('requests', array(
+			$template->add('requests', [
 				'id' => $request->getId(),
 				'agencyId' => $agency->getId(),
 				'agencyName' => $agency->getName(),
 				'requestDetails' => $requestDetails,
-			));
+			]);
 		}
 
-		$template->set('volunteerPlacement', array(
+		$template->set('volunteerPlacement', [
 			'id' => $volunteerPlacement->getId(),
 			'requestDetailId' => $volunteerPlacement->getRequestDetailId(),
 			'comment' => $volunteerPlacement->getComment(),
-		));
+		]);
 
 		return Response::ok($template);
 	}
@@ -82,13 +82,13 @@ class VolunteerPlacementInstanceController extends UsersController {
 			}
 			$volunteerPlacement->save();
 
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'success' => 'Volunteer placement successfully saved!',
-			));
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::ok(array(
+			return JsonResponse::ok([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 }
