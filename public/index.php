@@ -51,7 +51,7 @@ try {
 				/** @var Di $di */
 				$env = $di->get('config')->get('environment');
 
-				$volt = new Volt($view, $di, $env->realm != 'prod', 'owl-api');
+				$volt = new Volt($view, $di, $env->realm != 'prod', 'lamorinda-cert-vrc');
 				$compiler = $volt->getCompiler();
 
 				VoltFilters::install($compiler);
