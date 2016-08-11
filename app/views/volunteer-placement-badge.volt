@@ -6,8 +6,9 @@
 {% block footer %}{% endblock %}
 
 {% block content %}
-	<div class="row-fluid">
-		<div class="span4">
+	<div id="volunteer-placement-badge" class="row-fluid">
+		<div class="span6">
+			<img src="{% if volunteer['hasImage'] %}{{ url({'for': 'volunteer-instance-image', 'id': volunteer['id']}) }}{% else %}/images/default-avatar.png{% endif %}" class="img-rounded pull-right avatar">
 			<h2>Volunteer</h2>
 			<h3>{{ volunteer['nameFirst'] }} {{ volunteer['nameLast'] }}</h3>
 			<p>
@@ -22,22 +23,21 @@
 				{{ requestDetail['skill'] }}
 			</p>
 		</div>
-		<div class="span2">
-			<img src="{% if volunteer['hasImage'] %}{{ url({'for': 'volunteer-instance-image', 'id': volunteer['id']}) }}{% else %}/images/default-avatar.png{% endif %}" width="270" height="270" class="img-rounded">
-		</div>
 		<div class="span6">
 			<p>Lamorinda CERT Volunteer Reception Center</p>
 			{% if volunteer['dsw'] %}
 				<p>Volunteer is authorized to perform work in {{ agency['city'] }}, CA as a Disaster Service Worker.</p>
 			{% endif %}
-			<small>
+
+			<p class="small">
 				This ID is issued by and property of <strong>Lamorinda CERT</strong>.<br>
 				If found, please return to:<br><br>
 				Moraga-Orinda Fire District<br>
 				1280 Moraga Way<br>
 				Moraga, CA 94556
-			</small>
-			<img src="/images/mofd-badge.png" width="60" height="60" class="pull-right">
+			</p>
+			<img src="/images/mofd-badge.png" width="60" height="60" class="logo pull-right">
 		</div>
 	</div>
+	<script language="javascript">window.print();</script>
 {%  endblock %}

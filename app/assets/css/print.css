@@ -1,0 +1,41 @@
+#volunteer-placement-badge.row-fluid {
+  width: 7in;
+  height: 2in;
+  margin-left: auto;
+  margin-right: auto; }
+  @media screen {
+    #volunteer-placement-badge.row-fluid {
+      border: 1px dotted #000; } }
+  #volunteer-placement-badge.row-fluid .span6 {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    margin: 0;
+    padding: 0.1in;
+    float: left; }
+    @media screen {
+      #volunteer-placement-badge.row-fluid .span6:first-child {
+        border-right: 1px dotted #000; } }
+#volunteer-placement-badge h2 {
+  color: red !important;
+  text-transform: uppercase;
+  font-size: 18pt;
+  line-height: 20pt;
+  margin: 0 0 0.1in 0; }
+#volunteer-placement-badge h3 {
+  font-size: 12pt;
+  line-height: 14pt;
+  margin: 0 0 0.08in 0; }
+#volunteer-placement-badge p {
+  font-size: 10pt;
+  line-height: 12pt;
+  margin: 0 0 0.1in 0; }
+  #volunteer-placement-badge p.small {
+    font-size: 8pt; }
+#volunteer-placement-badge img.avatar {
+  max-width: 0.8in !important;
+  margin-left: 0.1in; }
+#volunteer-placement-badge img.logo {
+  position: absolute;
+  bottom: 0.1in;
+  right: 0.1in; }

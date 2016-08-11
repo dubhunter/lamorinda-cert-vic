@@ -12,10 +12,11 @@
 		<meta name="author" content="Will Mason">
 		<meta name="description" content="Lamorinda CERT volunteer management.">
 
-		{{ assets.output(assets.getCss(), ['Tag', 'stylesheetLinkMediaAll'], 'css') }}
+		<link rel="shortcut icon" href="/images/mofd-badge.png">
+
+		{{ assets.outputCss() }}
 	</head>
 	<body{% block bodyAttributes %}{% endblock %}>
-		{# Declare the main navigation area #}
 		{% block navigation %}
 			{% include 'layouts/includes/navs/main.volt' %}
 		{% endblock %}

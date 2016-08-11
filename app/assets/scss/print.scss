@@ -1,0 +1,62 @@
+#volunteer-placement-badge {
+	&.row-fluid {
+		@media screen {
+			border: 1px dotted #000;
+		}
+
+		width: 7in;
+		height: 2in;
+		margin-left: auto;
+		margin-right: auto;
+
+		.span6 {
+			position: relative;
+			width: 50%;
+			height: 100%;
+			margin: 0;
+			padding: 0.1in;
+			float: left;
+
+			&:first-child {
+				@media screen {
+					border-right: 1px dotted #000;
+				}
+			}
+		}
+	}
+
+	h2 {
+		color: red !important;
+		text-transform: uppercase;
+		font-size: 18pt;
+		line-height: 20pt;
+		margin: 0 0 0.1in 0;
+	}
+
+	h3 {
+		font-size: 12pt;
+		line-height: 14pt;
+		margin: 0 0 0.08in 0;
+	}
+
+	p {
+		font-size: 10pt;
+		line-height: 12pt;
+		margin: 0 0 0.1in 0;
+
+		&.small {
+			font-size: 8pt;
+		}
+	}
+
+	img.avatar {
+		max-width: 0.8in !important;
+		margin-left: 0.1in;
+	}
+
+	img.logo {
+		position: absolute;
+		bottom: 0.1in;
+		right: 0.1in;
+	}
+}

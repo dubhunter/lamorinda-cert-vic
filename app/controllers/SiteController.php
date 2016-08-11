@@ -6,10 +6,10 @@ use Phalcon\Assets\Filters\Jsmin;
 class SiteController extends BaseController {
 
 	public function	initialize() {
-		$this->assets->setOptions(array(
+		$this->assets->setOptions([
 			'sourceBasePath' => APP_DIR . 'assets/',
 			'targetBasePath' => PUBLIC_DIR
-		));
+		]);
 
 		$this->assets
 			->collection('css')
@@ -17,10 +17,11 @@ class SiteController extends BaseController {
 			->setTargetPath('css/core.css')
 			->setTargetUri('css/core.css')
 			->addCss('bootstrap.css')
-//			->addCss('bootstrap-spacelab.css')
+//			->addCss('bootstrap-cerulean.css')
 			->addCss('bootstrap-responsive.css')
 			->addCss('font-awesome.css')
 			->addCss('app.css')
+			->addCss('print.css')
 			->join(true)
 			->addFilter(new Cssmin());
 

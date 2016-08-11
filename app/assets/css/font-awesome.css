@@ -1,14 +1,14 @@
 @charset "UTF-8";
 /*!
- *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("/fonts/fontawesome-webfont.eot?v=4.3.0");
-  src: url("/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0") format("embedded-opentype"), url("/fonts/fontawesome-webfont.woff2?v=4.3.0") format("woff2"), url("/fonts/fontawesome-webfont.woff?v=4.3.0") format("woff"), url("/fonts/fontawesome-webfont.ttf?v=4.3.0") format("truetype"), url("/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
+  src: url("/fonts/fontawesome-webfont.eot?v=4.4.0");
+  src: url("/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("/fonts/fontawesome-webfont.woff2?v=4.4.0") format("woff2"), url("/fonts/fontawesome-webfont.woff?v=4.4.0") format("woff"), url("/fonts/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 .icon {
@@ -17,10 +17,7 @@
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
-  width: auto;
-  height: auto; }
+  -moz-osx-font-smoothing: grayscale; }
 
 /* makes the font 33% larger relative to the icon container */
 .icon-lg {
@@ -65,6 +62,18 @@
   border: solid 0.08em #eee;
   border-radius: .1em; }
 
+.icon-pull-left {
+  float: left; }
+
+.icon-pull-right {
+  float: right; }
+
+.icon.icon-pull-left {
+  margin-right: .3em; }
+.icon.icon-pull-right {
+  margin-left: .3em; }
+
+/* Deprecated as of 4.4.0 */
 .pull-right {
   float: right; }
 
@@ -620,6 +629,7 @@
 .icon-credit-card:before {
   content: ""; }
 
+.icon-feed:before,
 .icon-rss:before {
   content: ""; }
 
@@ -1501,6 +1511,8 @@
 .icon-git:before {
   content: ""; }
 
+.icon-y-combinator-square:before,
+.icon-yc-square:before,
 .icon-hacker-news:before {
   content: ""; }
 
@@ -1525,7 +1537,6 @@
 .icon-history:before {
   content: ""; }
 
-.icon-genderless:before,
 .icon-circle-thin:before {
   content: ""; }
 
@@ -1730,6 +1741,7 @@
 .icon-mercury:before {
   content: ""; }
 
+.icon-intersex:before,
 .icon-transgender:before {
   content: ""; }
 
@@ -1756,6 +1768,9 @@
 
 .icon-neuter:before {
   content: ""; }
+
+.icon-genderless:before {
+  content: ""; }
 
 .icon-facebook-official:before {
   content: ""; }
@@ -1790,3 +1805,210 @@
 
 .icon-medium:before {
   content: ""; }
+
+.icon-yc:before,
+.icon-y-combinator:before {
+  content: ""; }
+
+.icon-optin-monster:before {
+  content: ""; }
+
+.icon-opencart:before {
+  content: ""; }
+
+.icon-expeditedssl:before {
+  content: ""; }
+
+.icon-battery-4:before,
+.icon-battery-full:before {
+  content: ""; }
+
+.icon-battery-3:before,
+.icon-battery-three-quarters:before {
+  content: ""; }
+
+.icon-battery-2:before,
+.icon-battery-half:before {
+  content: ""; }
+
+.icon-battery-1:before,
+.icon-battery-quarter:before {
+  content: ""; }
+
+.icon-battery-0:before,
+.icon-battery-empty:before {
+  content: ""; }
+
+.icon-mouse-pointer:before {
+  content: ""; }
+
+.icon-i-cursor:before {
+  content: ""; }
+
+.icon-object-group:before {
+  content: ""; }
+
+.icon-object-ungroup:before {
+  content: ""; }
+
+.icon-sticky-note:before {
+  content: ""; }
+
+.icon-sticky-note-o:before {
+  content: ""; }
+
+.icon-cc-jcb:before {
+  content: ""; }
+
+.icon-cc-diners-club:before {
+  content: ""; }
+
+.icon-clone:before {
+  content: ""; }
+
+.icon-balance-scale:before {
+  content: ""; }
+
+.icon-hourglass-o:before {
+  content: ""; }
+
+.icon-hourglass-1:before,
+.icon-hourglass-start:before {
+  content: ""; }
+
+.icon-hourglass-2:before,
+.icon-hourglass-half:before {
+  content: ""; }
+
+.icon-hourglass-3:before,
+.icon-hourglass-end:before {
+  content: ""; }
+
+.icon-hourglass:before {
+  content: ""; }
+
+.icon-hand-grab-o:before,
+.icon-hand-rock-o:before {
+  content: ""; }
+
+.icon-hand-stop-o:before,
+.icon-hand-paper-o:before {
+  content: ""; }
+
+.icon-hand-scissors-o:before {
+  content: ""; }
+
+.icon-hand-lizard-o:before {
+  content: ""; }
+
+.icon-hand-spock-o:before {
+  content: ""; }
+
+.icon-hand-pointer-o:before {
+  content: ""; }
+
+.icon-hand-peace-o:before {
+  content: ""; }
+
+.icon-trademark:before {
+  content: ""; }
+
+.icon-registered:before {
+  content: ""; }
+
+.icon-creative-commons:before {
+  content: ""; }
+
+.icon-gg:before {
+  content: ""; }
+
+.icon-gg-circle:before {
+  content: ""; }
+
+.icon-tripadvisor:before {
+  content: ""; }
+
+.icon-odnoklassniki:before {
+  content: ""; }
+
+.icon-odnoklassniki-square:before {
+  content: ""; }
+
+.icon-get-pocket:before {
+  content: ""; }
+
+.icon-wikipedia-w:before {
+  content: ""; }
+
+.icon-safari:before {
+  content: ""; }
+
+.icon-chrome:before {
+  content: ""; }
+
+.icon-firefox:before {
+  content: ""; }
+
+.icon-opera:before {
+  content: ""; }
+
+.icon-internet-explorer:before {
+  content: ""; }
+
+.icon-tv:before,
+.icon-television:before {
+  content: ""; }
+
+.icon-contao:before {
+  content: ""; }
+
+.icon-500px:before {
+  content: ""; }
+
+.icon-amazon:before {
+  content: ""; }
+
+.icon-calendar-plus-o:before {
+  content: ""; }
+
+.icon-calendar-minus-o:before {
+  content: ""; }
+
+.icon-calendar-times-o:before {
+  content: ""; }
+
+.icon-calendar-check-o:before {
+  content: ""; }
+
+.icon-industry:before {
+  content: ""; }
+
+.icon-map-pin:before {
+  content: ""; }
+
+.icon-map-signs:before {
+  content: ""; }
+
+.icon-map-o:before {
+  content: ""; }
+
+.icon-map:before {
+  content: ""; }
+
+.icon-commenting:before {
+  content: ""; }
+
+.icon-commenting-o:before {
+  content: ""; }
+
+.icon-houzz:before {
+  content: ""; }
+
+.icon-vimeo:before {
+  content: ""; }
+
+.icon-black-tie:before {
+  content: ""; }
+
+.icon-fonticons:before {
+  content: ""; }
