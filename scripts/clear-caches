@@ -1,0 +1,4 @@
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )
+sudo rm -rf /tmp/volt-cache/*
+sudo rm -rf ${DIR}/public/css/core.css
+sudo rm -rf ${DIR}/public/js/core.js

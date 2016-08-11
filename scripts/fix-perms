@@ -1,0 +1,4 @@
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )
+sudo chmod 664 `find ${DIR} -type f | grep -v 'vendor' | grep -v '.git' | grep -v scripts`
+sudo chmod 775 `find ${DIR} -type d | grep -v 'vendor' | grep -v '.git'`
+sudo chown -R will:www ${DIR}/*

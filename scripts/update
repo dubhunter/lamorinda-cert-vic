@@ -1,0 +1,6 @@
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )
+cd ${DIR}
+git pull origin master
+composer install
+${DIR}/scripts/clear-caches
+${DIR}/scripts/fix-perms
