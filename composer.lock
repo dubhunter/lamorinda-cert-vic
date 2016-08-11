@@ -49,12 +49,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dubhunter/talon.git",
-                "reference": "94eccfb51a5663f99303b4854ca03aa9ba0ac5a5"
+                "reference": "b30361de83b975373921db6adc33f76529e40fd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dubhunter/talon/zipball/94eccfb51a5663f99303b4854ca03aa9ba0ac5a5",
-                "reference": "94eccfb51a5663f99303b4854ca03aa9ba0ac5a5",
+                "url": "https://api.github.com/repos/dubhunter/talon/zipball/b30361de83b975373921db6adc33f76529e40fd6",
+                "reference": "b30361de83b975373921db6adc33f76529e40fd6",
                 "shasum": ""
             },
             "require": {
@@ -82,7 +82,7 @@
                 }
             ],
             "description": "Phalcon PHP framework tools for RESTful development.",
-            "time": "2016-08-11 08:37:55"
+            "time": "2016-08-11 09:32:12"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
