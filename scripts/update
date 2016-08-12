@@ -39,4 +39,4 @@ composer install
 # cleanup and swap the symlink
 cd ${ROOT}
 rm ${tarball}
-ln -fsv ${version} ${NAME}
+ln -fsn ${version} ${NAME}
