@@ -35,6 +35,7 @@ cd ${version}
 composer install
 ./scripts/clear-caches
 ./scripts/fix-permissions
+cp ${DIR}/app/config/config.ini app/config/
 
 # cleanup and swap the symlink
 cd ${ROOT}
