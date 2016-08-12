@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
   DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
@@ -5,9 +7,36 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && cd .. && pwd )"
+ROOT="$( cd -P "$DIR" && cd .. && pwd )"
 
-cd ${DIR}
-git pull origin master
+NAME="lamorinda-cert-vrc"
+
+cd ${ROOT}
+
+# figure out the latest version
+latest=`curl https://api.github.com/repos/dubhunter/${NAME}/releases/latest`
+url=`echo ${latest} | jq '.tarball_url' | tr -d '"'`
+tag=`echo ${latest} | jq '.tag_name' | tr -d '"'`
+version="${NAME}-${tag}"
+tarball="${version}.tar.gz"
+
+if [ -d "${version}" ]; then
+    echo "Already at latest version..."
+    exit 1
+fi
+
+# fetching and extracting
+wget ${url} -O ${tarball}
+mkdir -p ${version}
+tar zxf ${tarball} -C ${version} --strip-components=1
+
+# run install steps
+cd ${version}
 composer install
-${DIR}/scripts/clear-caches
-${DIR}/scripts/fix-permissions
+./scripts/clear-caches
+./scripts/fix-permissions
+
+# cleanup and swap the symlink
+cd ${ROOT}
+rm ${tarball}
+ln -fs ${NAME}-${tag} ${NAME}
