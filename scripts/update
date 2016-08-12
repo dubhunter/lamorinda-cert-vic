@@ -21,7 +21,7 @@ version="${NAME}-${tag}"
 tarball="${version}.tar.gz"
 
 if [ -d "${version}" ]; then
-    echo "Already at latest version..."
+    echo "Already at latest version: ${tag}"
     exit 1
 fi
 
