@@ -33,9 +33,9 @@ tar zxf ${tarball} -C ${version} --strip-components=1
 # run install steps
 cd ${version}
 composer install
+cp ${DIR}/app/config/config.ini app/config/
 ./scripts/clear-caches
 ./scripts/fix-permissions
-cp ${DIR}/app/config/config.ini app/config/
 
 # cleanup and swap the symlink
 cd ${ROOT}
